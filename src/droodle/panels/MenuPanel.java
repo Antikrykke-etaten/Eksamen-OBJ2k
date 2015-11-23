@@ -6,14 +6,12 @@ import javax.swing.JPanel;
 
 public class MenuPanel extends JPanel {
 	
-	public JPanel MenuPanel() {
+	public MenuPanel() {
 		
 		JPanel menuPanel = new JPanel();
 		
 		GridBagLayout gl = new GridBagLayout();
 		menuPanel.setLayout(gl);
-		
-		return menuPanel;
 		
 	}
 

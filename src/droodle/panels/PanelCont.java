@@ -13,7 +13,7 @@ public class PanelCont extends JPanel {
 	panelCont.setLayout(cl);
 	//Panel controll
 	
-	panelCont.add (MenuPanel(), "1");
+	panelCont.add(new MenuPanel(), "1");
 	panelCont.add(newProjectPanel, "2");
 	panelCont.add(oldProjectsPanel, "3");
 	cl.show(panelCont, "1");
