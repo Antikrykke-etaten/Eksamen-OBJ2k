@@ -62,15 +62,11 @@ public class SplashScreen extends JWindow {
                 
             	//Increases the loadingbar
             	count++;
-<<<<<<< HEAD:src/droodle/SplashScreen.java
-=======
+
             	loadingBar.setValue(count);
                 
-                //Debug to check counter
-                System.out.println(count);
                
-                //When counter reaches this number, the splashscreen is closed.
->>>>>>> f678656c9018c01a4efa12078f18cc1588e7d9ae:src/SplashScreen.java
+               
                 if (count == 50) {
                     new CardController();
                     setVisible(false);
