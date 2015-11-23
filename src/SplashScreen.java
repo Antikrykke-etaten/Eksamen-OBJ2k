@@ -13,6 +13,8 @@ import javax.swing.*;
 public class SplashScreen extends JWindow {
 
     static boolean isRegistered;
+    private static JProgressBar loadingBar = new JProgressBar();
+    private static SplashScreen execute;
     private static int count;
     private static Timer timer1;
     
@@ -32,9 +34,9 @@ public class SplashScreen extends JWindow {
         panel.setLayout(null);
         container.add(panel);
         
-       JLabel label = new JLabel("");
+       JLabel label = new JLabel("Droodler incorporated!");
        
-       ImageIcon splashIcon = new ImageIcon("C:\\Users\\Eirik\\Desktop\\Face.png");
+       ImageIcon splashIcon = new ImageIcon("C:\\Users\\Eiriks0\\Desktop\\DroodlerInc.png");
        Image image = splashIcon.getImage(); 
        Image newimg = image.getScaledInstance(350, 150,  java.awt.Image.SCALE_SMOOTH); 
        splashIcon = new ImageIcon(newimg);
@@ -44,18 +46,27 @@ public class SplashScreen extends JWindow {
        label.setFont(new Font("Verdana", Font.BOLD, 14));
        panel.add(label);
        
-     
-        startCounter();
+       loadingBar.setMaximum(50);
+       loadingBar.setBounds(55, 180, 250, 15);
+        container.add(loadingBar);
+        loadProgressBar();
         setSize(370, 215);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    private void startCounter() {
+    private void loadProgressBar() {
         ActionListener al = new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+            	//Increases the loadingbar
             	count++;
+            	loadingBar.setValue(count);
+                
+                //Debug to check counter
                 System.out.println(count);
+               
+                //When counter reaches this number, the splashscreen is closed.
                 if (count == 50) {
                     new CardController();
                     setVisible(false);
