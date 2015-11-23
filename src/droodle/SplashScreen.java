@@ -1,3 +1,4 @@
+package droodle;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -34,7 +35,7 @@ public class SplashScreen extends JWindow {
         
        JLabel label = new JLabel("");
        
-       ImageIcon splashIcon = new ImageIcon("C:\\Users\\Eirik\\Desktop\\Face.png");
+       ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "Face.png");
        Image image = splashIcon.getImage(); 
        Image newimg = image.getScaledInstance(350, 150,  java.awt.Image.SCALE_SMOOTH); 
        splashIcon = new ImageIcon(newimg);
@@ -55,7 +56,6 @@ public class SplashScreen extends JWindow {
         ActionListener al = new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	count++;
-                System.out.println(count);
                 if (count == 50) {
                     new CardController();
                     setVisible(false);
