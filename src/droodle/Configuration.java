@@ -2,8 +2,8 @@ package droodle;
 public class Configuration {
 	
 	public String teamName = "sketches-6";
-	public String assetsFolder = System.getProperty("user.dir") + "\\src\\droodle\\assets\\";
+	public String assetsFolder = System.getProperty("user.dir") + "/src/droodle/assets/";
 	public String fileExtension = ".droodle";
-	public String fileTreeXML = "fileTree.xml";
+	public String fileTreeXML = assetsFolder + "fileTree.xml";
 	
 }
