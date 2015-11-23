@@ -16,9 +16,9 @@ public class CardController {
 	JPanel oldProjectsPanel = new JPanel();
 	
 	//Buttons
-	JButton newProjectButn = new JButton("Lag nytt prosjekt");
-	JButton oldProjectsButn = new JButton("Finn gammelt prosjekt");
-	JButton createNewProjectButn = new JButton("Lag nytt prosjekt");
+	JButton newProjectButn = new JButton("Nytt prosjekt");
+	JButton oldProjectsButn = new JButton("Last inn prosjekt");
+	JButton createNewProjectButn = new JButton("Nytt prosjekt");
 	JButton backToMenuButn2 = new JButton("Til Meny");
 	JButton backToMenuButn1 = new JButton("Til Meny");
 	

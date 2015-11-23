@@ -28,7 +28,6 @@ public class SplashScreen extends JWindow {
 	private JButton oldProjectButn;
 
 	public SplashScreen() {
-
 		Container container = getContentPane();
 		GridBagLayout gl = new GridBagLayout();
 		container.setLayout(null);
@@ -66,7 +65,6 @@ public class SplashScreen extends JWindow {
 
 				// Increases the loadingbar
 				count++;
-
 				loadingBar.setValue(count);
 
 				if (count == 50) {
