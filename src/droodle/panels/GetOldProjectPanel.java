@@ -1,0 +1,73 @@
+package droodle.panels;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import droodle.CardController;
+
+
+public class GetOldProjectPanel extends JPanel {
+	
+	public static JPanel oldProjectsPanel = new JPanel();
+	private JLabel label1;
+	
+	
+	JButton backToMenuButn = new JButton("Til Meny");
+	
+	public  GetOldProjectPanel() {
+		
+		Dimension Butndim = new Dimension(250,60);
+		Dimension ButndimSmal = new Dimension(130,30);
+		
+		GridBagLayout gl = new GridBagLayout();
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		
+		oldProjectsPanel.setLayout(gl);
+		oldProjectsPanel.setBackground(Color.WHITE);
+		
+		label1 = new JLabel ("<html><br>Gi prosjektet ditt ett navn!<br> </html>", SwingConstants.CENTER);
+		label1.setFont(new Font("Arial", Font.PLAIN, 20));
+				
+				
+				
+				gbc.gridx = 0;
+				gbc.gridy = 0;
+				oldProjectsPanel.add(backToMenuButn, gbc);
+				
+				label1 = new JLabel ("<html><br>Velg blant dine gamle prosjekter!<br></html>", SwingConstants.CENTER);
+				label1.setFont(new Font("Arial", Font.PLAIN, 20));
+				
+				gbc.gridx = 0;
+				gbc.gridy = 1;
+				oldProjectsPanel.add (label1, gbc);
+				
+				//Butn settings
+				backToMenuButn.setSize(ButndimSmal);
+				backToMenuButn.setMinimumSize(ButndimSmal);
+				backToMenuButn.setMaximumSize(ButndimSmal);
+				backToMenuButn.setPreferredSize(ButndimSmal);
+				backToMenuButn.setFont(new Font("Arial", Font.PLAIN, 20));
+	
+				//Butn actions
+				backToMenuButn .addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						CardController.cl.show(CardController.panelCont, "1");
+					}
+				});
+	}
+}
+
