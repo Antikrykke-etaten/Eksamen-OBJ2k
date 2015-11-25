@@ -34,12 +34,7 @@ public class FileTreeParser {
 	}
 
 	private void initSketchNames() throws Exception {
-		NodeList nodeList = xmlFile.getDocumentElement().getChildNodes();
-		
-//		if (nodeList.getLength() > 1) {
-//			throw new Exception();
-//		}
-		
+		NodeList nodeList = xmlFile.getDocumentElement().getChildNodes();		
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Sketch sketch = new Sketch();
 			Node node = nodeList.item(i);

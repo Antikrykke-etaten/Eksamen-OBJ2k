@@ -14,8 +14,8 @@ public class PanelCont extends JPanel {
 	//Panel controll
 	
 	panelCont.add(new MenuPanel(), "1");
-	panelCont.add(newProjectPanel, "2");
-	panelCont.add(oldProjectsPanel, "3");
+//	panelCont.add(newProjectPanel, "2");
+//	panelCont.add(oldProjectsPanel, "3");
 	cl.show(panelCont, "1");
 	
 	}
