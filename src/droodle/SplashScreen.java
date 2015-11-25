@@ -8,28 +8,23 @@ import java.awt.Image;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JWindow;
 import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class SplashScreen extends JWindow {
 
 	static boolean isRegistered;
 	private static JProgressBar loadingBar = new JProgressBar();
-	private static SplashScreen execute;
 	private static int count;
 	private static Timer timer1;
 
-	private JButton newProjectButn;
-
-	private JButton oldProjectButn;
-
 	public SplashScreen() {
 		Container container = getContentPane();
-		GridBagLayout gl = new GridBagLayout();
+		new GridBagLayout();
 		container.setLayout(null);
 		JPanel panel = new JPanel();
 		panel.setBorder(new javax.swing.border.EtchedBorder());

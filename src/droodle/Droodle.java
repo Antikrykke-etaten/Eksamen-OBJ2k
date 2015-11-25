@@ -19,7 +19,7 @@ public class Droodle {
 			e.printStackTrace();
 		}
 
-		//new SplashScreen();
+		new SplashScreen();
 	}
 
 }

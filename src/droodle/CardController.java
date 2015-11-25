@@ -1,15 +1,14 @@
 package droodle;
-import javax.swing.*;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import droodle.panels.CreateNewProjectPanel;
 import droodle.panels.GetOldProjectPanel;
 import droodle.panels.MenuPanel;
 import droodle.panels.PaintPanel;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.GridBagConstraints;
 
 public class CardController {
 	JFrame frame = new JFrame("The amazing Droodler panel");
@@ -17,6 +16,12 @@ public class CardController {
 	public static CardLayout cl = new CardLayout();
 	
 	public CardController() {
+		
+		new MenuPanel();
+		new CreateNewProjectPanel();
+		new GetOldProjectPanel();
+		new PaintPanel();
+		
 		panelCont.setLayout(cl);
 		panelCont.add(MenuPanel.menuPanel, "1");
 		panelCont.add(CreateNewProjectPanel.newProjectPanel, "2");
