@@ -17,6 +17,12 @@ public class CardController {
 	public static CardLayout cl = new CardLayout();
 	
 	public CardController() {
+		
+		new MenuPanel();
+		new CreateNewProjectPanel();
+		new GetOldProjectPanel();
+		new PaintPanel();
+		
 		panelCont.setLayout(cl);
 		panelCont.add(MenuPanel.menuPanel, "1");
 		panelCont.add(CreateNewProjectPanel.newProjectPanel, "2");
