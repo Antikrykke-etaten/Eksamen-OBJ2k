@@ -81,7 +81,7 @@ public class PaintPanel extends JPanel {
 		Dimension ButndimSmal = new Dimension(130,30);
 		
 		logo = new JLabel ("", SwingConstants.LEFT);
-		ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "Face.png");
+		ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "droodle-logo-small.png");
 		Image image = splashIcon.getImage();
 		Image newimg = image.getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
 
