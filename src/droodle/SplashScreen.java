@@ -40,7 +40,7 @@ public class SplashScreen extends JWindow {
 
 		JLabel label = new JLabel("Droodler incorporated!");
 
-		ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "Face.png");
+		ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "droodle-logo.png");
 		Image image = splashIcon.getImage();
 		Image newimg = image.getScaledInstance(350, 150, java.awt.Image.SCALE_SMOOTH);
 		splashIcon = new ImageIcon(newimg);
