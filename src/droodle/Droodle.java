@@ -1,12 +1,8 @@
 package droodle;
 
-<<<<<<< HEAD
-import storagetool.Storage;
-=======
 import java.util.List;
 
 import droodle.file.Sketch;
->>>>>>> 6a1a25c58a9ce588269922cd270dfb242ca511eb
 
 public class Droodle {
 
