@@ -1,4 +1,5 @@
 package droodle;
+<<<<<<< HEAD
 
 import javax.swing.*;
 import java.awt.*;
@@ -172,6 +173,40 @@ public class CardController {
 		});
 
 		frame.setPreferredSize(new Dimension(350, 350));
+=======
+import java.awt.CardLayout;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import droodle.panels.CreateNewProjectPanel;
+import droodle.panels.GetOldProjectPanel;
+import droodle.panels.MenuPanel;
+import droodle.panels.PaintPanel;
+
+public class CardController {
+	JFrame frame = new JFrame("The amazing Droodler panel");
+	public static JPanel panelCont = new JPanel();
+	public static CardLayout cl = new CardLayout();
+	
+	public CardController() {
+		
+		new MenuPanel();
+		new CreateNewProjectPanel();
+		new GetOldProjectPanel();
+		new PaintPanel();
+		
+		panelCont.setLayout(cl);
+		panelCont.add(MenuPanel.menuPanel, "1");
+		panelCont.add(CreateNewProjectPanel.newProjectPanel, "2");
+		panelCont.add(GetOldProjectPanel.oldProjectsPanel, "3");
+		panelCont.add(PaintPanel.PaintPanel, "4");
+		
+		cl.show(panelCont, "1");
+		
+		frame.setPreferredSize(new Dimension(750, 550));
+>>>>>>> 6a1a25c58a9ce588269922cd270dfb242ca511eb
 		frame.add(panelCont);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.pack();
@@ -180,3 +215,4 @@ public class CardController {
 
 	}
 }
+

@@ -3,6 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="var" path="STORAGETOOL"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/AzureClient"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/AzureClient">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="E:/Dokumenter/Dropbox/Privat/Programmering/Java/Libraries/azure/azureclient/azureclient"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
