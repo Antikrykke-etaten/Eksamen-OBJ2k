@@ -39,7 +39,6 @@ public class SplashScreen extends JWindow {
 		ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "Face.png");
 		Image image = splashIcon.getImage();
 		Image newimg = image.getScaledInstance(350, 150, java.awt.Image.SCALE_SMOOTH);
-		splashIcon = new ImageIcon(newimg);
 
 		label.setSize(350, 150);
 		label.setIcon(new ImageIcon(newimg));
