@@ -1,6 +1,7 @@
 package droodle.file;
 
 public class Sketch {
+	
 	String sketchName;
 
 	public String getSketchName() {
@@ -10,4 +11,5 @@ public class Sketch {
 	public void setSketchName(String name) {
 		this.sketchName = name;
 	}
+	
 }
