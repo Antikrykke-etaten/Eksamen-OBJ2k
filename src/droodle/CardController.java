@@ -1,4 +1,5 @@
 package droodle;
+
 import java.awt.CardLayout;
 import java.awt.Dimension;
 
@@ -36,7 +37,7 @@ public class CardController {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		
+
 	}
 }
 
