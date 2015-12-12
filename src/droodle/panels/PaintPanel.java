@@ -23,11 +23,12 @@ import javax.swing.border.Border;
 
 import droodle.CardController;
 import droodle.Configuration;
+import droodle.Drawsome;
 
 public class PaintPanel extends JPanel {
 	private JLabel logo;
 	public static JPanel PaintPanel = new JPanel();
-	JPanel PaintPanelWindow = new JPanel();
+	JPanel PaintPanelWindow = new Drawsome(10);
 	JPanel PaintPanelGUI = new JPanel();
 
 	public PaintPanel() {
@@ -121,6 +122,7 @@ public class PaintPanel extends JPanel {
 		PaintPanel.setLayout(new BorderLayout());
 		PaintPanel.add(PaintPanelGUI, BorderLayout.NORTH);
 		PaintPanel.add(PaintPanelWindow, BorderLayout.CENTER);
+		
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;
