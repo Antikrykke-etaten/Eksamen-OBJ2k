@@ -5,7 +5,7 @@
 	<classpathentry kind="var" path="STORAGETOOL"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/AzureClient">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Nichlas/Dokumenter/Dropbox/Privat/Programmering/Java/Libraries/azure/azureclient/azureclient"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Eiriks0/Desktop/Eksamen/azureclient/azureclient"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

@@ -1,6 +1,7 @@
 package droodle.panels;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import droodle.CardController;
 import droodle.Configuration;
@@ -180,6 +183,16 @@ public class GUIPanel extends JPanel {
 				PaintPanel.pw.GetDrawing();
 				//PaintWindowPanel.WipeDrawing();
 				//CardController.cl.show(CardController.panelCont, "1");
+			}
+		});
+		
+		slider.addChangeListener(new ChangeListener() {
+			
+
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				PaintPanel.pw.drawStroke = 40;
+				
 			}
 		});
 	}

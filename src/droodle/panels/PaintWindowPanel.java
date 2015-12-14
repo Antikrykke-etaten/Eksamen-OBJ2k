@@ -3,6 +3,8 @@ package droodle.panels;
 
 
 import java.awt.BasicStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseMotionListener;
@@ -26,47 +28,100 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import storagetool.Storage;
+
 public class PaintWindowPanel extends JPanel implements MouseListener, MouseMotionListener {
 
-	private int drawStroke = 10;
+	int drawStroke = 10;
+	private Timer timer;
+	private Boolean counting = false;
+	private int counter = 10; // the duration
+	private int delay = 1000; // every 1 second
+	private Storage storage;
 	List<Point> displayList = new ArrayList<Point>();
 
 	//String paintname = "??";
 	String pathname = "data.dat";
 	
 	
+	
 
 	
 	public PaintWindowPanel(int strokeSize) {
+	//	Storage storage = new Storage("sketches-6");
+		 
 		addMouseMotionListener(this);
 		addMouseListener(this);
-		this.drawStroke=strokeSize;
+		
 		setBackground(Color.GRAY);
+		
+		
+		
+		
 	}
+	
+	 public void time() {
+		 if (!counting){
+				
+			 counting = true;
+		 ActionListener action = new ActionListener()
+	        {   
+	            @Override
+	            public void actionPerformed(ActionEvent event)
+	            {
+	                if(counter == 0)
+	                {
+	                    timer.stop();
+	                    counting = false;
+	                    counter = 5;
+	                   Save();
+	                }
+	                else
+	                {
+	                	 System.out.println(counter);
+	                    //label.setText("Wait for " + counter + " sec");
+	                    counter--;
+	                }
+	            }
+	        };
+
+	        timer = new Timer(delay, action);
+	        timer.setInitialDelay(0);
+	        timer.start();
+		 }
+	 }
+	
+	
 	
 	 public void paint(Graphics g) {
 		 
 		 Graphics2D g2 = (Graphics2D) g;
+		 
 			g2.setStroke(new BasicStroke(drawStroke));
+		 
 		    g.setColor(Color.GRAY);
 		    g.fillRect(0, 0, getSize().width, getSize().height);
 
 		    g.setColor(Color.black);
 		    int i = 0;
+		    
+		    
 		    while (i < displayList.size()) {
 		      Point p0 = (Point) (displayList.get(i++));
 		      //Point p1 = (Point) (displayList.get(i++));
 		      int x = (p0.x);
 		      int y = (p0.y);
+		      //int s = (p0.size);
 		      //int w = Math.abs(p0.x - p1.x);
 		      //int h = Math.abs(p0.y - p1.y);
 		      //if (slutt != null && start != null)
-		      g2.drawLine(x, y, x, y);
+		      g.drawLine(x, y, x, y);
 		    }
 		  }
 	 
 	 public void Save() {
 		 System.out.println("Save");
+		//System.out.println(storage.getVersion());
 		 try {
 		        FileOutputStream fos = new FileOutputStream(pathname);
 		        ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -103,17 +158,24 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
 	 public void mouseDragged(MouseEvent e) {
 			start = slutt;
 			slutt = new Point(e.getX(), e.getY());
+			//this.drawStroke=drawStroke;
 			displayList.add(slutt);
 			repaint();
 		}
 	 
 	 public void mouseMoved(MouseEvent e) {
 			slutt = null;
+			//timer();
+			time();
 		}
+	 
+	
 
 		  public void mousePressed(MouseEvent e) {
 		    //Point p = new Point(e.getX(), e.getY());
-		   // displayList.add(p);
+		    // displayList.add(p);
+		
+			 
 		  }
 
 		  public void mouseReleased(MouseEvent e) {
