@@ -162,7 +162,7 @@ public class GUIPanel extends JPanel {
 		saveButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				PaintPanel.pw.Save();
+				PaintPanel.pw.Save(PaintPanel.pw.displayList);
 				//PaintWindowPanel.Save();
 				//CardController.cl.show(CardController.panelCont, "1");
 			}
@@ -171,8 +171,8 @@ public class GUIPanel extends JPanel {
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				//PaintPanel.pw.clearDrawings();
 				PaintPanel.pw.WipeDrawing();
-				//PaintWindowPanel.WipeDrawing();
 				//CardController.cl.show(CardController.panelCont, "1");
 			}
 		});

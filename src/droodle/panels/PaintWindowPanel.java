@@ -6,6 +6,10 @@ import java.awt.BasicStroke;
 
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+
+import droodle.Droodle;
+import storagetool.Storage;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseMotionListener;
@@ -18,8 +22,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -33,182 +40,199 @@ import javax.swing.JPanel;
 
 public class PaintWindowPanel extends JPanel implements MouseListener, MouseMotionListener {
 
-	int drawStroke = 10;
-	private Timer timer;
-	private Boolean counting = false;
-	private int counter = 10; // the duration
-	private int delay = 1000; // every 1 second
-	//private Storage storage;
-	//Storage storage = new Storage("sketches-6");
-	List<Point> displayList = new ArrayList<Point>();
+ int drawStroke = 10;
+ private Timer timer;
+ private Storage storage;
+ private Boolean counting = false;
+ private int counter = 10; // the duration
+ private int delay = 1000; // every 1 second
+ //private Storage storage;
+ //Storage storage = new Storage("sketches-6");
+ List<Point> displayList = new ArrayList<Point>();
 
-	//String paintname = "??";
-	String pathname = "data.dat";
-	
-	
-	
+ //String paintname = "??";
+ String pathname = "data.dat";
+ 
+ 
+ 
 
-	
-	public PaintWindowPanel(int strokeSize) {
-		 
-		addMouseMotionListener(this);
-		addMouseListener(this);
-		
-		setBackground(Color.GRAY);
-		
-		
-		
-		
-	}
-	
-	 public void time() {
-		 if (!counting){
-				
-			 counting = true;
-		 ActionListener action = new ActionListener()
-	        {   
-	            @Override
-	            public void actionPerformed(ActionEvent event)
-	            {
-	                if(counter == 0)
-	                {
-	                    timer.stop();
-	                    counting = false;
-	                    counter = 5;
-	                    PaintPanel.pw.Save();
-	                }
-	                else
-	                {
-	                	 System.out.println(counter);
-	                    //label.setText("Wait for " + counter + " sec");
-	                    counter--;
-	                }
-	            }
-	        };
+ 
+ public PaintWindowPanel(int strokeSize) {
+   
+  addMouseMotionListener(this);
+  addMouseListener(this);
+  
+  setBackground(Color.GRAY);
+  
+  
+  
+  
+ }
+ 
+  public void time() {
+   if (!counting){
+    
+    counting = true;
+   ActionListener action = new ActionListener()
+         {   
+             @Override
+             public void actionPerformed(ActionEvent event)
+             {
+                 if(counter == 0)
+                 {
+                     timer.stop();
+                     counting = false;
+                     counter = 5;
+                     PaintPanel.pw.Save(PaintPanel.pw.displayList);
+                 }
+                 else
+                 {
+                   System.out.println(counter);
+                     //label.setText("Wait for " + counter + " sec");
+                     counter--;
+                 }
+             }
+         };
 
-	        timer = new Timer(delay, action);
-	        timer.setInitialDelay(0);
-	        timer.start();
-		 }
-	 }
+         timer = new Timer(delay, action);
+         timer.setInitialDelay(0);
+         timer.start();
+   }
+  }
 
-	 public void paint(Graphics g) {
-		 
-		 Graphics2D g2 = (Graphics2D) g;
-		 
-			g2.setStroke(new BasicStroke(drawStroke));
-		 
-		    g.setColor(Color.GRAY);
-		    g.fillRect(0, 0, getSize().width, getSize().height);
+  public void paint(Graphics g) {
+   
+   Graphics2D g2 = (Graphics2D) g;
+   
+   g2.setStroke(new BasicStroke(drawStroke));
+   
+      g.setColor(Color.GRAY);
+      g.fillRect(0, 0, getSize().width, getSize().height);
 
-		    g.setColor(Color.black);
-		    int i = 0;
-		    
-		    
-		    while (i < displayList.size()) {
-		      Point p0 = (Point) (displayList.get(i++));
-		      //Point p1 = (Point) (displayList.get(i++));
-		      int x = (p0.x);
-		      int y = (p0.y);
-		      //int s = (p0.size);
-		      //int w = Math.abs(p0.x - p1.x);
-		      //int h = Math.abs(p0.y - p1.y);
-		      //if (slutt != null && start != null)
-		      g.drawLine(x, y, x, y);
-		    }
-		  }
-	 
-	 public void Save() {
-		 System.out.println("Save");
-		//System.out.println(storage.getVersion());
-		 try {
-		        FileOutputStream fos = new FileOutputStream(pathname);
-		        ObjectOutputStream oos = new ObjectOutputStream(fos);
-		        oos.writeObject(displayList);
-		        oos.flush();
-		        oos.close();
-		        fos.close();
-		      } catch (Exception ex) {
-		        System.out.println("Trouble writing display list vector");
-		      }
-	 }
-	 
-	 public void GetDrawing() {
-		 System.out.println("GetDrawing");
-		 try {
-		        FileInputStream fis = new FileInputStream(pathname);
-		        ObjectInputStream ois = new ObjectInputStream(fis);
-		        displayList = (Vector) (ois.readObject());
-		        ois.close();
-		        fis.close();
-		        repaint();
-		      } catch (Exception ex) {
-		        System.out.println("Trouble reading display list vector");
-		      }
-	 }
-	 
-	 public void WipeDrawing() {
-		 System.out.println("wipe");
-		 displayList = new Vector();
-	     repaint();
-	 }
-	 
-	 
-	 public void mouseDragged(MouseEvent e) {
-			start = slutt;
-			slutt = new Point(e.getX(), e.getY());
-			//this.drawStroke=drawStroke;
-			displayList.add(slutt);
-			repaint();
-		}
-	 
-	 public void mouseMoved(MouseEvent e) {
-			slutt = null;
-			//timer();
-			
-			PaintPanel.pw.time();
-		}
-	 
-	
+      g.setColor(Color.black);
+      int i = 0;
+      
+      
+      while (i < displayList.size()) {
+        Point p0 = (Point) (displayList.get(i++));
+        //Point p1 = (Point) (displayList.get(i++));
+        int x = (p0.x);
+        int y = (p0.y);
+        //int s = (p0.size);
+        //int w = Math.abs(p0.x - p1.x);
+        //int h = Math.abs(p0.y - p1.y);
+        //if (slutt != null && start != null)
+        g.drawLine(x, y, x, y);
+      }
+    }
+  
+  public void Save(List<Point> displayList) {
+   System.out.println("Trying to save");
+   try {
+	   ByteArrayOutputStream baos = new ByteArrayOutputStream();
+       ObjectOutputStream serializer = new ObjectOutputStream(baos);
+       serializer.writeObject(displayList);
+       InputStream datastream = new ByteArrayInputStream(baos.toByteArray());
+       storage.upload(datastream);
+         //oos.flush();
+         //oos.close();
+         //fos.close();
+        } catch (Exception ex) {
+          System.out.println("Trouble writing display list vector");
+        }
+  }
+  
+  //Public void push (vector<point> data) {
+	 // BytearrayOutputStream baos = new byte arrayoutputstream();
+	 // ObjectoutputStream serializer = new Objectoutputstream (out);
+	 // Serializer.writeobject (data);
+	 // Inputstream datastream = new bytearrayInputstream(baos.tobytearray());
+	//  Storage.upload(datastream);
+	  //}
+  
+ // public void Push(List<Point> displayList) {
+	//  ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	 // ObjectOutputStream serializer = new ObjectOutputStream (out);
+	 // serializer.writeObject (displayList);
+	//  InputStream datastream = new ByteArrayInputStream(baos.toByteArray());
+	 // Droodle.Storage.upload(displayList);
+ // }
+  
+  public void GetDrawing() {
+   System.out.println("GetDrawing");
+   try {
+          FileInputStream fis = new FileInputStream(pathname);
+          ObjectInputStream ois = new ObjectInputStream(fis);
+          displayList = (Vector) (ois.readObject());
+          //Storage.upload(displayList);
+          ois.close();
+          fis.close();
+          repaint();
+        } catch (Exception ex) {
+          System.out.println("Trouble reading display list vector");
+        }
+  }
+  
+  public void WipeDrawing() {
+   System.out.println("wipe");
+   displayList = new Vector();
+      repaint();
+  }
+  
+  
+  public void mouseDragged(MouseEvent e) {
+   start = slutt;
+   slutt = new Point(e.getX(), e.getY());
+   //this.drawStroke=drawStroke;
+   displayList.add(slutt);
+   repaint();
+  }
+  
+  public void mouseMoved(MouseEvent e) {
+   slutt = null;
+   //timer();
+   
+   PaintPanel.pw.time();
+  }
+  
+ 
 
-		  public void mousePressed(MouseEvent e) {
-		    //Point p = new Point(e.getX(), e.getY());
-		    // displayList.add(p);
-		
-			 
-		  }
+    public void mousePressed(MouseEvent e) {
+      //Point p = new Point(e.getX(), e.getY());
+      // displayList.add(p);
+  
+    
+    }
 
-		  public void mouseReleased(MouseEvent e) {
-		   // Point p = new Point(e.getX(), e.getY());
-		    //displayList.add(p);
-		   // repaint();
-		  }
+    public void mouseReleased(MouseEvent e) {
+     // Point p = new Point(e.getX(), e.getY());
+      //displayList.add(p);
+     // repaint();
+    }
 
-		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
+  @Override
+  public void mouseClicked(MouseEvent arg0) {
+   // TODO Auto-generated method stub
+   
+  }
 
-		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
+  @Override
+  public void mouseEntered(MouseEvent arg0) {
+   // TODO Auto-generated method stub
+   
+  }
 
-		@Override
-		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		//public void update(Graphics g) {
-		//	paint(g);
-		//}
+  @Override
+  public void mouseExited(MouseEvent arg0) {
+   // TODO Auto-generated method stub
+   
+  }
+  
+  //public void update(Graphics g) {
+  // paint(g);
+  //}
 
-		Point start = null;
-		Point slutt = null;
+  Point start = null;
+  Point slutt = null;
 
 }
-
-
