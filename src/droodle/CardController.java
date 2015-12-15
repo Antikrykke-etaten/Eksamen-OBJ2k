@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import droodle.panels.CreateNewProjectPanel;
 import droodle.panels.GetOldProjectPanel;
 import droodle.panels.MenuPanel;
-import droodle.panels.PaintPanel;
+import droodle.panels.DroodlePanel;
 
 public class CardController {
 	JFrame frame = new JFrame("The amazing Droodler panel");
@@ -21,13 +21,13 @@ public class CardController {
 		new MenuPanel();
 		new CreateNewProjectPanel();
 		new GetOldProjectPanel();
-		new PaintPanel();
+		new DroodlePanel();
 		
 		panelCont.setLayout(cl);
 		panelCont.add(MenuPanel.menuPanel, "1");
 		panelCont.add(CreateNewProjectPanel.newProjectPanel, "2");
 		panelCont.add(GetOldProjectPanel.oldProjectsPanel, "3");
-		panelCont.add(PaintPanel.PaintPanel, "4");
+		panelCont.add(DroodlePanel.DroodlePanel, "4");
 		
 		cl.show(panelCont, "1");
 		

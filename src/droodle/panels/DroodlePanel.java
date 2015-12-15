@@ -25,16 +25,16 @@ import javax.swing.border.Border;
 import droodle.CardController;
 import droodle.Configuration;
 
-public class PaintPanel extends JPanel {
+public class DroodlePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel logo;
-	static PaintWindowPanel pw = new PaintWindowPanel(10);
+	static DroodleWindow pw = new DroodleWindow(10);
 	
-	public static JPanel PaintPanel = new JPanel();
-	static JPanel PaintPanelWindow = pw;
-	JPanel PaintPanelGUI = new GUIPanel();
+	public static JPanel DroodlePanel = new JPanel();
+	static JPanel DroodleWindow = pw;
+	JPanel PaintPanelGUI = new DroodleGUI();
 
-	public PaintPanel() {
+	public DroodlePanel() {
 
 		//GridBagLayout gl = new GridBagLayout();
 		//GridBagConstraints gbc = new GridBagConstraints();
@@ -46,10 +46,10 @@ public class PaintPanel extends JPanel {
 		//Border Windowborder = BorderFactory.createLineBorder(Color.WHITE, 20);
 		
 		//PaintPanel.setBackground(Color.GRAY);
-		PaintPanel.setLayout(new BorderLayout());
-		PaintPanel.add(GUIPanel.PaintPanelGUI, BorderLayout.NORTH);
+		DroodlePanel.setLayout(new BorderLayout());
+		DroodlePanel.add(DroodleGUI.PaintPanelGUI, BorderLayout.NORTH);
 		//PaintPanel.add(PaintPanelGUI, BorderLayout.NORTH);
-		PaintPanel.add(PaintPanelWindow, BorderLayout.CENTER);
+		DroodlePanel.add(DroodleWindow, BorderLayout.CENTER);
 		//PaintPanelWindow.setBorder(Windowborder);
 		
 	

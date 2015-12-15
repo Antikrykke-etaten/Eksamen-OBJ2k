@@ -38,7 +38,7 @@ import javax.swing.JPanel;
 
 
 
-public class PaintWindowPanel extends JPanel implements MouseListener, MouseMotionListener {
+public class DroodleWindow extends JPanel implements MouseListener, MouseMotionListener {
 
  int drawStroke = 10;
  private Timer timer;
@@ -57,7 +57,7 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
  
 
  
- public PaintWindowPanel(int strokeSize) {
+ public DroodleWindow(int strokeSize) {
    
   addMouseMotionListener(this);
   addMouseListener(this);
@@ -83,7 +83,7 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
                      timer.stop();
                      counting = false;
                      counter = 5;
-                     PaintPanel.pw.Save(PaintPanel.pw.displayList);
+                     DroodlePanel.pw.Save(DroodlePanel.pw.displayList);
                  }
                  else
                  {
@@ -192,7 +192,7 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
    slutt = null;
    //timer();
    
-   PaintPanel.pw.time();
+   DroodlePanel.pw.time();
   }
   
  

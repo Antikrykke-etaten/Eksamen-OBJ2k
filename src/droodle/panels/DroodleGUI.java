@@ -26,15 +26,15 @@ import javax.swing.event.ChangeListener;
 
 import droodle.CardController;
 import droodle.Configuration;
-import droodle.panels.PaintWindowPanel;
+import droodle.panels.DroodleWindow;
 
-public class GUIPanel extends JPanel {
+public class DroodleGUI extends JPanel {
 	private JLabel logo;
 	
 	public static JPanel PaintPanelGUI = new JPanel();
 	//PaintWindowPanel pw = PaintWindowPanel(10);
 
-	public GUIPanel() {
+	public DroodleGUI() {
 
 		// HomeButnIcon
 		ImageIcon menuIcon = new ImageIcon(new Configuration().assetsFolder + "Menu.png");
@@ -162,7 +162,7 @@ public class GUIPanel extends JPanel {
 		saveButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				PaintPanel.pw.Save(PaintPanel.pw.displayList);
+				DroodlePanel.pw.Save(DroodlePanel.pw.displayList);
 				//PaintWindowPanel.Save();
 				//CardController.cl.show(CardController.panelCont, "1");
 			}
@@ -172,7 +172,7 @@ public class GUIPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//PaintPanel.pw.clearDrawings();
-				PaintPanel.pw.WipeDrawing();
+				DroodlePanel.pw.WipeDrawing();
 				//CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
@@ -180,7 +180,7 @@ public class GUIPanel extends JPanel {
 		deleteButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				PaintPanel.pw.GetDrawing();
+				DroodlePanel.pw.GetDrawing();
 				//PaintWindowPanel.WipeDrawing();
 				//CardController.cl.show(CardController.panelCont, "1");
 			}
@@ -191,7 +191,7 @@ public class GUIPanel extends JPanel {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				PaintPanel.pw.drawStroke = 40;
+				DroodlePanel.pw.drawStroke = 40;
 				
 			}
 		});
