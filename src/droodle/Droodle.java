@@ -1,6 +1,9 @@
 package droodle;
 
 import java.util.List;
+import storagetool.StorageAccount;
+import storagetool.Storage;
+
 
 import droodle.file.Sketch;
 
@@ -20,6 +23,7 @@ public class Droodle {
 		}
 
 		new SplashScreen();
+		Storage storage = new Storage("sketches-6");
 	}
 
 }

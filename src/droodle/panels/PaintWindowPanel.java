@@ -3,6 +3,7 @@ package droodle.panels;
 
 
 import java.awt.BasicStroke;
+
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import java.awt.Color;
@@ -28,7 +29,7 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import storagetool.Storage;
+
 
 public class PaintWindowPanel extends JPanel implements MouseListener, MouseMotionListener {
 
@@ -37,7 +38,8 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
 	private Boolean counting = false;
 	private int counter = 10; // the duration
 	private int delay = 1000; // every 1 second
-	private Storage storage;
+	//private Storage storage;
+	//Storage storage = new Storage("sketches-6");
 	List<Point> displayList = new ArrayList<Point>();
 
 	//String paintname = "??";
@@ -48,7 +50,6 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
 
 	
 	public PaintWindowPanel(int strokeSize) {
-	//	Storage storage = new Storage("sketches-6");
 		 
 		addMouseMotionListener(this);
 		addMouseListener(this);
@@ -74,7 +75,7 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
 	                    timer.stop();
 	                    counting = false;
 	                    counter = 5;
-	                   Save();
+	                    PaintPanel.pw.Save();
 	                }
 	                else
 	                {
@@ -90,9 +91,7 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
 	        timer.start();
 		 }
 	 }
-	
-	
-	
+
 	 public void paint(Graphics g) {
 		 
 		 Graphics2D g2 = (Graphics2D) g;
@@ -166,7 +165,8 @@ public class PaintWindowPanel extends JPanel implements MouseListener, MouseMoti
 	 public void mouseMoved(MouseEvent e) {
 			slutt = null;
 			//timer();
-			time();
+			
+			PaintPanel.pw.time();
 		}
 	 
 	

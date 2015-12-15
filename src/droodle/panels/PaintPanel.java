@@ -1,6 +1,7 @@
 package droodle.panels;
 
 import java.awt.BorderLayout;
+import storagetool.Storage;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
