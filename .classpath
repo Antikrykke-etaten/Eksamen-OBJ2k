@@ -7,11 +7,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Eiriks0/Desktop/Eksamen/Ny"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/AzureClient">
-		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Eiriks0/Desktop/Eksamen/azureclient/azureclient"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Eiriks0/Desktop/Eksamen/Ny/storagetool.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/AzureClient"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
