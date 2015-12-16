@@ -1,7 +1,5 @@
 package droodle.panels;
 
-import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -13,24 +11,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import droodle.CardController;
 import droodle.Configuration;
-import droodle.panels.DroodleWindow;
 
 public class DroodleGUI extends JPanel {
 	private JLabel logo;
-	
+
 	public static JPanel PaintPanelGUI = new JPanel();
 
 	public DroodleGUI() {
@@ -70,7 +65,7 @@ public class DroodleGUI extends JPanel {
 		labels.put(1, new JLabel("Middels"));
 		labels.put(2, new JLabel("Stor"));
 		slider.setLabelTable(labels);
-		slider.setBackground(new Color(196,215,233));
+		slider.setBackground(new Color(196, 215, 233));
 
 		// Dimensions
 		Dimension PaintWindowDim = new Dimension(120, 350);
@@ -103,7 +98,7 @@ public class DroodleGUI extends JPanel {
 		saveButn.setMaximumSize(Butndim);
 		saveButn.setPreferredSize(Butndim);
 		saveButn.setFont(new Font("Arial", Font.BOLD, 13));
-		
+
 		deleteButn.setSize(Butndim);
 		deleteButn.setMinimumSize(Butndim);
 		deleteButn.setMaximumSize(Butndim);
@@ -121,11 +116,8 @@ public class DroodleGUI extends JPanel {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets = new Insets(5, 5, 5, 5);
 
-	
-		
-		PaintPanelGUI.setBackground(new Color(196,215,233));
+		PaintPanelGUI.setBackground(new Color(196, 215, 233));
 		PaintPanelGUI.setLayout(gl);
-		
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -142,7 +134,7 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 4;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(deleteButn, gbc);
-		
+
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(slider, gbc);
@@ -154,41 +146,40 @@ public class DroodleGUI extends JPanel {
 				CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
-		
+
 		saveButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				DroodlePanel.pw.Save(DroodlePanel.pw.displayList);
-				//PaintWindowPanel.Save();
-				//CardController.cl.show(CardController.panelCont, "1");
+				// PaintWindowPanel.Save();
+				// CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
-		
+
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//PaintPanel.pw.clearDrawings();
+				// PaintPanel.pw.clearDrawings();
 				DroodlePanel.pw.WipeDrawing();
-				//CardController.cl.show(CardController.panelCont, "1");
+				// CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
-		
+
 		deleteButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				DroodlePanel.pw.GetDrawing();
-				//PaintWindowPanel.WipeDrawing();
-				//CardController.cl.show(CardController.panelCont, "1");
+				// PaintWindowPanel.WipeDrawing();
+				// CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
-		
+
 		slider.addChangeListener(new ChangeListener() {
-			
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				DroodlePanel.pw.drawStroke = 40;
-				
+
 			}
 		});
 	}
