@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
@@ -19,6 +21,8 @@ import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import com.microsoft.azure.storage.StorageException;
 
 import droodle.CardController;
 import droodle.Configuration;
@@ -150,7 +154,17 @@ public class DroodleGUI extends JPanel {
 		saveButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				DroodlePanel.pw.Save(DroodlePanel.pw.displayList);
+
+				//DroodlePanel.pw.Save(DroodlePanel.pw.displayList);
+				//PaintWindowPanel.Save();
+				//CardController.cl.show(CardController.panelCont, "1");
+
+				try {
+					DroodlePanel.sf.Save(DroodlePanel.sf.displayList);
+				} catch (IOException | URISyntaxException | StorageException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				// PaintWindowPanel.Save();
 				// CardController.cl.show(CardController.panelCont, "1");
 			}
@@ -159,18 +173,26 @@ public class DroodleGUI extends JPanel {
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
+				//PaintPanel.pw.clearDrawings();
+				DroodlePanel.sf.WipeDrawing();
+				//CardController.cl.show(CardController.panelCont, "1");
+
 				// PaintPanel.pw.clearDrawings();
-				DroodlePanel.pw.WipeDrawing();
+				DroodlePanel.sf.WipeDrawing();
 				// CardController.cl.show(CardController.panelCont, "1");
+
 			}
 		});
 
 		deleteButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				DroodlePanel.pw.GetDrawing();
-				// PaintWindowPanel.WipeDrawing();
-				// CardController.cl.show(CardController.panelCont, "1");
+
+				DroodlePanel.sf.Load();
+				//PaintWindowPanel.WipeDrawing();
+				//CardController.cl.show(CardController.panelCont, "1");
+
 			}
 		});
 
@@ -178,9 +200,10 @@ public class DroodleGUI extends JPanel {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				DroodlePanel.pw.drawStroke = 40;
 
+				DroodlePanel.dw.drawStroke = 40;
 			}
 		});
 	}
 }
+
