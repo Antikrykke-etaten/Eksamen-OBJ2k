@@ -106,7 +106,7 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
    
    g2.setStroke(new BasicStroke(drawStroke));
    
-      g.setColor(Color.GRAY);
+      g.setColor(Color.WHITE);
       g.fillRect(0, 0, getSize().width, getSize().height);
 
       g.setColor(Color.black);

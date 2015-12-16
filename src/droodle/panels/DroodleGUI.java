@@ -70,7 +70,7 @@ public class DroodleGUI extends JPanel {
 		labels.put(1, new JLabel("Middels"));
 		labels.put(2, new JLabel("Stor"));
 		slider.setLabelTable(labels);
-		slider.setBackground(Color.WHITE);
+		slider.setBackground(new Color(196,215,233));
 
 		// Dimensions
 		Dimension PaintWindowDim = new Dimension(120, 350);
@@ -123,7 +123,7 @@ public class DroodleGUI extends JPanel {
 
 	
 		
-		PaintPanelGUI.setBackground(Color.WHITE);
+		PaintPanelGUI.setBackground(new Color(196,215,233));
 		PaintPanelGUI.setLayout(gl);
 		
 
