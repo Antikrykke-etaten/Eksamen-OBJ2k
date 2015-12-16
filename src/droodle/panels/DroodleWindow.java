@@ -86,7 +86,7 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
    
    g2.setStroke(new BasicStroke(drawStroke));
    
-      g.setColor(Color.GRAY);
+      g.setColor(Color.WHITE);
       g.fillRect(0, 0, getSize().width, getSize().height);
 
       g.setColor(Color.black);
@@ -118,7 +118,8 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
    start = slutt;
    slutt = new Point(e.getX(), e.getY());
    //this.drawStroke=drawStroke;
-   DroodlePanel.sf.displayList.add(slutt);
+   //DroodlePanel.sf.displayList.add(Point);
+   DroodlePanel.sf.displayList.add(e.getPoint());
    repaint();
   }
   

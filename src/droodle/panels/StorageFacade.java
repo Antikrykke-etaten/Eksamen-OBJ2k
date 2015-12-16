@@ -2,9 +2,6 @@ package droodle.panels;
 
 
 
-import java.awt.BasicStroke;
-
-
 
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -39,11 +36,9 @@ import java.io.PipedOutputStream;
 import java.io.PrintStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Vector;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
@@ -54,8 +49,8 @@ public class StorageFacade extends JPanel implements Serializable {
  private Timer timer;
 
  private Boolean counting = false;
- private int counter = 10; // the duration
- private int delay = 1000; // every 1 second
+ private int counter = 5; 
+ private int delay = 1000;
 
  Storage storage = new Storage("sketches-6");
  public Vector<Point> displayList = new Vector<Point>();
@@ -89,7 +84,6 @@ public class StorageFacade extends JPanel implements Serializable {
                      try {
 						Save(displayList);
 					} catch (IOException | URISyntaxException | StorageException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
                  }

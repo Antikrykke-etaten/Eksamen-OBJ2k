@@ -29,6 +29,10 @@ import droodle.Configuration;
 
 public class DroodleGUI extends JPanel {
 	private JLabel logo;
+	private JLabel projectNameText;
+	//public String ProjectName = "Prosjektets navn";
+	
+	public String ProjectName = CardController.cnpp.textFieldValue;
 
 	public static JPanel PaintPanelGUI = new JPanel();
 
@@ -84,6 +88,9 @@ public class DroodleGUI extends JPanel {
 		logo.setSize(50, 50);
 		logo.setIcon(new ImageIcon(newimg));
 		logo.setFont(new Font("Verdana", Font.BOLD, 14));
+		
+		projectNameText = new JLabel("Sketch:" + " " + ProjectName, SwingConstants.CENTER);
+		projectNameText.setFont(new Font("Verdana", Font.BOLD, 14));
 
 		backToMenuButn.setSize(Butndim);
 		backToMenuButn.setMinimumSize(Butndim);
@@ -126,6 +133,9 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(logo, gbc);
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		PaintPanelGUI.add(projectNameText, gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(backToMenuButn, gbc);
