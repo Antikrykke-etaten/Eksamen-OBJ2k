@@ -4,6 +4,8 @@ package droodle.panels;
 
 import java.awt.BasicStroke;
 
+
+
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -29,6 +31,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -38,16 +42,16 @@ import javax.swing.JPanel;
 
 
 
-public class DroodleWindow extends JPanel implements MouseListener, MouseMotionListener {
+public class DroodleWindow extends JPanel implements MouseListener, MouseMotionListener, Serializable {
 
  int drawStroke = 10;
  private Timer timer;
- private Storage storage;
+ //private Storage storage;
  private Boolean counting = false;
  private int counter = 10; // the duration
  private int delay = 1000; // every 1 second
  //private Storage storage;
- //Storage storage = new Storage("sketches-6");
+ Storage storage = new Storage("sketches-6");
  List<Point> displayList = new ArrayList<Point>();
 
  //String paintname = "??";
@@ -63,10 +67,7 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
   addMouseListener(this);
   
   setBackground(Color.GRAY);
-  
-  
-  
-  
+
  }
  
   public void time() {
@@ -88,7 +89,6 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
                  else
                  {
                    System.out.println(counter);
-                     //label.setText("Wait for " + counter + " sec");
                      counter--;
                  }
              }
@@ -113,8 +113,8 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
       int i = 0;
       
       
-      while (i < displayList.size()) {
-        Point p0 = (Point) (displayList.get(i++));
+      while (i < this.displayList.size()) {
+        Point p0 = (Point) (this.displayList.get(i++));
         //Point p1 = (Point) (displayList.get(i++));
         int x = (p0.x);
         int y = (p0.y);
@@ -130,17 +130,21 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
    System.out.println("Trying to save");
    try {
 	   ByteArrayOutputStream baos = new ByteArrayOutputStream();
-       ObjectOutputStream serializer = new ObjectOutputStream(baos);
-       serializer.writeObject(displayList);
+       ObjectOutputStream os = new ObjectOutputStream(baos);
+       os.writeObject(displayList);
        InputStream datastream = new ByteArrayInputStream(baos.toByteArray());
        storage.upload(datastream);
-         //oos.flush();
-         //oos.close();
-         //fos.close();
+       os.flush();
+       os.close();
+       
         } catch (Exception ex) {
+        	 // PrintStream ps = new PrintStream(baos);
+        	    ex.printStackTrace();
           System.out.println("Trouble writing display list vector");
         }
   }
+  
+  
   
   //Public void push (vector<point> data) {
 	 // BytearrayOutputStream baos = new byte arrayoutputstream();
@@ -184,7 +188,7 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
    start = slutt;
    slutt = new Point(e.getX(), e.getY());
    //this.drawStroke=drawStroke;
-   displayList.add(slutt);
+   DroodlePanel.pw.displayList.add(slutt);
    repaint();
   }
   

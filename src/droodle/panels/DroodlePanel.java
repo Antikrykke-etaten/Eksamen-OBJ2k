@@ -26,34 +26,15 @@ import droodle.CardController;
 import droodle.Configuration;
 
 public class DroodlePanel extends JPanel {
-	private static final long serialVersionUID = 1L;
-	private JLabel logo;
-	static DroodleWindow pw = new DroodleWindow(10);
 	
+	public static DroodleWindow pw = new DroodleWindow(10);
 	public static JPanel DroodlePanel = new JPanel();
-	static JPanel DroodleWindow = pw;
-	JPanel PaintPanelGUI = new DroodleGUI();
+	public static JPanel PaintPanelGUI = new DroodleGUI();
+	
 
 	public DroodlePanel() {
-
-		//GridBagLayout gl = new GridBagLayout();
-		//GridBagConstraints gbc = new GridBagConstraints();
-		//gbc.fill = GridBagConstraints.HORIZONTAL;
-		//gbc.insets = new Insets(5, 5, 5, 5);
-
-		// Panels
-		//PaintPanelWindow.setBackground(Color.GRAY);
-		//Border Windowborder = BorderFactory.createLineBorder(Color.WHITE, 20);
-		
-		//PaintPanel.setBackground(Color.GRAY);
 		DroodlePanel.setLayout(new BorderLayout());
 		DroodlePanel.add(DroodleGUI.PaintPanelGUI, BorderLayout.NORTH);
-		//PaintPanel.add(PaintPanelGUI, BorderLayout.NORTH);
-		DroodlePanel.add(DroodleWindow, BorderLayout.CENTER);
-		//PaintPanelWindow.setBorder(Windowborder);
-		
-	
-
-
+		DroodlePanel.add(pw, BorderLayout.CENTER);
 	}
 }

@@ -32,7 +32,6 @@ public class DroodleGUI extends JPanel {
 	private JLabel logo;
 	
 	public static JPanel PaintPanelGUI = new JPanel();
-	//PaintWindowPanel pw = PaintWindowPanel(10);
 
 	public DroodleGUI() {
 
@@ -122,13 +121,10 @@ public class DroodleGUI extends JPanel {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets = new Insets(5, 5, 5, 5);
 
-		// Panels
+	
 		
 		PaintPanelGUI.setBackground(Color.WHITE);
 		PaintPanelGUI.setLayout(gl);
-		//PaintPanel.setLayout(new BorderLayout());
-		//PaintPanel.add(PaintPanelGUI, BorderLayout.NORTH);
-		//PaintPanel.add(PaintPanelWindow, BorderLayout.CENTER);
 		
 
 		gbc.gridx = 0;
