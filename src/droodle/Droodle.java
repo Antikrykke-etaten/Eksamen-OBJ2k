@@ -11,7 +11,6 @@ public class Droodle {
 
 		storage = new Storage("sketches-6");
 		String storageVersion = storage.getVersion();
-		StorageFacade sf = new StorageFacade();
 
 		if ("Storage tool version 1.2" == storageVersion) {
 			new SplashScreen();
