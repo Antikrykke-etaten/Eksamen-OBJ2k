@@ -11,8 +11,7 @@ public class Configuration {
 			"Ooo, baby I love you way...",
 			"Every day...",
 			"Yeah, yeah...",
-			"Setting constants...",
-			"Loading Droodle..."
+			"Setting constants..."
 	};
 
 }
