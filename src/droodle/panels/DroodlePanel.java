@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+import droodle.storage.StorageFacade;
+
 public class DroodlePanel extends JPanel {
 
 	
