@@ -9,12 +9,13 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class DroodleWindow extends JPanel {
+public class DroodleWindow extends JPanel implements Serializable {
 
 	private static final int DA_WIDTH = 4000;
 	private static final int DA_HEIGHT = 4000;
@@ -24,7 +25,7 @@ public class DroodleWindow extends JPanel {
 	ArrayList<Point> points = new ArrayList<Point>();
 
 	private Color currentColor;
-	BufferedImage bImage = new BufferedImage(DA_WIDTH, DA_HEIGHT, BufferedImage.TYPE_INT_RGB);
+	transient BufferedImage bImage = new BufferedImage(DA_WIDTH, DA_HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	public DroodleWindow() {
 		setBorder(BorderFactory.createLineBorder(Color.black));
