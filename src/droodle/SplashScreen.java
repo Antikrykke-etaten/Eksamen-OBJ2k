@@ -22,6 +22,7 @@ public class SplashScreen extends JWindow {
 	private static JProgressBar loadingBar = new JProgressBar();
 	private Configuration config = new Configuration();
 	private static int count;
+	private int stringCounter = 0;
 	private static Timer timer1;
 
 	public SplashScreen() {
@@ -60,7 +61,12 @@ public class SplashScreen extends JWindow {
 	private void loadProgressBar() {
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-
+				
+				if (count % 10 == 0) {
+					loadingBar.setString(config.loadingBarStrings[stringCounter]);
+					stringCounter++;
+				}
+				
 				count++;
 				loadingBar.setValue(count);
 
