@@ -20,7 +20,6 @@ public class SplashScreen extends JWindow {
 
 	static boolean isRegistered;
 	private static JProgressBar loadingBar = new JProgressBar();
-	private Configuration config = new Configuration();
 	private static int count;
 	private int stringCounter = 0;
 	private static Timer timer1;
@@ -38,7 +37,7 @@ public class SplashScreen extends JWindow {
 
 		JLabel label = new JLabel("Droodle Inc.");
 
-		ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "droodle-logo.png");
+		ImageIcon splashIcon = new ImageIcon(Configuration.assetsFolder + "droodle-logo.png");
 		Image image = splashIcon.getImage();
 		Image newimg = image.getScaledInstance(350, 150, java.awt.Image.SCALE_SMOOTH);
 		splashIcon = new ImageIcon(newimg);
@@ -63,7 +62,7 @@ public class SplashScreen extends JWindow {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				
 				if (count % 10 == 0) {
-					loadingBar.setString(config.loadingBarStrings[stringCounter]);
+					loadingBar.setString(Configuration.loadingBarStrings[stringCounter]);
 					stringCounter++;
 				}
 				

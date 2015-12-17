@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -28,7 +29,6 @@ import storagetool.Storage;
 public class StorageFacade extends JPanel implements Serializable {
 
 	private Timer timer;
-	private Configuration Config;
 
 	private Boolean counting = false;
 	private int counter = 5;
@@ -92,7 +92,7 @@ public class StorageFacade extends JPanel implements Serializable {
 	
 	public void Save2() throws URISyntaxException, StorageException{
 		try {
-		 File imgPath = new File(Config.assetsFolder + "Temp.jpg");
+		 File imgPath = new File(Configuration.assetsFolder + "Temp.jpg");
 		 BufferedImage bufferedImage = ImageIO.read(imgPath);
 		 WritableRaster raster = bufferedImage .getRaster();
 		 DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
@@ -108,6 +108,10 @@ public class StorageFacade extends JPanel implements Serializable {
 			System.out.println(e.getMessage());
 		}
 		
+	}
+	
+	public ArrayList<String> GetAll () {
+		return storage.getFilenames();
 	}
 
 }

@@ -38,19 +38,19 @@ public class DroodleGUI extends JPanel {
 	public DroodleGUI() {
 
 		// HomeButnIcon
-		ImageIcon menuIcon = new ImageIcon(new Configuration().assetsFolder + "Menu.png");
+		ImageIcon menuIcon = new ImageIcon(Configuration.assetsFolder + "Menu.png");
 		Image menu = menuIcon.getImage();
 		Image newmenu = menu.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
 		menuIcon = new ImageIcon(newmenu);
 
 		// LoadButnIcon
-		ImageIcon openIcon = new ImageIcon(new Configuration().assetsFolder + "load.png");
+		ImageIcon openIcon = new ImageIcon(Configuration.assetsFolder + "load.png");
 		Image open = openIcon.getImage();
 		Image newOpen = open.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
 		openIcon = new ImageIcon(newOpen);
 
 		// SaveButnIcon
-		ImageIcon saveIcon = new ImageIcon(new Configuration().assetsFolder + "Save.png");
+		ImageIcon saveIcon = new ImageIcon(Configuration.assetsFolder + "Save.png");
 		Image save = saveIcon.getImage();
 		Image newsave = save.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
 		saveIcon = new ImageIcon(newsave);
@@ -88,7 +88,7 @@ public class DroodleGUI extends JPanel {
 		Dimension colourButtonsdim = new Dimension(5, 20);
 
 		logo = new JLabel("", SwingConstants.LEFT);
-		ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "droodle-logo-small.png");
+		ImageIcon splashIcon = new ImageIcon(Configuration.assetsFolder + "droodle-logo-small.png");
 		Image image = splashIcon.getImage();
 		Image newimg = image.getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
 
