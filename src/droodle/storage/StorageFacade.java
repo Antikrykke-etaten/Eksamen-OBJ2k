@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
@@ -84,13 +85,12 @@ public class StorageFacade extends JPanel implements Serializable {
 		System.out.println("Trying to wipe drawing");
 
 	}
-	
+
 	public void Save2() throws IOException {
 		try {
 
 			byte[] imageInByte;
-			BufferedImage originalImage = ImageIO.read(new File(
-					"c:/darksouls.jpg"));
+			BufferedImage originalImage = ImageIO.read(new File("c:/darksouls.jpg"));
 
 			// convert BufferedImage to byte array
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -103,15 +103,11 @@ public class StorageFacade extends JPanel implements Serializable {
 			InputStream in = new ByteArrayInputStream(imageInByte);
 			BufferedImage bImageFromConvert = ImageIO.read(in);
 
-			ImageIO.write(bImageFromConvert, "jpg", new File(
-					"c:/new-darksouls.jpg"));
+			ImageIO.write(bImageFromConvert, "jpg", new File("c:/new-darksouls.jpg"));
 
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	
-	
 
 }
