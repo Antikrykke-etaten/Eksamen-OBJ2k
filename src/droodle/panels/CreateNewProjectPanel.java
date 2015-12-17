@@ -20,14 +20,14 @@ import droodle.CardController;
 public class CreateNewProjectPanel extends JPanel {
 
 	public static JPanel newProjectPanel = new JPanel();
-	JTextField jtfText1;
+
 	private JLabel InfoText;
+	
 
 	JButton createNewProjectButn = new JButton("Lag nytt prosjekt");
 	JButton backToMenuButn = new JButton("Til Meny");
 
 	JTextField projectNameField = new JTextField(30);
-	String textFieldValue = projectNameField.getText();
 
 	public CreateNewProjectPanel() {
 		Dimension Butndim = new Dimension(250, 60);
@@ -83,8 +83,7 @@ public class CreateNewProjectPanel extends JPanel {
 		createNewProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(CardController.cnpp.textFieldValue);
-				DroodlePanel.PaintPanelGUI.ProjectName = textFieldValue;
+				DroodlePanel.PaintPanelGUI.projectNameText.setText(projectNameField.getText());
 				CardController.cl.show(CardController.panelCont, "4");
 			}
 		});

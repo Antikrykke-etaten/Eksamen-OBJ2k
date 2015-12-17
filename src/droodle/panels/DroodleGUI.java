@@ -29,14 +29,15 @@ import droodle.Configuration;
 
 public class DroodleGUI extends JPanel {
 	private JLabel logo;
-	private JLabel projectNameText;
+	JLabel projectNameText;
 	//public String ProjectName = "Prosjektets navn";
 	
-	public String ProjectName = CardController.cnpp.textFieldValue;
+	public String ProjectName = CardController.cnpp.projectNameField.getText();
 
 	public static JPanel PaintPanelGUI = new JPanel();
 
 	public DroodleGUI() {
+		
 
 		// HomeButnIcon
 		ImageIcon menuIcon = new ImageIcon(new Configuration().assetsFolder + "Menu.png");
@@ -133,7 +134,7 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(logo, gbc);
-		gbc.gridx = 2;
+		gbc.gridx = 0;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(projectNameText, gbc);
 		gbc.gridx = 1;
@@ -149,7 +150,7 @@ public class DroodleGUI extends JPanel {
 		gbc.gridy = 0;
 		PaintPanelGUI.add(deleteButn, gbc);
 
-		gbc.gridx = 0;
+		gbc.gridx = 1;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(slider, gbc);
 
@@ -211,7 +212,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 
-				DroodlePanel.dw.drawStroke = 40;
+				//DroodlePanel.dw.drawStroke = 40;
 			}
 		});
 	}

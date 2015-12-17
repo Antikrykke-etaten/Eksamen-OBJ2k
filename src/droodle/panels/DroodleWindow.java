@@ -1,171 +1,126 @@
 package droodle.panels;
 
-
-
-import java.awt.BasicStroke;
-
-
-
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
-
-import com.microsoft.azure.storage.StorageException;
-
-import droodle.Droodle;
-import storagetool.Storage;
-
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.event.MouseMotionListener;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Panel;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.io.PrintStream;
-import java.io.Serializable;
-import java.net.URISyntaxException;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 
-import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+public class DroodleWindow extends JPanel {
+	/**
+	 * 
+	 */
+	private static final int DA_WIDTH = 4000;
+	private static final int DA_HEIGHT = 4000;
+	private static final Color DA_BGCOLOR = Color.WHITE;
+	private static final long serialVersionUID = 1L;
 
+	ArrayList<Point> points = new ArrayList<Point>();
 
-public class DroodleWindow extends JPanel implements MouseListener, MouseMotionListener, Serializable {
+	private Color currentColor;
+	BufferedImage bImage = new BufferedImage(DA_WIDTH, DA_HEIGHT, BufferedImage.TYPE_INT_RGB);
 
- int drawStroke = 10;
- private Timer timer;
- //private Storage storage;
- private Boolean counting = false;
- private int counter = 10; // the duration
- private int delay = 1000; // every 1 second
- //private Storage storage;
+	public DroodleWindow() {
+		setBorder(BorderFactory.createLineBorder(Color.black));
 
+		// Basic Settings for bImage
+		Graphics g2d = bImage.getGraphics();
+		g2d.setColor(DA_BGCOLOR);
+		g2d.fillRect(0, 0, DA_WIDTH, DA_HEIGHT);
+		g2d.dispose();
 
+		addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				points.clear();
+				points.add(e.getPoint());
+			}
+		});
 
- //String paintname = "??";
- String pathname = "data.dat";
- 
- 
- 
- 
+		addMouseMotionListener(new MouseAdapter() {
+			public void mouseDragged(MouseEvent e) {
+				points.add(e.getPoint());
+				repaint();
+			}
 
- 
- public DroodleWindow(int strokeSize) {
-   
-  addMouseMotionListener(this);
-  addMouseListener(this);
-  
-  setBackground(Color.GRAY);
- 
+		});
 
- }
- 
- 
+		addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				points.add(e.getPoint());
+				points.clear();
+				System.out.println("mouseReleased X: " + e.getX() + "mouseReleased Y: " + e.getY());
+				repaint();
+			}
+		});
+	}
 
-  public void paint(Graphics g) {
-   
-   Graphics2D g2 = (Graphics2D) g;
-   
-   g2.setStroke(new BasicStroke(drawStroke));
-   
-      g.setColor(Color.WHITE);
-      g.fillRect(0, 0, getSize().width, getSize().height);
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(DA_WIDTH, DA_HEIGHT);
+	}
 
-      g.setColor(Color.black);
-      int i = 0;
-      
-      
-      while (i < DroodlePanel.sf.displayList.size()) {
-        Point p0 = (Point) (DroodlePanel.sf.displayList.get(i++));
-        //Point p1 = (Point) (displayList.get(i++));
-        int x = (p0.x);
-        int y = (p0.y);
-        //int s = (p0.size);
-        //int w = Math.abs(p0.x - p1.x);
-        //int h = Math.abs(p0.y - p1.y);
-        //if (slutt != null && start != null)
-        g.drawLine(x, y, x, y);
-      }
-    }
-  
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		drawIntoBufferedImage();
+		g.drawImage(bImage, 0, 0, null);
+		freehandLines(g);
 
-  
-  
-  
+	}
 
- 
-  
-  
-  public void mouseDragged(MouseEvent e) {
-   start = slutt;
-   slutt = new Point(e.getX(), e.getY());
-   //this.drawStroke=drawStroke;
-   //DroodlePanel.sf.displayList.add(Point);
-   DroodlePanel.sf.displayList.add(e.getPoint());
-   repaint();
-  }
-  
-  public void mouseMoved(MouseEvent e) {
-   slutt = null;
-   //timer();
-   
+	public void drawIntoBufferedImage() {
+		Graphics g = bImage.getGraphics();
+		freehandLines(g);
+		g.dispose();
+	}
 
-   DroodlePanel.sf.time();
+	public void freehandLines(Graphics g) {
+		if (points != null && points.size() > 1) {
 
-  }
-  
- 
+			g.setColor(getCurrentColor());
+			for (int i = 0; i < points.size() - 1; i++) {
+				int x1 = points.get(i).x;
+				int y1 = points.get(i).y;
+				int x2 = points.get(i + 1).x;
+				int y2 = points.get(i + 1).y;
+				g.drawLine(x1, y1, x2, y2);
+			}
+		}
+	}
 
-    public void mousePressed(MouseEvent e) {
-      //Point p = new Point(e.getX(), e.getY());
-      // displayList.add(p);
-  
-    
-    }
+	// clear drawings method
+	public void clearDrawings() {
+		if (points != null) {
+			points.clear();
+			Graphics g = bImage.getGraphics();
+			g.setColor(DA_BGCOLOR);
+			g.fillRect(0, 0, DA_WIDTH, DA_WIDTH);
+			g.dispose();
+			repaint();
+		}
 
-    public void mouseReleased(MouseEvent e) {
-     // Point p = new Point(e.getX(), e.getY());
-      //displayList.add(p);
-     // repaint();
-    }
+	}
 
-  @Override
-  public void mouseClicked(MouseEvent arg0) {
-   // TODO Auto-generated method stub
-   
-  }
+	public void setCurrentColor(Color currentColor) {
+		if (currentColor == null) {
+			currentColor = Color.BLACK;
+		} else {
+			this.currentColor = currentColor;
+		}
 
-  @Override
-  public void mouseEntered(MouseEvent arg0) {
-   // TODO Auto-generated method stub
-   
-  }
+	}
 
-  @Override
-  public void mouseExited(MouseEvent arg0) {
-   // TODO Auto-generated method stub
-   
-  }
-
-  Point start = null;
-  Point slutt = null;
-
+	public Color getCurrentColor() {
+		if (currentColor == null)
+			return Color.BLACK;
+		else
+			return currentColor;
+	}
 }
+

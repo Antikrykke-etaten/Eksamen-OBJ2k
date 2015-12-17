@@ -124,6 +124,7 @@ public class StorageFacade extends JPanel implements Serializable {
   
   public void WipeDrawing() {
 	  System.out.println("Trying to wipe drawing");
+	  DroodlePanel.dw.setCurrentColor(Color.GREEN);
    
   }
   
