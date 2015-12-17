@@ -25,7 +25,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 	ArrayList<Point> points = new ArrayList<Point>();
 
 	private Color currentColor;
-	transient BufferedImage bImage = new BufferedImage(DA_WIDTH, DA_HEIGHT, BufferedImage.TYPE_INT_RGB);
+	public BufferedImage bImage = new BufferedImage(DA_WIDTH, DA_HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	public DroodleWindow() {
 		setBorder(BorderFactory.createLineBorder(Color.black));

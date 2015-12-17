@@ -236,13 +236,17 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				DroodlePanel.sf.Load();
-				try {
-					storageFacade.Save2();
-				} catch (URISyntaxException | StorageException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				//DroodlePanel.sf.Load();
+				
+					
+						try {
+							DroodlePanel.sf.Save2();
+						} catch (URISyntaxException | StorageException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+				
 				// PaintWindowPanel.WipeDrawing();
 				// CardController.cl.show(CardController.panelCont, "1");
 
