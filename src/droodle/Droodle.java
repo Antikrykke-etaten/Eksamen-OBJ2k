@@ -5,9 +5,11 @@ import storagetool.Storage;
 
 public class Droodle {
 
+	public static Storage storage;
+
 	public static void main(String[] args) {
 
-		Storage storage = new Storage("sketches-6");
+		storage = new Storage("sketches-6");
 		String storageVersion = storage.getVersion();
 		StorageFacade sf = new StorageFacade();
 

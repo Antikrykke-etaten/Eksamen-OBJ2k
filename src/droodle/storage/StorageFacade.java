@@ -1,14 +1,17 @@
 package droodle.storage;
 
 import java.awt.Point;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
@@ -24,7 +27,8 @@ import javax.swing.Timer;
 import com.microsoft.azure.storage.StorageException;
 
 import droodle.Configuration;
-import storagetool.Storage;
+import droodle.Droodle;
+import droodle.panels.DroodlePanel;
 
 public class StorageFacade extends JPanel implements Serializable {
 
@@ -34,10 +38,9 @@ public class StorageFacade extends JPanel implements Serializable {
 	private int counter = 5;
 	private int delay = 1000;
 
-	Storage storage = new Storage("sketches-6");
 	public Vector<Point> displayList = new Vector<Point>();
 
-	private static final long serialVersionUID = 1234L;
+	private static final long serialVersionUID = 1L;
 
 	public void time() {
 		if (!counting) {
@@ -78,11 +81,22 @@ public class StorageFacade extends JPanel implements Serializable {
 		serialiser.close();
 
 		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-		storage.upload(bais);
+		Droodle.storage.upload(bais);
 	}
 
 	public void Load() {
 		System.out.println("Trying to load");
+	}
+	
+	public void SaveToAssets() {
+		System.out.println("Saving to assets");
+		try {
+		File outputfile = new File("Temp.jpg");
+		ImageIO.write(DroodlePanel.dw.bImage, "jpg", outputfile);
+		System.out.println("funka?");
+		}catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void WipeDrawing() {
@@ -92,26 +106,33 @@ public class StorageFacade extends JPanel implements Serializable {
 	
 	public void Save2() throws URISyntaxException, StorageException{
 		try {
-		 File imgPath = new File(Configuration.assetsFolder + "Temp.jpg");
-		 BufferedImage bufferedImage = ImageIO.read(imgPath);
-		 WritableRaster raster = bufferedImage .getRaster();
-		 DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
-		 
-		 ByteArrayOutputStream os = new ByteArrayOutputStream();
-		 ImageIO.write(bufferedImage, "jpg", os);
-		 InputStream is = new ByteArrayInputStream(os.toByteArray());
-		 
-		 storage.upload(is);
-		
-		
+			byte[] imageInByte;
+			BufferedImage originalImage = ImageIO.read(new File(
+					"Temp.jpg"));
+
+			// convert BufferedImage to byte array
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(originalImage, "jpg", baos);
+			baos.flush();
+			imageInByte = baos.toByteArray();
+			baos.close();
+
+			// convert byte array back to BufferedImage
+			InputStream in = new ByteArrayInputStream(imageInByte);
+			BufferedImage bImageFromConvert = ImageIO.read(in);
+
+			//Creates new image
+			ImageIO.write(bImageFromConvert, "jpg", new File(
+					"new-Temp.jpg"));
+			Droodle.storage.upload(in);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 		
 	}
 	
-	public ArrayList<String> GetAll () {
-		return storage.getFilenames();
-	}
+
+	//storage.upload(bStream);
+	
 
 }
