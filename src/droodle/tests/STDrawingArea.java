@@ -1,4 +1,4 @@
-package droodle.panels;
+package droodle.tests;
 
 import java.awt.Color;
 import java.awt.Dimension;
