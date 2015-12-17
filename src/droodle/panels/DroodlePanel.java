@@ -11,7 +11,6 @@ public class DroodlePanel extends JPanel {
 
 	public static DroodleWindow dw = new DroodleWindow();
 	public static StorageFacade sf = new StorageFacade();
-	STDrawingArea drawingArea = new STDrawingArea();
 
 	public static JPanel DroodlePanel = new JPanel();
 	public static DroodleGUI PaintPanelGUI = new DroodleGUI();

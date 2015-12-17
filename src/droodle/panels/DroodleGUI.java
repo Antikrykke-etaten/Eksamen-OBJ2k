@@ -26,9 +26,12 @@ import com.microsoft.azure.storage.StorageException;
 
 import droodle.CardController;
 import droodle.Configuration;
+import droodle.storage.StorageFacade;
 
 public class DroodleGUI extends JPanel {
 	private JLabel logo;
+	
+	private StorageFacade storageFacade;
 
 	public static JPanel PaintPanelGUI = new JPanel();
 
@@ -234,6 +237,12 @@ public class DroodleGUI extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 
 				DroodlePanel.sf.Load();
+				try {
+					storageFacade.Save2();
+				} catch (URISyntaxException | StorageException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				// PaintWindowPanel.WipeDrawing();
 				// CardController.cl.show(CardController.panelCont, "1");
 

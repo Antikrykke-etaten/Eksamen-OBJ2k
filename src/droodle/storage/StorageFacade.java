@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -20,11 +22,13 @@ import javax.swing.Timer;
 
 import com.microsoft.azure.storage.StorageException;
 
+import droodle.Configuration;
 import storagetool.Storage;
 
 public class StorageFacade extends JPanel implements Serializable {
 
 	private Timer timer;
+	private Configuration Config;
 
 	private Boolean counting = false;
 	private int counter = 5;
@@ -85,29 +89,25 @@ public class StorageFacade extends JPanel implements Serializable {
 		System.out.println("Trying to wipe drawing");
 
 	}
-
-	public void Save2() throws IOException {
+	
+	public void Save2() throws URISyntaxException, StorageException{
 		try {
-
-			byte[] imageInByte;
-			BufferedImage originalImage = ImageIO.read(new File("c:/darksouls.jpg"));
-
-			// convert BufferedImage to byte array
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(originalImage, "jpg", baos);
-			baos.flush();
-			imageInByte = baos.toByteArray();
-			baos.close();
-
-			// convert byte array back to BufferedImage
-			InputStream in = new ByteArrayInputStream(imageInByte);
-			BufferedImage bImageFromConvert = ImageIO.read(in);
-
-			ImageIO.write(bImageFromConvert, "jpg", new File("c:/new-darksouls.jpg"));
-
+		 File imgPath = new File(Config.assetsFolder + "Temp.jpg");
+		 BufferedImage bufferedImage = ImageIO.read(imgPath);
+		 WritableRaster raster = bufferedImage .getRaster();
+		 DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
+		 
+		 ByteArrayOutputStream os = new ByteArrayOutputStream();
+		 ImageIO.write(bufferedImage, "jpg", os);
+		 InputStream is = new ByteArrayInputStream(os.toByteArray());
+		 
+		 storage.upload(is);
+		
+		
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+		
 	}
 
 }
