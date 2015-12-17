@@ -3,14 +3,17 @@ package droodle.storage;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -81,5 +84,34 @@ public class StorageFacade extends JPanel implements Serializable {
 		System.out.println("Trying to wipe drawing");
 
 	}
+	
+	public void Save2() throws IOException {
+		try {
+
+			byte[] imageInByte;
+			BufferedImage originalImage = ImageIO.read(new File(
+					"c:/darksouls.jpg"));
+
+			// convert BufferedImage to byte array
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(originalImage, "jpg", baos);
+			baos.flush();
+			imageInByte = baos.toByteArray();
+			baos.close();
+
+			// convert byte array back to BufferedImage
+			InputStream in = new ByteArrayInputStream(imageInByte);
+			BufferedImage bImageFromConvert = ImageIO.read(in);
+
+			ImageIO.write(bImageFromConvert, "jpg", new File(
+					"c:/new-darksouls.jpg"));
+
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	
 
 }
