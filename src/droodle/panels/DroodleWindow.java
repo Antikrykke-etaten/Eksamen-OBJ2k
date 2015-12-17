@@ -13,9 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class DroodleWindow extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final int DA_WIDTH = 4000;
 	private static final int DA_HEIGHT = 4000;
 	private static final Color DA_BGCOLOR = Color.WHITE;
@@ -123,4 +121,3 @@ public class DroodleWindow extends JPanel {
 			return currentColor;
 	}
 }
-

@@ -30,12 +30,9 @@ import droodle.Configuration;
 public class DroodleGUI extends JPanel {
 	private JLabel logo;
 
-	
-
 	public static JPanel PaintPanelGUI = new JPanel();
 
 	public DroodleGUI() {
-		
 
 		// HomeButnIcon
 		ImageIcon menuIcon = new ImageIcon(new Configuration().assetsFolder + "Menu.png");
@@ -61,8 +58,8 @@ public class DroodleGUI extends JPanel {
 		JButton saveButn = new JButton("Save", saveIcon);
 		JButton deleteButn = new JButton("Delete", saveIcon);
 		JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 2, 1);
-		
-		//colourButtons
+
+		// colourButtons
 		JButton BlackButn = new JButton();
 		JButton RedButn = new JButton();
 		JButton GreenButn = new JButton();
@@ -93,7 +90,7 @@ public class DroodleGUI extends JPanel {
 		logo.setSize(50, 50);
 		logo.setIcon(new ImageIcon(newimg));
 		logo.setFont(new Font("Verdana", Font.BOLD, 14));
-		
+
 		BlackButn.setSize(colourButtonsdim);
 		BlackButn.setMinimumSize(colourButtonsdim);
 		BlackButn.setMaximumSize(colourButtonsdim);
@@ -101,7 +98,7 @@ public class DroodleGUI extends JPanel {
 		BlackButn.setFont(new Font("Arial", Font.BOLD, 13));
 		BlackButn.setBackground(Color.BLACK);
 		BlackButn.setForeground(Color.BLACK);
-		
+
 		RedButn.setSize(colourButtonsdim);
 		RedButn.setMinimumSize(colourButtonsdim);
 		RedButn.setMaximumSize(colourButtonsdim);
@@ -109,7 +106,7 @@ public class DroodleGUI extends JPanel {
 		RedButn.setFont(new Font("Arial", Font.BOLD, 13));
 		RedButn.setBackground(Color.RED);
 		RedButn.setForeground(Color.RED);
-		
+
 		GreenButn.setSize(colourButtonsdim);
 		GreenButn.setMinimumSize(colourButtonsdim);
 		GreenButn.setMaximumSize(colourButtonsdim);
@@ -117,7 +114,7 @@ public class DroodleGUI extends JPanel {
 		GreenButn.setFont(new Font("Arial", Font.BOLD, 13));
 		GreenButn.setBackground(Color.GREEN);
 		GreenButn.setForeground(Color.GREEN);
-		
+
 		backToMenuButn.setSize(Butndim);
 		backToMenuButn.setMinimumSize(Butndim);
 		backToMenuButn.setMaximumSize(Butndim);
@@ -159,7 +156,7 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(logo, gbc);
-		
+
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(backToMenuButn, gbc);
@@ -176,15 +173,15 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(slider, gbc);
-		
+
 		gbc.gridx = 3;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(BlackButn, gbc);
-		
+
 		gbc.gridx = 2;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(RedButn, gbc);
-		
+
 		gbc.gridx = 4;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(GreenButn, gbc);
@@ -201,9 +198,9 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//DroodlePanel.pw.Save(DroodlePanel.pw.displayList);
-				//PaintWindowPanel.Save();
-				//CardController.cl.show(CardController.panelCont, "1");
+				// DroodlePanel.pw.Save(DroodlePanel.pw.displayList);
+				// PaintWindowPanel.Save();
+				// CardController.cl.show(CardController.panelCont, "1");
 
 				try {
 					DroodlePanel.sf.Save(DroodlePanel.sf.displayList);
@@ -220,9 +217,9 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//PaintPanel.pw.clearDrawings();
+				// PaintPanel.pw.clearDrawings();
 				DroodlePanel.sf.WipeDrawing();
-				//CardController.cl.show(CardController.panelCont, "1");
+				// CardController.cl.show(CardController.panelCont, "1");
 
 				// PaintPanel.pw.clearDrawings();
 				DroodlePanel.sf.WipeDrawing();
@@ -236,8 +233,8 @@ public class DroodleGUI extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 
 				DroodlePanel.sf.Load();
-				//PaintWindowPanel.WipeDrawing();
-				//CardController.cl.show(CardController.panelCont, "1");
+				// PaintWindowPanel.WipeDrawing();
+				// CardController.cl.show(CardController.panelCont, "1");
 
 			}
 		});
@@ -247,10 +244,10 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 
-				//DroodlePanel.dw.drawStroke = 40;
+				// DroodlePanel.dw.drawStroke = 40;
 			}
 		});
-		
+
 		BlackButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -259,7 +256,7 @@ public class DroodleGUI extends JPanel {
 
 			}
 		});
-		
+
 		RedButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -268,7 +265,7 @@ public class DroodleGUI extends JPanel {
 
 			}
 		});
-		
+
 		GreenButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -279,4 +276,3 @@ public class DroodleGUI extends JPanel {
 		});
 	}
 }
-

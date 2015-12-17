@@ -6,5 +6,5 @@ public class Configuration {
 	public String assetsFolder = System.getProperty("user.dir") + "/src/droodle/assets/";
 	public String fileExtension = ".droodle";
 	public String fileTreeXML = assetsFolder + "fileTree.xml";
-	
+
 }

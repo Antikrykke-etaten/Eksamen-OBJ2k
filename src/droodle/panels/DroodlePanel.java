@@ -9,7 +9,6 @@ import droodle.tests.STDrawingArea;
 
 public class DroodlePanel extends JPanel {
 
-	
 	public static DroodleWindow dw = new DroodleWindow();
 	public static StorageFacade sf = new StorageFacade();
 	STDrawingArea drawingArea = new STDrawingArea();
@@ -18,7 +17,7 @@ public class DroodlePanel extends JPanel {
 	public static DroodleGUI PaintPanelGUI = new DroodleGUI();
 
 	public DroodlePanel() {
-		
+
 		DroodlePanel.setLayout(new BorderLayout());
 		DroodlePanel.add(DroodleGUI.PaintPanelGUI, BorderLayout.NORTH);
 		DroodlePanel.add(dw, BorderLayout.CENTER);

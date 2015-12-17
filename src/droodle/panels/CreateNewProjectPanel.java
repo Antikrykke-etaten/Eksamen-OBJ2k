@@ -23,7 +23,6 @@ public class CreateNewProjectPanel extends JPanel {
 	public static JPanel newProjectPanel = new JPanel();
 
 	private JLabel InfoText;
-	
 
 	JButton createNewProjectButn = new JButton("Lag nytt prosjekt");
 	JButton backToMenuButn = new JButton("Til Meny");

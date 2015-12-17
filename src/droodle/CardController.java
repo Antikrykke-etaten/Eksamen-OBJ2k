@@ -17,22 +17,22 @@ public class CardController {
 	public static JPanel panelCont = new JPanel();
 	public static CardLayout cl = new CardLayout();
 	public static CreateNewProjectPanel cnpp = new CreateNewProjectPanel();
-	
+
 	public CardController() {
-		
+
 		new MenuPanel();
-		//new CreateNewProjectPanel();
+		// new CreateNewProjectPanel();
 		new GetOldProjectPanel();
 		new DroodlePanel();
-		
+
 		panelCont.setLayout(cl);
 		panelCont.add(MenuPanel.menuPanel, "1");
 		panelCont.add(cnpp.newProjectPanel, "2");
 		panelCont.add(GetOldProjectPanel.oldProjectsPanel, "3");
 		panelCont.add(DroodlePanel.DroodlePanel, "4");
-		
+
 		cl.show(panelCont, "1");
-		
+
 		frame.setPreferredSize(new Dimension(750, 550));
 		frame.add(panelCont);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -42,4 +42,3 @@ public class CardController {
 
 	}
 }
-
