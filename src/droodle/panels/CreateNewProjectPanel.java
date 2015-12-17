@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import droodle.CardController;
+import droodle.SplashScreen;
 
 public class CreateNewProjectPanel extends JPanel {
 
@@ -83,7 +84,7 @@ public class CreateNewProjectPanel extends JPanel {
 		createNewProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				DroodlePanel.PaintPanelGUI.projectNameText.setText(projectNameField.getText());
+				CardController.frame.setTitle(projectNameField.getText());
 				CardController.cl.show(CardController.panelCont, "4");
 			}
 		});

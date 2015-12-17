@@ -13,7 +13,7 @@ import droodle.panels.DroodlePanel;
 import droodle.panels.DroodleWindow;
 
 public class CardController {
-	JFrame frame = new JFrame("The amazing Droodler panel");
+	public static JFrame frame = new JFrame("The amazing Droodler panel");
 	public static JPanel panelCont = new JPanel();
 	public static CardLayout cl = new CardLayout();
 	public static CreateNewProjectPanel cnpp = new CreateNewProjectPanel();

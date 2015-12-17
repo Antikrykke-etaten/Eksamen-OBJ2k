@@ -3,43 +3,25 @@ package droodle.panels;
 
 
 
-import javax.swing.SwingUtilities;
+import java.awt.Color;
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.URISyntaxException;
+import java.util.Vector;
+
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import com.microsoft.azure.storage.StorageException;
 
-import droodle.Droodle;
 import storagetool.Storage;
-
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.event.MouseMotionListener;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Panel;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.io.PrintStream;
-import java.io.Serializable;
-import java.net.URISyntaxException;
-
-import java.util.Vector;
-
-import javax.swing.JPanel;
 
 
 
@@ -124,7 +106,7 @@ public class StorageFacade extends JPanel implements Serializable {
   
   public void WipeDrawing() {
 	  System.out.println("Trying to wipe drawing");
-	  DroodlePanel.dw.setCurrentColor(Color.GREEN);
+	  
    
   }
   

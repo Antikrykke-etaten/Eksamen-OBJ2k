@@ -29,10 +29,8 @@ import droodle.Configuration;
 
 public class DroodleGUI extends JPanel {
 	private JLabel logo;
-	JLabel projectNameText;
-	//public String ProjectName = "Prosjektets navn";
+
 	
-	public String ProjectName = CardController.cnpp.projectNameField.getText();
 
 	public static JPanel PaintPanelGUI = new JPanel();
 
@@ -63,6 +61,11 @@ public class DroodleGUI extends JPanel {
 		JButton saveButn = new JButton("Save", saveIcon);
 		JButton deleteButn = new JButton("Save", saveIcon);
 		JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 2, 1);
+		
+		//colourButtons
+		JButton BlackButn = new JButton();
+		JButton RedButn = new JButton();
+		JButton GreenButn = new JButton();
 
 		// Slider
 		slider.setMinorTickSpacing(10);
@@ -80,6 +83,7 @@ public class DroodleGUI extends JPanel {
 		Dimension PaintWindowDim = new Dimension(120, 350);
 		Dimension Butndim = new Dimension(120, 40);
 		Dimension ButndimSmal = new Dimension(130, 30);
+		Dimension colourButtonsdim = new Dimension(5, 20);
 
 		logo = new JLabel("", SwingConstants.LEFT);
 		ImageIcon splashIcon = new ImageIcon(new Configuration().assetsFolder + "droodle-logo-small.png");
@@ -90,9 +94,30 @@ public class DroodleGUI extends JPanel {
 		logo.setIcon(new ImageIcon(newimg));
 		logo.setFont(new Font("Verdana", Font.BOLD, 14));
 		
-		projectNameText = new JLabel("Sketch:" + " " + ProjectName, SwingConstants.CENTER);
-		projectNameText.setFont(new Font("Verdana", Font.BOLD, 14));
-
+		BlackButn.setSize(colourButtonsdim);
+		BlackButn.setMinimumSize(colourButtonsdim);
+		BlackButn.setMaximumSize(colourButtonsdim);
+		BlackButn.setPreferredSize(colourButtonsdim);
+		BlackButn.setFont(new Font("Arial", Font.BOLD, 13));
+		BlackButn.setBackground(Color.BLACK);
+		BlackButn.setForeground(Color.BLACK);
+		
+		RedButn.setSize(colourButtonsdim);
+		RedButn.setMinimumSize(colourButtonsdim);
+		RedButn.setMaximumSize(colourButtonsdim);
+		RedButn.setPreferredSize(colourButtonsdim);
+		RedButn.setFont(new Font("Arial", Font.BOLD, 13));
+		RedButn.setBackground(Color.RED);
+		RedButn.setForeground(Color.RED);
+		
+		GreenButn.setSize(colourButtonsdim);
+		GreenButn.setMinimumSize(colourButtonsdim);
+		GreenButn.setMaximumSize(colourButtonsdim);
+		GreenButn.setPreferredSize(colourButtonsdim);
+		GreenButn.setFont(new Font("Arial", Font.BOLD, 13));
+		GreenButn.setBackground(Color.GREEN);
+		GreenButn.setForeground(Color.GREEN);
+		
 		backToMenuButn.setSize(Butndim);
 		backToMenuButn.setMinimumSize(Butndim);
 		backToMenuButn.setMaximumSize(Butndim);
@@ -134,9 +159,7 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(logo, gbc);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		PaintPanelGUI.add(projectNameText, gbc);
+		
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(backToMenuButn, gbc);
@@ -153,6 +176,18 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(slider, gbc);
+		
+		gbc.gridx = 3;
+		gbc.gridy = 1;
+		PaintPanelGUI.add(BlackButn, gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		PaintPanelGUI.add(RedButn, gbc);
+		
+		gbc.gridx = 4;
+		gbc.gridy = 1;
+		PaintPanelGUI.add(GreenButn, gbc);
 
 		// Button actions
 		backToMenuButn.addActionListener(new ActionListener() {
@@ -213,6 +248,33 @@ public class DroodleGUI extends JPanel {
 			public void stateChanged(ChangeEvent arg0) {
 
 				//DroodlePanel.dw.drawStroke = 40;
+			}
+		});
+		
+		BlackButn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				DroodlePanel.dw.setCurrentColor(Color.BLACK);
+
+			}
+		});
+		
+		RedButn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				DroodlePanel.dw.setCurrentColor(Color.RED);
+
+			}
+		});
+		
+		GreenButn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				DroodlePanel.dw.setCurrentColor(Color.GREEN);
+
 			}
 		});
 	}
