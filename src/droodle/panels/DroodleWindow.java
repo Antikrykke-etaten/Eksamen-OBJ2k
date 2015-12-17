@@ -1,8 +1,10 @@
 package droodle.panels;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,9 +31,11 @@ public class DroodleWindow extends JPanel {
 
 		// Basic Settings for bImage
 		Graphics g2d = bImage.getGraphics();
-		g2d.setColor(DA_BGCOLOR);
-		g2d.fillRect(0, 0, DA_WIDTH, DA_HEIGHT);
-		g2d.dispose();
+		Graphics2D g2 = (Graphics2D) g2d;
+		g2.drawRenderedImage(bImage, null);
+		g2.setColor(DA_BGCOLOR);
+		g2.fillRect(0, 0, DA_WIDTH, DA_HEIGHT);
+		g2.dispose();
 
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -64,21 +68,24 @@ public class DroodleWindow extends JPanel {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		drawIntoBufferedImage();
-		g.drawImage(bImage, 0, 0, null);
-		freehandLines(g);
+	public void paint(Graphics g) {
+		 super.paint(g);
+		 Graphics2D g2 = (Graphics2D) g;
+		 g2.drawRenderedImage(bImage, null);
+		 DrawLines(g);
+		 drawIntoBufferedImage();
+		 g2.setStroke(new BasicStroke(20));
+		 g.dispose();
 
 	}
 
 	public void drawIntoBufferedImage() {
 		Graphics g = bImage.getGraphics();
-		freehandLines(g);
+		DrawLines(g);
 		g.dispose();
 	}
 
-	public void freehandLines(Graphics g) {
+	public void DrawLines(Graphics g) {
 		if (points != null && points.size() > 1) {
 
 			g.setColor(getCurrentColor());
