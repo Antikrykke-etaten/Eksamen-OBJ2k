@@ -2,23 +2,17 @@ package droodle.panels;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JPanel;
-
-import droodle.CardController;
 
 public class DroodleWindow extends JPanel implements MouseListener, MouseMotionListener, Serializable {
 
@@ -46,6 +40,7 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
 			g2.setStroke(new BasicStroke(drawStroke));
 		    g.setColor(Color.GRAY);
 		    g.fillRect(0, 0, getSize().width, getSize().height);
+		    DrawLines(g);
 
 		    g.setColor(Color.black);
 		    int i = 0;
@@ -73,10 +68,13 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
 	 
 	 
 	 public void mouseDragged(MouseEvent e) {
-			start = slutt;
-			slutt = new Point(e.getX(), e.getY());
-			points.add(slutt);
+		 points.add(e.getPoint());
 			repaint();
+		 
+		 //start = slutt;
+			//slutt = new Point(e.getX(), e.getY());
+			//points.add(slutt);
+			//repaint();
 		}
 	 
 	 public void mouseMoved(MouseEvent e) {
@@ -102,16 +100,43 @@ public class DroodleWindow extends JPanel implements MouseListener, MouseMotionL
 	}
 =======
 		  public void mousePressed(MouseEvent e) {
-		    //Point p = new Point(e.getX(), e.getY());
+		   
+			  //points.clear();
+				points.add(e.getPoint());
+			  //Point p = new Point(e.getX(), e.getY());
 		   // displayList.add(p);
 		  }
 >>>>>>> 578e1c7a6bc63b57b77ba8bfb800f66589f86096
 
 		  public void mouseReleased(MouseEvent e) {
-		   // Point p = new Point(e.getX(), e.getY());
+			  points.add(e.getPoint());
+				//points.clear();
+				//repaint();
+			  
+			  // Point p = new Point(e.getX(), e.getY());
 		    //displayList.add(p);
 		   // repaint();
 		  }
+		  
+		  public void DrawLines(Graphics g) {
+			  Graphics2D g2 = (Graphics2D) g;
+				if (points != null && points.size() > 1) {
+					//DroodlePanel.sf.time();
+
+					//g.setColor(getCurrentColor());
+					for (int i = 0; i < points.size() - 1; i++) {
+						int x1 = points.get(i).x;
+						int y1 = points.get(i).y;
+						int x2 = points.get(i + 1).x;
+						int y2 = points.get(i + 1).y;
+						g.drawLine(x1, y1, x2, y2);
+					}
+				}
+			}
+		  
+		  public void update(Graphics g) {
+				paint(g);
+			}
 
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
