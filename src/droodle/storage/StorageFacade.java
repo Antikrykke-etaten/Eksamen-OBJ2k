@@ -54,6 +54,7 @@ public class StorageFacade extends JPanel implements Serializable {
 			CloudBlobContainer c = cbc.getContainerReference(Configuration.teamName);
 			CloudBlockBlob blob = c.getBlockBlobReference(sketchName);
 			System.out.println("Sletter filen " + sketchName);
+			System.out.println("Suger pikk");
 			blob.deleteIfExists();
 		} catch (URISyntaxException | StorageException e) {
 			e.printStackTrace();
