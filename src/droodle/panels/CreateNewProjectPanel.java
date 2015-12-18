@@ -95,8 +95,11 @@ public class CreateNewProjectPanel extends JPanel {
 					for (String f:Droodle.storage.getFilenames()) {
 						if(f.equals(DroodlePanel.sf.sketchName)){
 							try {
-								DroodlePanel.sf.LoadSketch();
-							} catch (URISyntaxException | StorageException | IOException e) {
+								DroodlePanel.sf.LoadPoints();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (ClassNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} 

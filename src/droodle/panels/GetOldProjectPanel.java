@@ -139,11 +139,14 @@ public class GetOldProjectPanel extends JPanel {
 				for (String f : Droodle.storage.getFilenames()) {
 					if (f.equals(DroodlePanel.sf.sketchName)) {
 						try {
-							DroodlePanel.sf.LoadSketch();
+							DroodlePanel.sf.LoadPoints();
 							reset(model);
 							CardController.cl.show(CardController.panelCont, "4");
-						} catch (URISyntaxException | StorageException | IOException e) {
+						} catch (IOException e) {
 							CardController.cl.show(CardController.panelCont, "3");
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						return;

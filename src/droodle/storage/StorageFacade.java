@@ -1,5 +1,6 @@
 package droodle.storage;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,11 +8,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -39,6 +43,67 @@ public class StorageFacade extends JPanel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	// public void time() {
+	// ActionListener action = new ActionListener() {
+	// @Override
+	// public void actionPerformed(ActionEvent event) {
+	// timer.stop();
+	// try {
+	// SaveToAzure();
+	// } catch (URISyntaxException | StorageException e) {
+	// TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
+	// };
+
+	// timer = new Timer(delay, action);
+	// timer.setInitialDelay(0);
+	// timer.start();
+	// }
+
+	public void Save(Vector<Point> points) {
+		System.out.println("Save");
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream serialiser = new ObjectOutputStream(baos);
+
+			serialiser.writeObject(DroodlePanel.dw.points);
+			serialiser.close();
+
+			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+
+			Droodle.storage.setSketchname(sketchName);
+			Droodle.storage.upload(bais);
+
+		} catch (Exception ex) {
+			System.out.println("Trouble writing display list vector");
+		}
+	}
+
+	public void LoadPoints() throws IOException, ClassNotFoundException {
+		try {
+			Droodle.storage.setSketchname(sketchName);
+			BlobInputStream datastream = Droodle.storage.download();
+
+			ObjectInputStream ois = new ObjectInputStream(datastream);
+			Vector<Point> test = (Vector<Point>) ois.readObject();
+
+			for (Point integer : test) {
+				DroodlePanel.dw.points.add(integer);
+
+				System.out.println("Fant " + integer);
+			}
+			System.out.println("FERDIG");
+
+			// DroodlePanel.dw.bImage = ImageIO.read(new
+			// File("Loaded-Temp.jpg"));
+
+		} catch (URISyntaxException | StorageException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void deleteFile(String sketchName) {
 		CloudStorageAccount sa = StorageAccount.getInstance().getStorageAccount();
 		CloudBlobClient cbc = sa.createCloudBlobClient();
@@ -58,21 +123,6 @@ public class StorageFacade extends JPanel implements Serializable {
 			System.out.println("Sletter filen: " + fileName);
 			deleteFile(fileName);
 		}
-	}
-
-	// TODO: kjøre savefunksjonen i en annen thread
-	public void time() {
-
-		/*
-		 * ActionListener action = new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent event) { try {
-		 * SaveToAzure(); } catch (URISyntaxException | StorageException e) { //
-		 * TODO Auto-generated catch block e.printStackTrace(); } timer.stop();
-		 * } };
-		 */
-		timer = new Timer(true);
-		timer.scheduleAtFixedRate(new SaveToAzureTask(), delay, delay);
 	}
 
 	public void SaveTempJPG() {
@@ -117,7 +167,7 @@ public class StorageFacade extends JPanel implements Serializable {
 	}
 
 	public void newSketch() {
-		DroodlePanel.dw.clearDrawings();
+		DroodlePanel.dw.WipeDrawing();
 	}
 
 	public ArrayList<String> getSketchList() {
