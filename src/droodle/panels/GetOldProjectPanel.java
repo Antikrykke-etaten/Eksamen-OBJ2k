@@ -39,13 +39,19 @@ public class GetOldProjectPanel extends JPanel {
 	 JButton DeleteOneFileButn = new JButton("Slett valgt fil");
 
 	 public GetOldProjectPanel() {
+		 
+		
 		
 		model = new DefaultListModel();
 	    list = new JList(model);
 	    JScrollPane pane = new JScrollPane(list);
 	    
-	    for (int i = 0; i < 0; i++)
-	        model.addElement("Element " + i);
+	  //Adds sketches to the list
+		 for (String f:Droodle.storage.getFilenames()) {
+			 model.addElement(f);
+			 counter++;
+			 System.out.println("Sketch file: " + f);
+			}
 
 		Dimension Butndim = new Dimension(250, 60);
 		Dimension ButndimSmal = new Dimension(130, 30);
@@ -102,20 +108,17 @@ public class GetOldProjectPanel extends JPanel {
 		DeleteOneFileButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (model.getSize() > 0){
-			          model.removeElementAt(0);
+				int index = list.getSelectedIndex();
+			    if(index >= 0){ //Remove only if a particular item is selected
+			        model.removeElementAt(index);
+			    
+			          String a = list.getSelectedValue().toString();
+			          DroodlePanel.sf.deleteFile(a);
 			      }
 			}
 		});
-		
-		//Droodle.storage = new Storage("sketches-6");
-		System.out.println("hey! ");
-		for (String f:Droodle.storage.getFilenames()) {
-			model.addElement(f);
-	        counter++;
-			System.out.println("Sketch file: " + f);
-		}
-		
+	
+		//Load selected sketch buttonAction
 		LoadSketchButn.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent actionEvent) {
 		        System.out.println(list.getSelectedValue());
@@ -123,29 +126,24 @@ public class GetOldProjectPanel extends JPanel {
 		        DroodlePanel.sf.sketchName = a;
 		        
 		        if(a != null && !a.isEmpty()){
-		        	 System.out.println("Velg sketch");
+		        	 System.out.println("Valgt sketch" + list.getSelectedValue() );
+		        } else{
+		        	System.out.println("Velg sketch");
 		        	return;	
 		        }
-		        
 		        for (String f:Droodle.storage.getFilenames()) {
 					if(f.equals(DroodlePanel.sf.sketchName)){
 						try {
 							DroodlePanel.sf.LoadSketch();
 							CardController.cl.show(CardController.panelCont, "4");
 						} catch (URISyntaxException | StorageException | IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} 
 						return;
 					}
 						DroodlePanel.sf.newSketch();
-					
 				}
 		      }
 		    });
 	}
-	 
-	 public void addToList() {
-		 
-	 }
 }
