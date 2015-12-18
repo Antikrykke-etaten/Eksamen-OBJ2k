@@ -15,7 +15,6 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -30,7 +29,6 @@ import com.microsoft.azure.storage.blob.BlobInputStream;
 import com.microsoft.azure.storage.blob.CloudBlobClient;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
-import com.microsoft.azure.storage.blob.ListBlobItem;
 
 import droodle.Configuration;
 import droodle.Droodle;
@@ -62,7 +60,7 @@ public class StorageFacade extends JPanel implements Serializable {
 	}
 
 	public void deleteAllFiles() {
-		ArrayList<String> allFiles = getDrawingList();
+		ArrayList<String> allFiles = getSketchList();
 		System.out.println("Sletter " + allFiles.size() + " filer.");
 		for (String fileName : allFiles) {
 			System.out.println("Sletter filen: " + fileName);
@@ -164,7 +162,7 @@ public class StorageFacade extends JPanel implements Serializable {
 		DroodlePanel.dw.clearDrawings();
 	}
 
-	public ArrayList<String> getDrawingList() {
+	public ArrayList<String> getSketchList() {
 		return Droodle.storage.getFilenames();
 	}
 

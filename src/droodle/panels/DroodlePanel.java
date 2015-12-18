@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import droodle.storage.StorageFacade;
-import droodle.tests.STDrawingArea;
 
+@SuppressWarnings("serial")
 public class DroodlePanel extends JPanel {
 
 	public static DroodleWindow dw = new DroodleWindow();
