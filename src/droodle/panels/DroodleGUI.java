@@ -217,7 +217,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				DroodlePanel.dw.clearDrawings();
+				//DroodlePanel.dw.clearDrawings();
 			}
 		});
 
@@ -226,7 +226,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				DroodlePanel.dw.setCurrentColor(Color.BLACK);
+				//DroodlePanel.dw.setCurrentColor(Color.BLACK);
 
 			}
 		});
@@ -244,7 +244,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				DroodlePanel.dw.setCurrentColor(Color.RED);
+				//DroodlePanel.dw.setCurrentColor(Color.RED);
 
 			}
 		});
@@ -253,7 +253,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				DroodlePanel.dw.setCurrentColor(Color.GREEN);
+				//DroodlePanel.dw.setCurrentColor(Color.GREEN);
 
 			}
 		});
@@ -261,15 +261,15 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				DroodlePanel.dw.setCurrentColor(Color.YELLOW);
+				//DroodlePanel.dw.setCurrentColor(Color.YELLOW);
 
 			}
 		});
 		BlueButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				DroodlePanel.dw.setCurrentColor(Color.BLUE);
-				
+				//DroodlePanel.dw.setCurrentColor(Color.BLUE);
+				DroodlePanel.sf.Save(DroodlePanel.dw.points);
 			}
 		});
 	}

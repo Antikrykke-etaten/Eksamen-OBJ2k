@@ -90,7 +90,7 @@ public class StorageFacade extends JPanel implements Serializable {
 	
 	public void LoadPoints() throws IOException, ClassNotFoundException {
 		try {
-			Droodle.storage.setSketchname(DroodlePanel.sf.sketchName);
+			Droodle.storage.setSketchname(sketchName);
 			BlobInputStream datastream = Droodle.storage.download();
 			
 			ObjectInputStream ois = new ObjectInputStream(datastream);
@@ -182,7 +182,7 @@ public class StorageFacade extends JPanel implements Serializable {
 	}
 
 	public void newSketch() {
-		DroodlePanel.dw.clearDrawings();
+		DroodlePanel.dw.WipeDrawing();
 	}
 
 	public ArrayList<String> getSketchList() {
