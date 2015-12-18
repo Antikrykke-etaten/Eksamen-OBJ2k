@@ -52,14 +52,6 @@ public class DroodleGUI extends JPanel {
 		JButton loadProjectButn = new JButton("Last inn", openIcon);
 		JButton deleteButn = new JButton("Slett", saveIcon);
 
-		// colourButtons
-		JButton BlackButn = new JButton();
-		JButton WhiteButn = new JButton();
-		JButton RedButn = new JButton();
-		JButton GreenButn = new JButton();
-		JButton YellowButn = new JButton();
-		JButton BlueButn = new JButton();
-
 		// Dimensions
 		Dimension PaintWindowDim = new Dimension(120, 350);
 		Dimension Butndim = new Dimension(120, 40);
@@ -74,54 +66,6 @@ public class DroodleGUI extends JPanel {
 		logo.setSize(50, 50);
 		logo.setIcon(new ImageIcon(newimg));
 		logo.setFont(new Font("Verdana", Font.BOLD, 14));
-
-		BlackButn.setSize(colourButtonsdim);
-		BlackButn.setMinimumSize(colourButtonsdim);
-		BlackButn.setMaximumSize(colourButtonsdim);
-		BlackButn.setPreferredSize(colourButtonsdim);
-		BlackButn.setFont(new Font("Arial", Font.BOLD, 13));
-		BlackButn.setBackground(Color.BLACK);
-		BlackButn.setForeground(Color.BLACK);
-
-		WhiteButn.setSize(colourButtonsdim);
-		WhiteButn.setMinimumSize(colourButtonsdim);
-		WhiteButn.setMaximumSize(colourButtonsdim);
-		WhiteButn.setPreferredSize(colourButtonsdim);
-		WhiteButn.setFont(new Font("Arial", Font.BOLD, 13));
-		WhiteButn.setBackground(Color.WHITE);
-		WhiteButn.setForeground(Color.WHITE);
-
-		RedButn.setSize(colourButtonsdim);
-		RedButn.setMinimumSize(colourButtonsdim);
-		RedButn.setMaximumSize(colourButtonsdim);
-		RedButn.setPreferredSize(colourButtonsdim);
-		RedButn.setFont(new Font("Arial", Font.BOLD, 13));
-		RedButn.setBackground(Color.RED);
-		RedButn.setForeground(Color.RED);
-
-		GreenButn.setSize(colourButtonsdim);
-		GreenButn.setMinimumSize(colourButtonsdim);
-		GreenButn.setMaximumSize(colourButtonsdim);
-		GreenButn.setPreferredSize(colourButtonsdim);
-		GreenButn.setFont(new Font("Arial", Font.BOLD, 13));
-		GreenButn.setBackground(Color.GREEN);
-		GreenButn.setForeground(Color.GREEN);
-
-		YellowButn.setSize(colourButtonsdim);
-		YellowButn.setMinimumSize(colourButtonsdim);
-		YellowButn.setMaximumSize(colourButtonsdim);
-		YellowButn.setPreferredSize(colourButtonsdim);
-		YellowButn.setFont(new Font("Arial", Font.BOLD, 13));
-		YellowButn.setBackground(Color.YELLOW);
-		YellowButn.setForeground(Color.YELLOW);
-
-		BlueButn.setSize(colourButtonsdim);
-		BlueButn.setMinimumSize(colourButtonsdim);
-		BlueButn.setMaximumSize(colourButtonsdim);
-		BlueButn.setPreferredSize(colourButtonsdim);
-		BlueButn.setFont(new Font("Arial", Font.BOLD, 13));
-		BlueButn.setBackground(Color.BLUE);
-		BlueButn.setForeground(Color.BLUE);
 
 		backToMenuButn.setSize(Butndim);
 		backToMenuButn.setMinimumSize(Butndim);
@@ -164,30 +108,6 @@ public class DroodleGUI extends JPanel {
 		gbc.gridy = 0;
 		PaintPanelGUI.add(deleteButn, gbc);
 
-		gbc.gridx = 4;
-		gbc.gridy = 0;
-		PaintPanelGUI.add(WhiteButn, gbc);
-
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		PaintPanelGUI.add(BlackButn, gbc);
-
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		PaintPanelGUI.add(RedButn, gbc);
-
-		gbc.gridx = 2;
-		gbc.gridy = 1;
-		PaintPanelGUI.add(GreenButn, gbc);
-
-		gbc.gridx = 3;
-		gbc.gridy = 1;
-		PaintPanelGUI.add(YellowButn, gbc);
-
-		gbc.gridx = 4;
-		gbc.gridy = 1;
-		PaintPanelGUI.add(BlueButn, gbc);
-
 		// Button actions
 		backToMenuButn.addActionListener(new ActionListener() {
 			@Override
@@ -214,55 +134,5 @@ public class DroodleGUI extends JPanel {
 			}
 		});
 
-		BlackButn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				DroodlePanel.dw.setCurrentColor(Color.BLACK);
-
-			}
-		});
-
-		WhiteButn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				DroodlePanel.dw.setCurrentColor(Color.WHITE);
-
-			}
-		});
-
-		RedButn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				DroodlePanel.dw.setCurrentColor(Color.RED);
-
-			}
-		});
-
-		GreenButn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				DroodlePanel.dw.setCurrentColor(Color.GREEN);
-
-			}
-		});
-		YellowButn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				DroodlePanel.dw.setCurrentColor(Color.YELLOW);
-
-			}
-		});
-		BlueButn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				DroodlePanel.dw.setCurrentColor(Color.BLUE);
-
-			}
-		});
 	}
 }
