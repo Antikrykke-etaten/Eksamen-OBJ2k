@@ -1,7 +1,6 @@
 package droodle.storage;
 
 import java.awt.Point;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -45,88 +44,8 @@ public class StorageFacade extends JPanel implements Serializable {
 	private int delay = 1000;
 	public String sketchName;
 	public Vector<Point> displayList = new Vector<Point>();
-	
 
 	private static final long serialVersionUID = 1L;
-	
-	public newThread nt = new newThread ();
-	
-	public class newThread extends Thread
-	{
-	   public void run ()
-	   {
-				if (!counting) {
-
-					counting = true;
-					ActionListener action = new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent event) {
-							if (counter == 0) {
-								timer.stop();
-								counting = false;
-								counter = 5;
-								try {
-									SaveToAzure();
-								} catch (URISyntaxException | StorageException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							} else {
-								System.out.println(counter);
-								counter--;
-							}
-						}
-					};
-
-					timer = new Timer(delay, action);
-					timer.setInitialDelay(0);
-					timer.start();
-				
-			}
-	   }
-	   
-	   public void SaveToAzure() throws URISyntaxException, StorageException {
-			try {
-				SaveTempJPG();
-				byte[] imageInByte;
-				BufferedImage originalImage = ImageIO.read(new File("Temp.jpg"));
-
-				// convert BufferedImage to byte array
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				ImageIO.write(originalImage, "jpg", baos);
-				baos.flush();
-				imageInByte = baos.toByteArray();
-				baos.close();
-
-				// convert byte array back to BufferedImage
-				InputStream in = new ByteArrayInputStream(imageInByte);
-				Droodle.storage = new Storage("sketches-6");
-				Droodle.storage.setSketchname(sketchName);
-				Droodle.storage.upload(in);
-
-				// BufferedImage bImageFromConvert = ImageIO.read(in);
-
-				// Creates new image
-				// ImageIO.write(bImageFromConvert, "jpg", new
-				// File("new-Temp.jpg"));
-				System.out.println("Saving to azure");
-
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-
-		}
-	   
-	   public void SaveTempJPG() {
-			System.out.println("Saving TempJPG");
-			try {
-				File outputfile = new File("Temp.jpg");
-				ImageIO.write(DroodlePanel.dw.bImage, "jpg", outputfile);
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-	}
 
 	public void deleteFile(String sketchName) {
 		CloudStorageAccount sa = StorageAccount.getInstance().getStorageAccount();
@@ -150,17 +69,95 @@ public class StorageFacade extends JPanel implements Serializable {
 	}
 
 	// TODO: kjøre savefunksjonen i en annen thread
-	
+	public void time() {
+		if (!counting) {
 
+			counting = true;
+			ActionListener action = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent event) {
+					if (counter == 0) {
+						timer.stop();
+						counting = false;
+						counter = 5;
+						try {
+							SaveToAzure();
+						} catch (URISyntaxException | StorageException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					} else {
+						System.out.println(counter);
+						counter--;
+					}
+				}
+			};
 
-	
+			timer = new Timer(delay, action);
+			timer.setInitialDelay(0);
+			timer.start();
+		}
+	}
+
+	public void Save(Vector<Point> displayList) throws IOException, URISyntaxException, StorageException {
+		System.out.println("Trying to save");
+
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream serialiser = new ObjectOutputStream(baos);
+
+		serialiser.writeObject(displayList);
+		serialiser.close();
+
+		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+		Droodle.storage.upload(bais);
+	}
+
+	public void SaveTempJPG() {
+		System.out.println("Saving TempJPG");
+		try {
+			File outputfile = new File("Temp.jpg");
+			ImageIO.write(DroodlePanel.dw.bImage, "jpg", outputfile);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 	public void WipeDrawing() {
 		System.out.println("Trying to wipe drawing");
 
 	}
 
-	
+	public void SaveToAzure() throws URISyntaxException, StorageException {
+		try {
+			SaveTempJPG();
+			byte[] imageInByte;
+			BufferedImage originalImage = ImageIO.read(new File("Temp.jpg"));
+
+			// convert BufferedImage to byte array
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(originalImage, "jpg", baos);
+			baos.flush();
+			imageInByte = baos.toByteArray();
+			baos.close();
+
+			// convert byte array back to BufferedImage
+			InputStream in = new ByteArrayInputStream(imageInByte);
+			Droodle.storage = new Storage("sketches-6");
+			Droodle.storage.setSketchname(sketchName);
+			Droodle.storage.upload(in);
+
+			// BufferedImage bImageFromConvert = ImageIO.read(in);
+
+			// Creates new image
+			// ImageIO.write(bImageFromConvert, "jpg", new
+			// File("new-Temp.jpg"));
+			System.out.println("Saving to azure");
+
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
 
 	public void newSketch() {
 		DroodlePanel.dw.clearDrawings();

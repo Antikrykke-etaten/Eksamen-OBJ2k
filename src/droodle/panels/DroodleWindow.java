@@ -94,7 +94,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	public void DrawLines(Graphics g) {
 		if (points != null && points.size() > 1) {
-			DroodlePanel.sf.nt.run();
+			DroodlePanel.sf.time();
 
 			g.setColor(getCurrentColor());
 			for (int i = 0; i < points.size() - 1; i++) {
@@ -119,8 +119,6 @@ public class DroodleWindow extends JPanel implements Serializable {
 		}
 
 	}
-	
-	
 
 	public void setCurrentColor(Color currentColor) {
 		if (currentColor == null) {
