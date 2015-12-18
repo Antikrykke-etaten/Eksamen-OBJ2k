@@ -16,7 +16,6 @@ import java.util.Vector;
 
 import javax.swing.JPanel;
 
-import droodle.CardController;
 
 public class DroodleWindow extends JPanel implements Serializable {
 

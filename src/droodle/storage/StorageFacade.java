@@ -141,10 +141,6 @@ public class StorageFacade extends JPanel implements Serializable {
 		}
 	}
 
-	// TODO: kjøre savefunksjonen i en annen thread
-	
-
-
 
 	public void SaveTempJPG() {
 		System.out.println("Saving TempJPG");

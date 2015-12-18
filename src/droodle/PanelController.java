@@ -6,28 +6,29 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import droodle.panels.CreateNewProjectPanel;
+
+import droodle.panels.CreatePanel;
 import droodle.panels.DroodlePanel;
-import droodle.panels.GetOldProjectPanel;
+import droodle.panels.LoadPanel;
 import droodle.panels.MenuPanel;
 
-public class CardController {
+public class PanelController {
 	public static JFrame frame = new JFrame("The amazing Droodler panel");
 	public static JPanel panelCont = new JPanel();
 	public static CardLayout cl = new CardLayout();
-	public static CreateNewProjectPanel cnpp = new CreateNewProjectPanel();
-	public static GetOldProjectPanel gopp = new GetOldProjectPanel();
+	public static CreatePanel cp = new CreatePanel();
+	public static LoadPanel lp = new LoadPanel();
 	public static DroodlePanel dp = new DroodlePanel();
 
-	public CardController() {
+	public PanelController() {
 
 		new MenuPanel();
 		
 
 		panelCont.setLayout(cl);
 		panelCont.add(MenuPanel.menuPanel, "1");
-		panelCont.add(cnpp.newProjectPanel, "2");
-		panelCont.add(gopp.oldProjectsPanel, "3");
+		panelCont.add(cp.newProjectPanel, "2");
+		panelCont.add(lp.oldProjectsPanel, "3");
 		panelCont.add(dp.DroodlePanel, "4");
 
 		cl.show(panelCont, "1");

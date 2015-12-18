@@ -1,6 +1,7 @@
 package droodle.panels;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -23,11 +24,11 @@ import javax.swing.event.ListSelectionListener;
 
 import com.microsoft.azure.storage.StorageException;
 
-import droodle.CardController;
 import droodle.Droodle;
+import droodle.PanelController;
 
 @SuppressWarnings("serial")
-public class GetOldProjectPanel extends JPanel {
+public class LoadPanel extends JPanel {
 
 	public static JPanel oldProjectsPanel = new JPanel();
 	private JLabel label1;
@@ -39,7 +40,7 @@ public class GetOldProjectPanel extends JPanel {
 	JButton LoadSketchButn = new JButton("Last inn tegning");
 	JButton DeleteOneFileButn = new JButton("Slett tegning");
 
-	public GetOldProjectPanel() {
+	public LoadPanel() {
 		model = new DefaultListModel();
 		list = new JList(model);
 		JScrollPane pane = new JScrollPane(list);
@@ -98,7 +99,7 @@ public class GetOldProjectPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				reset(model);
 				setup();
-				CardController.cl.show(CardController.panelCont, "1");
+				PanelController.cl.show(PanelController.panelCont, "1");
 			}
 		});
 
@@ -142,9 +143,9 @@ public class GetOldProjectPanel extends JPanel {
 						try {
 							DroodlePanel.sf.LoadPoints();
 							reset(model);
-							CardController.cl.show(CardController.panelCont, "4");
+							PanelController.cl.show(PanelController.panelCont, "4");
 						} catch (IOException e) {
-							CardController.cl.show(CardController.panelCont, "3");
+							PanelController.cl.show(PanelController.panelCont, "3");
 							e.printStackTrace();
 						} catch (ClassNotFoundException e) {
 							// TODO Auto-generated catch block

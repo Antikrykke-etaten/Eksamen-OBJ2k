@@ -24,8 +24,8 @@ import javax.swing.event.ChangeListener;
 
 import com.microsoft.azure.storage.StorageException;
 
-import droodle.CardController;
 import droodle.Configuration;
+import droodle.PanelController;
 import droodle.storage.StorageFacade;
 
 public class DroodleGUI extends JPanel {
@@ -67,8 +67,6 @@ public class DroodleGUI extends JPanel {
 		JButton GreenButn = new JButton();
 		JButton YellowButn = new JButton();
 		JButton BlueButn = new JButton();
-
-	
 
 		// Dimensions
 		Dimension PaintWindowDim = new Dimension(120, 350);
@@ -202,15 +200,15 @@ public class DroodleGUI extends JPanel {
 		backToMenuButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.cl.show(CardController.panelCont, "1");
+				PanelController.cl.show(PanelController.panelCont, "1");
 			}
 		});
 
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.cl.show(CardController.panelCont, "3");
-				CardController.gopp.setup();
+				PanelController.cl.show(PanelController.panelCont, "3");
+				PanelController.lp.setup();
 			}
 		});
 

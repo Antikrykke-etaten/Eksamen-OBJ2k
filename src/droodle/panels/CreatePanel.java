@@ -1,6 +1,7 @@
 package droodle.panels;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -19,11 +20,11 @@ import javax.swing.SwingConstants;
 
 import com.microsoft.azure.storage.StorageException;
 
-import droodle.CardController;
 import droodle.Droodle;
+import droodle.PanelController;
 import droodle.SplashScreen;
 
-public class CreateNewProjectPanel extends JPanel {
+public class CreatePanel extends JPanel {
 
 	public static JPanel newProjectPanel = new JPanel();
 
@@ -34,7 +35,7 @@ public class CreateNewProjectPanel extends JPanel {
 
 	JTextField projectNameField = new JTextField(30);
 
-	public CreateNewProjectPanel() {
+	public CreatePanel() {
 		Dimension Butndim = new Dimension(250, 60);
 		Dimension ButndimSmal = new Dimension(130, 30);
 
@@ -88,15 +89,15 @@ public class CreateNewProjectPanel extends JPanel {
 		createNewProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.frame.setTitle(projectNameField.getText());
-				CardController.cl.show(CardController.panelCont, "4");
+				PanelController.frame.setTitle(projectNameField.getText());
+				PanelController.cl.show(PanelController.panelCont, "4");
 				DroodlePanel.sf.sketchName = projectNameField.getText();
 
 					for (String f:Droodle.storage.getFilenames()) {
 						if(f.equals(DroodlePanel.sf.sketchName)){
 							try {
 								DroodlePanel.sf.LoadPoints();
-								CardController.gopp.setup();
+								PanelController.lp.setup();
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -116,7 +117,7 @@ public class CreateNewProjectPanel extends JPanel {
 		backToMenuButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.cl.show(CardController.panelCont, "1");
+				PanelController.cl.show(PanelController.panelCont, "1");
 			}
 		});
 	}

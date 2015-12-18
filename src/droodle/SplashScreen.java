@@ -69,7 +69,7 @@ public class SplashScreen extends JWindow {
 				loadingBar.setValue(count);
 
 				if (count == 50) {
-					new CardController();
+					new PanelController();
 					setVisible(false);
 					timer1.stop();
 				}
