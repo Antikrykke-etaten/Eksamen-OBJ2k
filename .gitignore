@@ -1,3 +1,6 @@
 # gitignore
-
+# Mapper
 \bin
+# Filer
+Loaded-Temp.jpg
+Temp.jpg
