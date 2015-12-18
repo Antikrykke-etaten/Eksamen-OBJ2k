@@ -276,19 +276,7 @@ public class DroodleGUI extends JPanel {
 		BlueButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 				DroodlePanel.dw.setCurrentColor(Color.BLUE);
-
-				try {
-					DroodlePanel.sf.LoadSketch();
-				} catch (URISyntaxException | StorageException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
 			}
 		});
 	}

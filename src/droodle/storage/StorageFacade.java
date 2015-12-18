@@ -56,8 +56,9 @@ public class StorageFacade extends JPanel implements Serializable {
 						counting = false;
 						counter = 5;
 						try {
-							Save2();
+							SaveToAzure();
 						} catch (URISyntaxException | StorageException e) {
+							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					} else {
@@ -101,7 +102,7 @@ public class StorageFacade extends JPanel implements Serializable {
 
 	}
 
-	public void Save2() throws URISyntaxException, StorageException {
+	public void SaveToAzure() throws URISyntaxException, StorageException {
 		try {
 			SaveTempJPG();
 			byte[] imageInByte;
@@ -117,7 +118,7 @@ public class StorageFacade extends JPanel implements Serializable {
 			// convert byte array back to BufferedImage
 			InputStream in = new ByteArrayInputStream(imageInByte);
 			Droodle.storage = new Storage("sketches-6");
-			Droodle.storage.setSketchname("Halla");
+			Droodle.storage.setSketchname(sketchName);
 			Droodle.storage.upload(in);
 
 			// BufferedImage bImageFromConvert = ImageIO.read(in);
