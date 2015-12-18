@@ -1,5 +1,6 @@
 package droodle.storage;
 
+import java.awt.Image;
 import java.awt.Point;
 
 import java.awt.event.ActionEvent;
@@ -24,6 +25,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.apache.commons.io.IOUtils;
+
 import com.microsoft.azure.storage.StorageException;
 
 import droodle.Configuration;
@@ -38,6 +41,8 @@ public class StorageFacade extends JPanel implements Serializable {
 	private Boolean counting = false;
 	private int counter = 5;
 	private int delay = 1000;
+	
+	public String sketchName;
 
 	public Vector<Point> displayList = new Vector<Point>();
 
@@ -85,9 +90,6 @@ public class StorageFacade extends JPanel implements Serializable {
 		Droodle.storage.upload(bais);
 	}
 
-	public void Load() {
-		System.out.println("Trying to load");
-	}
 	
 	public void SaveToAssets() {
 		System.out.println("Saving to assets");
@@ -120,15 +122,44 @@ public class StorageFacade extends JPanel implements Serializable {
 
 			// convert byte array back to BufferedImage
 			InputStream in = new ByteArrayInputStream(imageInByte);
-			InputStream  data = new ByteArrayInputStream ("Dette er en test".getBytes());
 			BufferedImage bImageFromConvert = ImageIO.read(in);
 
 			//Creates new image
-			//ImageIO.write(bImageFromConvert, "jpg", new File("new-Temp.jpg"));
+			ImageIO.write(bImageFromConvert, "jpg", new File("new-Temp.jpg"));
 			System.out.println("Writing to server");
 			Droodle.storage = new Storage("sketches-6");
-			Droodle.storage.setSketchname("It woorks!");
-			Droodle.storage.upload(data);
+			Droodle.storage.setSketchname(sketchName);
+			Droodle.storage.upload(in);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	public void LoadSketch() throws URISyntaxException, StorageException{
+		try {
+			Droodle.storage.setSketchname("sketchName");
+			InputStream datastream = Droodle.storage.download();
+			
+			byte[] bytes = IOUtils.toByteArray(datastream);
+			BufferedImage originalImage = ImageIO.read(new File(
+					"Temp.jpg"));
+			
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(originalImage, "jpg", baos);
+			baos.flush();
+			bytes = baos.toByteArray();
+			baos.close();
+			
+			InputStream in = new ByteArrayInputStream(bytes);
+			BufferedImage bImageFromConvert = ImageIO.read(in);
+			ImageIO.write(bImageFromConvert, "jpg", new File("ny-Temp.jpg"));
+			System.out.println("Writing to server");
+		
+		
+			
+			
+			System.out.println("Getting old sketch");
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

@@ -85,6 +85,7 @@ public class CreateNewProjectPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				CardController.frame.setTitle(projectNameField.getText());
 				CardController.cl.show(CardController.panelCont, "4");
+				DroodlePanel.sf.sketchName = projectNameField.getText();
 			}
 		});
 

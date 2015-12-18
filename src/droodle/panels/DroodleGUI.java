@@ -240,7 +240,7 @@ public class DroodleGUI extends JPanel {
 				
 					
 						try {
-							DroodlePanel.sf.Save2();
+							DroodlePanel.sf.LoadSketch();
 						} catch (URISyntaxException | StorageException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

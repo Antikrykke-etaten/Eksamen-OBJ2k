@@ -18,8 +18,8 @@ import javax.swing.JPanel;
 
 public class DroodleWindow extends JPanel implements Serializable {
 
-	private static final int DA_WIDTH = 4000;
-	private static final int DA_HEIGHT = 4000;
+	private static final int DA_WIDTH = 500;
+	private static final int DA_HEIGHT = 700;
 	private static final Color DA_BGCOLOR = Color.WHITE;
 	private static final long serialVersionUID = 1L;
 
