@@ -136,12 +136,10 @@ public class GetOldProjectPanel extends JPanel {
 				String a = list.getSelectedValue().toString();
 				DroodlePanel.sf.sketchName = a;
 
-				if (a != null && !a.isEmpty()) {
-					System.out.println("Valgt sketch" + list.getSelectedValue());
-				} else {
-					System.out.println("Velg sketch");
+				if (a == null && a.isEmpty()) {
 					return;
 				}
+				
 				for (String f : Droodle.storage.getFilenames()) {
 					if (f.equals(DroodlePanel.sf.sketchName)) {
 						try {
@@ -150,7 +148,6 @@ public class GetOldProjectPanel extends JPanel {
 							reset(model);
 						} catch (URISyntaxException | StorageException | IOException e) {
 							CardController.cl.show(CardController.panelCont, "3");
-							System.out.println("Klarte ikke hente filen");
 							e.printStackTrace();
 						}
 						return;
