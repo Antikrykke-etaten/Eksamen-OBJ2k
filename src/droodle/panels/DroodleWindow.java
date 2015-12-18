@@ -41,11 +41,8 @@ public class DroodleWindow extends JPanel implements Serializable {
 	public DroodleWindow() {
 		
 		
-		Rectangle r = CardController.frame.getBounds();
-		//h = r.height;
-		//w = r.width;
 		
-		setBorder(BorderFactory.createLineBorder(Color.black));
+		//setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		
 		
@@ -55,7 +52,6 @@ public class DroodleWindow extends JPanel implements Serializable {
 		Graphics2D g2 = (Graphics2D) g2d;
 		g2.drawRenderedImage(bImage, null);
 		g2.setColor(DA_BGCOLOR);
-		g2.fillRect(0, 0, r.width, r.height);
 		g2.dispose();
 
 		addMouseListener(new MouseAdapter() {
@@ -82,10 +78,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 		});
 	}
 	
-	public void changeBufferedImage() throws IOException{
-		
-		DroodlePanel.dw.bImage = ImageIO.read(new File("Loaded-Temp.jpg"));
-	}
+	
 
 	@Override
 	public Dimension getPreferredSize() {
