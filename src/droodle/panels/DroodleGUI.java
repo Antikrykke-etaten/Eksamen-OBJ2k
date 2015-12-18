@@ -59,7 +59,6 @@ public class DroodleGUI extends JPanel {
 		JButton backToMenuButn = new JButton("Meny", menuIcon);
 		JButton loadProjectButn = new JButton("Hent", openIcon);
 		JButton deleteButn = new JButton("Delete", saveIcon);
-		JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 2, 1);
 
 		// colourButtons
 		JButton BlackButn = new JButton();
@@ -68,17 +67,7 @@ public class DroodleGUI extends JPanel {
 		JButton YellowButn = new JButton();
 		JButton BlueButn = new JButton();
 
-		// Slider
-		slider.setMinorTickSpacing(10);
-		slider.setMajorTickSpacing(2);
-		slider.setPaintTicks(true);
-		slider.setPaintLabels(true);
-		Hashtable<Integer, JLabel> labels = new Hashtable<Integer, JLabel>();
-		labels.put(0, new JLabel("Liten"));
-		labels.put(1, new JLabel("Middels"));
-		labels.put(2, new JLabel("Stor"));
-		slider.setLabelTable(labels);
-		slider.setBackground(new Color(196, 215, 233));
+	
 
 		// Dimensions
 		Dimension PaintWindowDim = new Dimension(120, 350);
@@ -153,12 +142,6 @@ public class DroodleGUI extends JPanel {
 		deleteButn.setPreferredSize(Butndim);
 		deleteButn.setFont(new Font("Arial", Font.BOLD, 13));
 
-		slider.setSize(Butndim);
-		slider.setMinimumSize(Butndim);
-		slider.setMaximumSize(Butndim);
-		slider.setPreferredSize(Butndim);
-		slider.setFont(new Font("Arial", Font.BOLD, 3));
-
 		GridBagLayout gl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -181,10 +164,6 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 3;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(deleteButn, gbc);
-
-		gbc.gridx = 4;
-		gbc.gridy = 0;
-		PaintPanelGUI.add(slider, gbc);
 
 		gbc.gridx = 0;
 		gbc.gridy = 1;
@@ -229,14 +208,6 @@ public class DroodleGUI extends JPanel {
 			}
 		});
 
-		slider.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-
-				// DroodlePanel.dw.drawStroke = 40;
-			}
-		});
 
 		BlackButn.addActionListener(new ActionListener() {
 			@Override

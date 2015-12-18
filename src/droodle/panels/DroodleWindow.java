@@ -119,6 +119,8 @@ public class DroodleWindow extends JPanel implements Serializable {
 		}
 
 	}
+	
+	
 
 	public void setCurrentColor(Color currentColor) {
 		if (currentColor == null) {
