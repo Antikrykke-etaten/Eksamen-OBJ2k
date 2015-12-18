@@ -24,8 +24,8 @@ import javax.swing.event.ChangeListener;
 
 import com.microsoft.azure.storage.StorageException;
 
-import droodle.CardController;
 import droodle.Configuration;
+import droodle.PanelController;
 import droodle.storage.StorageFacade;
 
 public class DroodleGUI extends JPanel {
@@ -200,14 +200,15 @@ public class DroodleGUI extends JPanel {
 		backToMenuButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.cl.show(CardController.panelCont, "1");
+				PanelController.cl.show(PanelController.panelCont, "1");
 			}
 		});
 
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.cl.show(CardController.panelCont, "3");
+				PanelController.cl.show(PanelController.panelCont, "3");
+				PanelController.lp.setup();
 			}
 		});
 
@@ -215,7 +216,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//DroodlePanel.dw.clearDrawings();
+				DroodlePanel.dw.clearDrawings();
 			}
 		});
 
@@ -224,7 +225,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//DroodlePanel.dw.setCurrentColor(Color.BLACK);
+				DroodlePanel.dw.setCurrentColor(Color.BLACK);
 
 			}
 		});
@@ -233,7 +234,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//DroodlePanel.dw.setCurrentColor(Color.WHITE);
+				DroodlePanel.dw.setCurrentColor(Color.WHITE);
 
 			}
 		});
@@ -242,7 +243,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//DroodlePanel.dw.setCurrentColor(Color.RED);
+				DroodlePanel.dw.setCurrentColor(Color.RED);
 
 			}
 		});
@@ -251,7 +252,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//DroodlePanel.dw.setCurrentColor(Color.GREEN);
+				DroodlePanel.dw.setCurrentColor(Color.GREEN);
 
 			}
 		});
@@ -259,15 +260,15 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//DroodlePanel.dw.setCurrentColor(Color.YELLOW);
+				DroodlePanel.dw.setCurrentColor(Color.YELLOW);
 
 			}
 		});
 		BlueButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//DroodlePanel.dw.setCurrentColor(Color.BLUE);
-				DroodlePanel.sf.Save(DroodlePanel.dw.points);
+				DroodlePanel.dw.setCurrentColor(Color.BLUE);
+				
 			}
 		});
 	}

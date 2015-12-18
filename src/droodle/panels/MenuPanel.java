@@ -1,6 +1,7 @@
 package droodle.panels;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -14,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import droodle.CardController;
+import droodle.PanelController;
 
 @SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
@@ -70,14 +71,14 @@ public class MenuPanel extends JPanel {
 		newProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.cl.show(CardController.panelCont, "2");
+				PanelController.cl.show(PanelController.panelCont, "2");
 			}
 		});
 
 		oldProjectsButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.cl.show(CardController.panelCont, "3");
+				PanelController.cl.show(PanelController.panelCont, "3");
 				//CardController.gopp.setup();
 			}
 		});
