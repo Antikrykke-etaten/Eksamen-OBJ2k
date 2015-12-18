@@ -58,7 +58,6 @@ public class DroodleGUI extends JPanel {
 		// PanelButtons
 		JButton backToMenuButn = new JButton("Meny", menuIcon);
 		JButton loadProjectButn = new JButton("Hent", openIcon);
-		JButton saveButn = new JButton("Save", saveIcon);
 		JButton deleteButn = new JButton("Delete", saveIcon);
 		JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 2, 1);
 
