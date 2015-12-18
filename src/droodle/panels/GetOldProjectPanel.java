@@ -23,8 +23,8 @@ import com.microsoft.azure.storage.StorageException;
 
 import droodle.CardController;
 import droodle.Droodle;
-import storagetool.Storage;
 
+@SuppressWarnings("serial")
 public class GetOldProjectPanel extends JPanel {
 
 	public static JPanel oldProjectsPanel = new JPanel();

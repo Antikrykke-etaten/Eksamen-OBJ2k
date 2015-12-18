@@ -33,7 +33,6 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import droodle.Configuration;
 import droodle.Droodle;
 import droodle.panels.DroodlePanel;
-import storagetool.Blobadministrator;
 import storagetool.Storage;
 import storagetool.StorageAccount;
 
@@ -45,35 +44,28 @@ public class StorageFacade extends JPanel implements Serializable {
 	private int delay = 1000;
 	public String sketchName;
 	public Vector<Point> displayList = new Vector<Point>();
-	private Blobadministrator ba;
 
 	private static final long serialVersionUID = 1L;
 
-	public void deleteSketch(String sketchName) {
-
+	public void deleteFile(String sketchName) {
 		CloudStorageAccount sa = StorageAccount.getInstance().getStorageAccount();
-
 		CloudBlobClient cbc = sa.createCloudBlobClient();
-
 		try {
 			CloudBlobContainer c = cbc.getContainerReference(Configuration.teamName);
 			CloudBlockBlob blob = c.getBlockBlobReference(sketchName);
-			
+
 			blob.deleteIfExists();
 		} catch (URISyntaxException | StorageException e) {
 			e.printStackTrace();
 		}
-
 	}
-	
-	public void deleteAllFiles () {
+
+	public void deleteAllFiles() {
 		ArrayList<String> allFiles = getDrawingList();
-		
 		System.out.println("Sletter " + allFiles.size() + " filer.");
-		
 		for (String fileName : allFiles) {
 			System.out.println("Sletter filen: " + fileName);
-			deleteSketch(fileName);
+			deleteFile(fileName);
 		}
 	}
 

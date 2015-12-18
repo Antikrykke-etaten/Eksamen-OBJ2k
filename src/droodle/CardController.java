@@ -7,10 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import droodle.panels.CreateNewProjectPanel;
+import droodle.panels.DroodlePanel;
 import droodle.panels.GetOldProjectPanel;
 import droodle.panels.MenuPanel;
-import droodle.panels.DroodlePanel;
-import droodle.panels.DroodleWindow;
 
 public class CardController {
 	public static JFrame frame = new JFrame("The amazing Droodler panel");

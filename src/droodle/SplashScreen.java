@@ -1,7 +1,6 @@
 package droodle;
 
 import java.awt.Color;
-import storagetool.Storage;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagLayout;
