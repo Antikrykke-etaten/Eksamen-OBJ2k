@@ -137,11 +137,12 @@ public class GetOldProjectPanel extends JPanel {
 							DroodlePanel.sf.LoadSketch();
 							CardController.cl.show(CardController.panelCont, "4");
 						} catch (URISyntaxException | StorageException | IOException e) {
+							CardController.cl.show(CardController.panelCont, "3");
+							System.out.println("Klarte ikke hente filen");
 							e.printStackTrace();
 						} 
 						return;
 					}
-						DroodlePanel.sf.newSketch();
 				}
 		      }
 		    });
