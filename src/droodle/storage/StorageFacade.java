@@ -163,7 +163,6 @@ public class StorageFacade extends JPanel implements Serializable {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 	public void newSketch() {
