@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -29,6 +30,7 @@ import com.microsoft.azure.storage.blob.BlobInputStream;
 import com.microsoft.azure.storage.blob.CloudBlobClient;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
+import com.microsoft.azure.storage.blob.ListBlobItem;
 
 import droodle.Configuration;
 import droodle.Droodle;
@@ -51,7 +53,7 @@ public class StorageFacade extends JPanel implements Serializable {
 		CloudStorageAccount sa = StorageAccount.getInstance().getStorageAccount();
 		CloudBlobClient cbc = sa.createCloudBlobClient();
 		try {
-			CloudBlobContainer c = cbc.getContainerReference(Configuration.teamName);
+			CloudBlobContainer c = cbc.getContainerReference("sketches-" + Configuration.teamName);
 			CloudBlockBlob blob = c.getBlockBlobReference(sketchName);
 			blob.deleteIfExists();
 		} catch (URISyntaxException | StorageException e) {

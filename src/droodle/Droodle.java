@@ -1,5 +1,6 @@
 package droodle;
 
+import droodle.storage.StorageFacade;
 import storagetool.Storage;
 
 public class Droodle {
@@ -10,9 +11,11 @@ public class Droodle {
 
 		storage = new Storage("sketches-6");
 		String storageVersion = storage.getVersion();
+		StorageFacade sf = new StorageFacade();
 
 		if ("Storage tool version 1.2" == storageVersion) {
 			new SplashScreen();
+			
 		} else {
 			throw new SecurityException("Use a newer version of Storagetool");
 		}
