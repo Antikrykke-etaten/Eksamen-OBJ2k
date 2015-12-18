@@ -5,21 +5,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import droodle.CardController;
@@ -36,16 +30,13 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	private Color currentColor;
 	public BufferedImage bImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-	
 
 	public DroodleWindow() {
-		
-		
-		
-		//setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		
-		
+		Rectangle r = CardController.frame.getBounds();
+		// h = r.height;
+		// w = r.width;
+
+		// setBorder(BorderFactory.createLineBorder(Color.black));
 
 		// Basic Settings for bImage
 		Graphics g2d = bImage.getGraphics();
@@ -77,8 +68,6 @@ public class DroodleWindow extends JPanel implements Serializable {
 			}
 		});
 	}
-	
-	
 
 	@Override
 	public Dimension getPreferredSize() {
@@ -87,13 +76,13 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	@Override
 	public void paint(Graphics g) {
-		 super.paint(g);
-		 Graphics2D g2 = (Graphics2D) g;
-		 g2.drawRenderedImage(bImage, null);
-		 DrawLines(g);
-		 drawIntoBufferedImage();
-		 g2.setStroke(new BasicStroke(20));
-		 g.dispose();
+		super.paint(g);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.drawRenderedImage(bImage, null);
+		DrawLines(g);
+		drawIntoBufferedImage();
+		g2.setStroke(new BasicStroke(20));
+		g.dispose();
 
 	}
 

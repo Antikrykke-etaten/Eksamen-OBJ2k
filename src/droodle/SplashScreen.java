@@ -60,12 +60,12 @@ public class SplashScreen extends JWindow {
 	private void loadProgressBar() {
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				
+
 				if (count % 10 == 0) {
 					loadingBar.setString(Configuration.loadingBarStrings[stringCounter]);
 					stringCounter++;
 				}
-				
+
 				count++;
 				loadingBar.setValue(count);
 

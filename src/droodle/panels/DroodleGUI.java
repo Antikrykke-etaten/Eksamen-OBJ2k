@@ -30,7 +30,7 @@ import droodle.storage.StorageFacade;
 
 public class DroodleGUI extends JPanel {
 	private JLabel logo;
-	
+
 	private StorageFacade storageFacade;
 
 	public static JPanel PaintPanelGUI = new JPanel();
@@ -119,7 +119,7 @@ public class DroodleGUI extends JPanel {
 		GreenButn.setFont(new Font("Arial", Font.BOLD, 13));
 		GreenButn.setBackground(Color.GREEN);
 		GreenButn.setForeground(Color.GREEN);
-		
+
 		YellowButn.setSize(colourButtonsdim);
 		YellowButn.setMinimumSize(colourButtonsdim);
 		YellowButn.setMaximumSize(colourButtonsdim);
@@ -127,7 +127,7 @@ public class DroodleGUI extends JPanel {
 		YellowButn.setFont(new Font("Arial", Font.BOLD, 13));
 		YellowButn.setBackground(Color.YELLOW);
 		YellowButn.setForeground(Color.YELLOW);
-		
+
 		BlueButn.setSize(colourButtonsdim);
 		BlueButn.setMinimumSize(colourButtonsdim);
 		BlueButn.setMaximumSize(colourButtonsdim);
@@ -147,7 +147,6 @@ public class DroodleGUI extends JPanel {
 		loadProjectButn.setMaximumSize(Butndim);
 		loadProjectButn.setPreferredSize(Butndim);
 		loadProjectButn.setFont(new Font("Arial", Font.BOLD, 13));
-
 
 		deleteButn.setSize(Butndim);
 		deleteButn.setMinimumSize(Butndim);
@@ -179,7 +178,7 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(loadProjectButn, gbc);
-		
+
 		gbc.gridx = 3;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(deleteButn, gbc);
@@ -199,11 +198,11 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 2;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(GreenButn, gbc);
-		
+
 		gbc.gridx = 3;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(YellowButn, gbc);
-		
+
 		gbc.gridx = 4;
 		gbc.gridy = 1;
 		PaintPanelGUI.add(BlueButn, gbc);
@@ -215,7 +214,6 @@ public class DroodleGUI extends JPanel {
 				CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
-
 
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
@@ -246,7 +244,6 @@ public class DroodleGUI extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 
 				DroodlePanel.dw.setCurrentColor(Color.BLACK);
-				
 
 			}
 		});
@@ -279,7 +276,6 @@ public class DroodleGUI extends JPanel {
 		BlueButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 				DroodlePanel.dw.setCurrentColor(Color.BLUE);
 			}
 		});
