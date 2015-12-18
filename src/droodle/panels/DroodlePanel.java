@@ -9,7 +9,7 @@ import droodle.storage.StorageFacade;
 @SuppressWarnings("serial")
 public class DroodlePanel extends JPanel {
 
-	public static DroodleWindow dw = new DroodleWindow(10);
+	public static DroodleWindow dw = new DroodleWindow();
 	public static StorageFacade sf = new StorageFacade();
 
 	public static JPanel DroodlePanel = new JPanel();

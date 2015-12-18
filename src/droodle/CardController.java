@@ -17,17 +17,18 @@ public class CardController {
 	public static CardLayout cl = new CardLayout();
 	public static CreateNewProjectPanel cnpp = new CreateNewProjectPanel();
 	public static GetOldProjectPanel gopp = new GetOldProjectPanel();
+	public static DroodlePanel dp = new DroodlePanel();
 
 	public CardController() {
 
 		new MenuPanel();
-		new DroodlePanel();
+		
 
 		panelCont.setLayout(cl);
 		panelCont.add(MenuPanel.menuPanel, "1");
 		panelCont.add(cnpp.newProjectPanel, "2");
 		panelCont.add(gopp.oldProjectsPanel, "3");
-		panelCont.add(DroodlePanel.DroodlePanel, "4");
+		panelCont.add(dp.DroodlePanel, "4");
 
 		cl.show(panelCont, "1");
 

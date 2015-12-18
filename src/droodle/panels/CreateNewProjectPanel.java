@@ -96,6 +96,7 @@ public class CreateNewProjectPanel extends JPanel {
 						if(f.equals(DroodlePanel.sf.sketchName)){
 							try {
 								DroodlePanel.sf.LoadPoints();
+								CardController.gopp.setup();
 							} catch (IOException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();

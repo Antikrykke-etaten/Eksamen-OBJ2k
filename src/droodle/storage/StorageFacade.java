@@ -43,29 +43,37 @@ public class StorageFacade extends JPanel implements Serializable {
 
 	
 	private Timer timer;
-	private int delay = 5000;
+	private Boolean counting = false;
+	private int counter = 5;
+	private int delay = 1000;
 	public String sketchName;
 
 	private static final long serialVersionUID = 1L;
 	
-	//public void time() {
-		//  ActionListener action = new ActionListener() {
-		//   @Override
-		//   public void actionPerformed(ActionEvent event) {
-		 //   timer.stop();
-		 //   try {
-		  //   SaveToAzure();
-		  //  } catch (URISyntaxException | StorageException e) {
-		     // TODO Auto-generated catch block
-		  //   e.printStackTrace();
-		  //  }
-		 //  }
-		//  };
+	public void time() {
+		if (!counting) {
 
-		//  timer = new Timer(delay, action);
-		//  timer.setInitialDelay(0);
-		//  timer.start();
-		// }
+			counting = true;
+			ActionListener action = new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent event) {
+					if (counter == 0) {
+						timer.stop();
+						counting = false;
+						counter = 5;
+						DroodlePanel.sf.Save(DroodlePanel.dw.points);
+					} else {
+						System.out.println(counter);
+						counter--;
+					}
+				}
+			};
+
+			timer = new Timer(delay, action);
+			timer.setInitialDelay(0);
+			timer.start();
+		}
+	}
 	
 	public void Save(Vector<Point> points) {
 		 System.out.println("Save");
@@ -101,7 +109,7 @@ public class StorageFacade extends JPanel implements Serializable {
 				
 				System.out.println("Fant " + integer);
 			}
-			System.out.println("FERDIG");
+			System.out.println("Points hentet");
 			
 			//DroodlePanel.dw.bImage = ImageIO.read(new File("Loaded-Temp.jpg"));
 			
@@ -167,22 +175,16 @@ public class StorageFacade extends JPanel implements Serializable {
 			Droodle.storage = new Storage("sketches-6");
 			Droodle.storage.setSketchname(sketchName);
 			Droodle.storage.upload(in);
-
-			// BufferedImage bImageFromConvert = ImageIO.read(in);
-
-			// Creates new image
-			// ImageIO.write(bImageFromConvert, "jpg", new
-			// File("new-Temp.jpg"));
+			
 			System.out.println("Saving to azure");
 
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 	public void newSketch() {
-		DroodlePanel.dw.WipeDrawing();
+		DroodlePanel.dw.clearDrawings();
 	}
 
 	public ArrayList<String> getSketchList() {
@@ -201,7 +203,7 @@ public class StorageFacade extends JPanel implements Serializable {
 			outStream = new FileOutputStream("Loaded-Temp.jpg");
 			byteOutStream = new ByteArrayOutputStream();
 			// writing bytes in to byte output stream
-			byteOutStream.write(bytes); // data
+			byteOutStream.write(bytes); 
 			byteOutStream.writeTo(outStream);
 			System.out.println("Loading selected Sketch");
 		} catch (IOException e) {
