@@ -23,8 +23,8 @@ import javax.swing.JPanel;
 
 public class DroodleWindow extends JPanel implements Serializable {
 
-	private static final int DA_WIDTH = 500;
-	private static final int DA_HEIGHT = 700;
+	private static final int WIDTH = 400;
+	private static final int HEIGHT = 700;
 	private static final Color DA_BGCOLOR = Color.WHITE;
 	private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 	Vector<Point> points1 = new Vector<Point>();
 
 	private Color currentColor;
-	public BufferedImage bImage = new BufferedImage(DA_WIDTH, DA_HEIGHT, BufferedImage.TYPE_INT_RGB);
+	public BufferedImage bImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	
 
 	public DroodleWindow() {
@@ -47,7 +47,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 		Graphics2D g2 = (Graphics2D) g2d;
 		g2.drawRenderedImage(bImage, null);
 		g2.setColor(DA_BGCOLOR);
-		g2.fillRect(0, 0, DA_WIDTH, DA_HEIGHT);
+		g2.fillRect(0, 0, WIDTH, HEIGHT);
 		g2.dispose();
 
 		addMouseListener(new MouseAdapter() {
@@ -81,7 +81,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(DA_WIDTH, DA_HEIGHT);
+		return new Dimension(WIDTH, HEIGHT);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 			points.clear();
 			Graphics g = bImage.getGraphics();
 			g.setColor(DA_BGCOLOR);
-			g.fillRect(0, 0, DA_WIDTH, DA_WIDTH);
+			g.fillRect(0, 0, WIDTH, WIDTH);
 			g.dispose();
 			repaint();
 		}

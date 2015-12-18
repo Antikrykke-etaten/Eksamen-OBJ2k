@@ -118,7 +118,7 @@ public class StorageFacade extends JPanel implements Serializable {
 			// convert byte array back to BufferedImage
 			InputStream in = new ByteArrayInputStream(imageInByte);
 			Droodle.storage = new Storage("sketches-6");
-			Droodle.storage.setSketchname(sketchName);
+			Droodle.storage.setSketchname("Halla");
 			Droodle.storage.upload(in);
 			
 			//BufferedImage bImageFromConvert = ImageIO.read(in);
