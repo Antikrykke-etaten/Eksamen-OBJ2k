@@ -220,15 +220,7 @@ public class DroodleGUI extends JPanel {
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
-				// PaintPanel.pw.clearDrawings();
-				DroodlePanel.sf.WipeDrawing();
-				// CardController.cl.show(CardController.panelCont, "1");
-
-				// PaintPanel.pw.clearDrawings();
-				DroodlePanel.sf.WipeDrawing();
-				// CardController.cl.show(CardController.panelCont, "1");
-
+				DroodlePanel.sf.SaveTempJPG();
 			}
 		});
 
@@ -236,20 +228,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				//DroodlePanel.sf.Load();
-				
-					
-						try {
-							DroodlePanel.sf.Save2();
-						} catch (URISyntaxException | StorageException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					
-				
-				// PaintWindowPanel.WipeDrawing();
-				// CardController.cl.show(CardController.panelCont, "1");
-
+				DroodlePanel.dw.clearDrawings();
 			}
 		});
 
@@ -267,6 +246,7 @@ public class DroodleGUI extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 
 				DroodlePanel.dw.setCurrentColor(Color.BLACK);
+				
 
 			}
 		});
@@ -301,6 +281,16 @@ public class DroodleGUI extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 
 				DroodlePanel.dw.setCurrentColor(Color.BLUE);
+				
+				try {
+					DroodlePanel.sf.LoadSketch();
+				} catch (URISyntaxException | StorageException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 		});
