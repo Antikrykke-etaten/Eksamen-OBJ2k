@@ -16,7 +16,7 @@ public class CardController {
 	public static JPanel panelCont = new JPanel();
 	public static CardLayout cl = new CardLayout();
 	public static CreateNewProjectPanel cnpp = new CreateNewProjectPanel();
-	public GetOldProjectPanel gopp = new GetOldProjectPanel();
+	public static GetOldProjectPanel gopp = new GetOldProjectPanel();
 
 	public CardController() {
 

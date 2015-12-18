@@ -78,6 +78,7 @@ public class MenuPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				CardController.cl.show(CardController.panelCont, "3");
+				//CardController.gopp.setup();
 			}
 		});
 	}
