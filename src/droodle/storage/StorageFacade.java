@@ -100,6 +100,7 @@ public class StorageFacade extends JPanel implements Serializable {
 			Vector<Point> test = (Vector<Point>) ois.readObject();
 
 			for (Point integer : test) {
+				System.out.println(integer);
 				DroodlePanel.dw.points.add(integer);
 				DroodlePanel.dw.repaint();
 			}
