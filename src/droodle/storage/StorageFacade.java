@@ -101,10 +101,8 @@ public class StorageFacade extends JPanel implements Serializable {
 
 			for (Point integer : test) {
 				DroodlePanel.dw.points.add(integer);
-
-				System.out.println("Fant " + integer);
+				DroodlePanel.dw.repaint();
 			}
-			System.out.println("Points hentet");
 
 			// DroodlePanel.dw.bImage = ImageIO.read(new
 			// File("Loaded-Temp.jpg"));

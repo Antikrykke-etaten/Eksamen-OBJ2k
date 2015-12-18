@@ -125,12 +125,11 @@ public class LoadPanel extends JPanel {
 		// Load selected sketch buttonAction
 		LoadSketchButn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				reset();
 				System.out.println(list.getSelectedValue());
 				String a = list.getSelectedValue().toString();
 				DroodlePanel.sf.sketchName = a;
 				PanelController.frame.setTitle(a);
-
+				reset();
 				for (String f : Droodle.storage.getFilenames()) {
 					if (f.equals(DroodlePanel.sf.sketchName)) {
 						try {

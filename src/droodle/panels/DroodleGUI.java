@@ -192,6 +192,7 @@ public class DroodleGUI extends JPanel {
 		backToMenuButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				DroodlePanel.dw.clearDrawings();
 				PanelController.cl.show(PanelController.panelCont, "1");
 			}
 		});
@@ -199,6 +200,7 @@ public class DroodleGUI extends JPanel {
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				DroodlePanel.dw.clearDrawings();
 				PanelController.lp.setup();
 				PanelController.cl.show(PanelController.panelCont, "3");
 			}
