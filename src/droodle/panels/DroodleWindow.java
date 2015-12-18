@@ -40,16 +40,12 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	public DroodleWindow() {
 		
-		
 		Rectangle r = CardController.frame.getBounds();
 		//h = r.height;
 		//w = r.width;
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		
-		
-
 		// Basic Settings for bImage
 		Graphics g2d = bImage.getGraphics();
 		Graphics2D g2 = (Graphics2D) g2d;

@@ -26,19 +26,20 @@ public class GetOldProjectPanel extends JPanel {
 	public static JPanel oldProjectsPanel = new JPanel();
 	private JLabel label1;
 
-	 JList list;
-	 DefaultListModel model;
-	 
-	 JButton backToMenuButn = new JButton("Til Meny");
+	JList list;
+	DefaultListModel<Object> model;
 
-	 public GetOldProjectPanel() {
-		
-		model = new DefaultListModel();
-	    list = new JList(model);
-	    JScrollPane pane = new JScrollPane(list);
-	    
-	    for (int i = 0; i < 15; i++)
-	        model.addElement("Element " + i);
+	JButton backToMenuButn = new JButton("Til Meny");
+
+	@SuppressWarnings("unchecked")
+	public GetOldProjectPanel() {
+
+		model = new DefaultListModel<Object>();
+		list = new JList(model);
+		JScrollPane pane = new JScrollPane(list);
+
+		for (int i = 0; i < 15; i++)
+			model.addElement("Element " + i);
 
 		Dimension Butndim = new Dimension(250, 60);
 		Dimension ButndimSmal = new Dimension(130, 30);
@@ -50,9 +51,6 @@ public class GetOldProjectPanel extends JPanel {
 
 		oldProjectsPanel.setLayout(gl);
 		oldProjectsPanel.setBackground(Color.WHITE);
-
-		label1 = new JLabel("<html><br>Gi prosjektet ditt ett navn!<br> </html>", SwingConstants.CENTER);
-		label1.setFont(new Font("Arial", Font.PLAIN, 20));
 
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -79,15 +77,15 @@ public class GetOldProjectPanel extends JPanel {
 				CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
-		
-		//Droodle.storage = new Storage("sketches-6");
+
+		// Droodle.storage = new Storage("sketches-6");
 		System.out.println("hey! ");
-		for (String f:Droodle.storage.getFilenames()) {
+		for (String f : Droodle.storage.getFilenames()) {
 			System.out.println("Sketch file: " + f);
 		}
 	}
-	 
-	 public void addToList() {
-		 
-	 }
+
+	public void addToList() {
+
+	}
 }

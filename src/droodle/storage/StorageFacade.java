@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -36,7 +37,7 @@ public class StorageFacade extends JPanel implements Serializable {
 	private Boolean counting = false;
 	private int counter = 5;
 	private int delay = 1000;
-	
+
 	public String sketchName;
 
 	public Vector<Point> displayList = new Vector<Point>();
@@ -85,13 +86,12 @@ public class StorageFacade extends JPanel implements Serializable {
 		Droodle.storage.upload(bais);
 	}
 
-	
 	public void SaveTempJPG() {
 		System.out.println("Saving TempJPG");
 		try {
-		File outputfile = new File("Temp.jpg");
-		ImageIO.write(DroodlePanel.dw.bImage, "jpg", outputfile);
-		}catch (IOException e) {
+			File outputfile = new File("Temp.jpg");
+			ImageIO.write(DroodlePanel.dw.bImage, "jpg", outputfile);
+		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -100,13 +100,12 @@ public class StorageFacade extends JPanel implements Serializable {
 		System.out.println("Trying to wipe drawing");
 
 	}
-	
-	public void Save2() throws URISyntaxException, StorageException{
+
+	public void Save2() throws URISyntaxException, StorageException {
 		try {
 			SaveTempJPG();
 			byte[] imageInByte;
-			BufferedImage originalImage = ImageIO.read(new File(
-					"Temp.jpg"));
+			BufferedImage originalImage = ImageIO.read(new File("Temp.jpg"));
 
 			// convert BufferedImage to byte array
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -120,46 +119,49 @@ public class StorageFacade extends JPanel implements Serializable {
 			Droodle.storage = new Storage("sketches-6");
 			Droodle.storage.setSketchname("Halla");
 			Droodle.storage.upload(in);
-			
-			//BufferedImage bImageFromConvert = ImageIO.read(in);
 
-			//Creates new image
-			//ImageIO.write(bImageFromConvert, "jpg", new File("new-Temp.jpg"));
+			// BufferedImage bImageFromConvert = ImageIO.read(in);
+
+			// Creates new image
+			// ImageIO.write(bImageFromConvert, "jpg", new
+			// File("new-Temp.jpg"));
 			System.out.println("Saving to azure");
-			
+
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
-	
+
 	public void newSketch() {
 		DroodlePanel.dw.clearDrawings();
 	}
-	
-	
-	
-	public void LoadSketch() throws URISyntaxException, StorageException, IOException{
-		 OutputStream outStream = null;  
-		 ByteArrayOutputStream byteOutStream = null;  
-		 try {
+
+	public ArrayList<String> getDrawingList() {
+		return Droodle.storage.getFilenames();
+	}
+
+	public void LoadSketch() throws URISyntaxException, StorageException, IOException {
+		OutputStream outStream = null;
+		ByteArrayOutputStream byteOutStream = null;
+		try {
 			Droodle.storage.setSketchname(DroodlePanel.sf.sketchName);
-			 BlobInputStream datastream = Droodle.storage.download();
-			 
-			 byte[] bytes = IOUtils.toByteArray(datastream);
-			 
-			   outStream = new FileOutputStream("Loaded-Temp.jpg");  
-			   byteOutStream = new ByteArrayOutputStream();  
-			   // writing bytes in to byte output stream  
-			   byteOutStream.write(bytes); //data  
-			   byteOutStream.writeTo(outStream); 
-			   System.out.println("Loading selected Sketch");
-			 } catch (IOException e) {  
-			   e.printStackTrace();  
-			 } finally {  
-			   outStream.close();  
-			 } 
-		
-		 DroodlePanel.dw.bImage = ImageIO.read(new File("Loaded-Temp.jpg"));
+			BlobInputStream datastream = Droodle.storage.download();
+
+			byte[] bytes = IOUtils.toByteArray(datastream);
+
+			outStream = new FileOutputStream("Loaded-Temp.jpg");
+			byteOutStream = new ByteArrayOutputStream();
+			// writing bytes in to byte output stream
+			byteOutStream.write(bytes); // data
+			byteOutStream.writeTo(outStream);
+			System.out.println("Loading selected Sketch");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			outStream.close();
+		}
+
+		DroodlePanel.dw.bImage = ImageIO.read(new File("Loaded-Temp.jpg"));
 	}
 }
