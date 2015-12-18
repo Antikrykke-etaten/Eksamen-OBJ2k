@@ -247,6 +247,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				DroodlePanel.dw.setCurrentColor(Color.BLUE);
+				
 			}
 		});
 	}

@@ -25,13 +25,14 @@ public class DroodleWindow extends JPanel implements Serializable {
 	private static final Color DA_BGCOLOR = Color.WHITE;
 	private static final long serialVersionUID = 1L;
 
-	ArrayList<Point> points = new ArrayList<Point>();
-	Vector<Point> points1 = new Vector<Point>();
+	
+	public Vector<Point> points = new Vector<Point>();
 
 	private Color currentColor;
 	public BufferedImage bImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	public DroodleWindow() {
+		
 		Rectangle r = CardController.frame.getBounds();
 		// h = r.height;
 		// w = r.width;
@@ -83,6 +84,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 		drawIntoBufferedImage();
 		g2.setStroke(new BasicStroke(20));
 		g.dispose();
+		
 
 	}
 
@@ -94,7 +96,8 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	public void DrawLines(Graphics g) {
 		if (points != null && points.size() > 1) {
-			DroodlePanel.sf.time();
+			//DroodlePanel.sf.time();
+			DroodlePanel.sf.Save(DroodlePanel.dw.points);
 
 			g.setColor(getCurrentColor());
 			for (int i = 0; i < points.size() - 1; i++) {
