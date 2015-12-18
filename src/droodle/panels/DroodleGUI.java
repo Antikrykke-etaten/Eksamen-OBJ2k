@@ -218,7 +218,7 @@ public class DroodleGUI extends JPanel {
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				DroodlePanel.sf.SaveTempJPG();
+				CardController.cl.show(CardController.panelCont, "3");
 			}
 		});
 
