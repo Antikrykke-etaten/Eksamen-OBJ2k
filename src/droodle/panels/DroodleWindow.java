@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -21,10 +22,12 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import droodle.CardController;
+
 public class DroodleWindow extends JPanel implements Serializable {
 
-	private static final int WIDTH = 400;
-	private static final int HEIGHT = 700;
+	private static final int WIDTH = 700;
+	private static final int HEIGHT = 500;
 	private static final Color DA_BGCOLOR = Color.WHITE;
 	private static final long serialVersionUID = 1L;
 
@@ -37,6 +40,11 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	public DroodleWindow() {
 		
+		
+		Rectangle r = CardController.frame.getBounds();
+		//h = r.height;
+		//w = r.width;
+		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		
@@ -47,7 +55,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 		Graphics2D g2 = (Graphics2D) g2d;
 		g2.drawRenderedImage(bImage, null);
 		g2.setColor(DA_BGCOLOR);
-		g2.fillRect(0, 0, WIDTH, HEIGHT);
+		g2.fillRect(0, 0, r.width, r.height);
 		g2.dispose();
 
 		addMouseListener(new MouseAdapter() {
