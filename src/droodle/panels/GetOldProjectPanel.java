@@ -36,8 +36,8 @@ public class GetOldProjectPanel extends JPanel {
 	DefaultListModel model;
 
 	JButton backToMenuButn = new JButton("Til Meny");
-	JButton LoadSketchButn = new JButton("Load sketch");
-	JButton DeleteOneFileButn = new JButton("Slett valgt fil");
+	JButton LoadSketchButn = new JButton("Last inn tegning");
+	JButton DeleteOneFileButn = new JButton("Slett tegning");
 
 	public GetOldProjectPanel() {
 		model = new DefaultListModel();
@@ -96,8 +96,8 @@ public class GetOldProjectPanel extends JPanel {
 		backToMenuButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				CardController.cl.show(CardController.panelCont, "1");
 				reset(model);
+				CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
 
@@ -135,17 +135,13 @@ public class GetOldProjectPanel extends JPanel {
 				System.out.println(list.getSelectedValue());
 				String a = list.getSelectedValue().toString();
 				DroodlePanel.sf.sketchName = a;
-
-				if (a == null && a.isEmpty()) {
-					return;
-				}
 				
 				for (String f : Droodle.storage.getFilenames()) {
 					if (f.equals(DroodlePanel.sf.sketchName)) {
 						try {
 							DroodlePanel.sf.LoadSketch();
-							CardController.cl.show(CardController.panelCont, "4");
 							reset(model);
+							CardController.cl.show(CardController.panelCont, "4");
 						} catch (URISyntaxException | StorageException | IOException e) {
 							CardController.cl.show(CardController.panelCont, "3");
 							e.printStackTrace();
@@ -164,6 +160,8 @@ public class GetOldProjectPanel extends JPanel {
 		for (int i = 0; i < listModel.getSize(); i++) {
 			listModel.remove(i);
 		}
+		
+		System.out.println(listModel.getSize());
 	}
 
 	public void setup() {

@@ -68,6 +68,7 @@ public class StorageFacade extends JPanel implements Serializable {
 		}
 	}
 
+	// TODO: kjøre savefunksjonen i en annen thread
 	public void time() {
 		if (!counting) {
 
