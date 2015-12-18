@@ -226,7 +226,7 @@ public class DroodleGUI extends JPanel {
 				// CardController.cl.show(CardController.panelCont, "1");
 
 				// PaintPanel.pw.clearDrawings();
-				DroodlePanel.sf.WipeDrawing();
+				DroodlePanel.sf.SaveToAssets();
 				// CardController.cl.show(CardController.panelCont, "1");
 
 			}

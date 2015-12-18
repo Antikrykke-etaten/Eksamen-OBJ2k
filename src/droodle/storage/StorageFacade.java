@@ -29,6 +29,7 @@ import com.microsoft.azure.storage.StorageException;
 import droodle.Configuration;
 import droodle.Droodle;
 import droodle.panels.DroodlePanel;
+import storagetool.Storage;
 
 public class StorageFacade extends JPanel implements Serializable {
 
@@ -119,12 +120,15 @@ public class StorageFacade extends JPanel implements Serializable {
 
 			// convert byte array back to BufferedImage
 			InputStream in = new ByteArrayInputStream(imageInByte);
+			InputStream  data = new ByteArrayInputStream ("Dette er en test".getBytes());
 			BufferedImage bImageFromConvert = ImageIO.read(in);
 
 			//Creates new image
-			ImageIO.write(bImageFromConvert, "jpg", new File(
-					"new-Temp.jpg"));
-			Droodle.storage.upload(in);
+			//ImageIO.write(bImageFromConvert, "jpg", new File("new-Temp.jpg"));
+			System.out.println("Writing to server");
+			Droodle.storage = new Storage("sketches-6");
+			Droodle.storage.setSketchname("It woorks!");
+			Droodle.storage.upload(data);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

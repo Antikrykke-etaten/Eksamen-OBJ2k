@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import droodle.CardController;
+import droodle.Droodle;
+import storagetool.Storage;
 
 public class GetOldProjectPanel extends JPanel {
 
@@ -64,5 +66,11 @@ public class GetOldProjectPanel extends JPanel {
 				CardController.cl.show(CardController.panelCont, "1");
 			}
 		});
+		
+		//Droodle.storage = new Storage("sketches-6");
+		System.out.println("hey! ");
+		for (String f:Droodle.storage.getFilenames()) {
+			System.out.println("Sketch file: " + f);
+		}
 	}
 }

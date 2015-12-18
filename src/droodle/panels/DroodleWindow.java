@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	ArrayList<Point> points = new ArrayList<Point>();
+	Vector<Point> points1 = new Vector<Point>();
 
 	private Color currentColor;
 	public BufferedImage bImage = new BufferedImage(DA_WIDTH, DA_HEIGHT, BufferedImage.TYPE_INT_RGB);
