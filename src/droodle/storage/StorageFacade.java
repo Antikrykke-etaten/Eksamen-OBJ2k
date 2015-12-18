@@ -13,9 +13,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -25,9 +27,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 import com.microsoft.azure.storage.StorageException;
+import com.microsoft.azure.storage.blob.BlobInputStream;
 
 import droodle.Configuration;
 import droodle.Droodle;
@@ -122,47 +126,47 @@ public class StorageFacade extends JPanel implements Serializable {
 
 			// convert byte array back to BufferedImage
 			InputStream in = new ByteArrayInputStream(imageInByte);
-			BufferedImage bImageFromConvert = ImageIO.read(in);
-
-			//Creates new image
-			ImageIO.write(bImageFromConvert, "jpg", new File("new-Temp.jpg"));
-			System.out.println("Writing to server");
 			Droodle.storage = new Storage("sketches-6");
 			Droodle.storage.setSketchname(sketchName);
 			Droodle.storage.upload(in);
+			
+			//BufferedImage bImageFromConvert = ImageIO.read(in);
+
+			//Creates new image
+			//ImageIO.write(bImageFromConvert, "jpg", new File("new-Temp.jpg"));
+			System.out.println("Writing to server");
+			
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 		
 	}
 	
-	public void LoadSketch() throws URISyntaxException, StorageException{
-		try {
-			Droodle.storage.setSketchname("sketchName");
-			InputStream datastream = Droodle.storage.download();
-			
-			byte[] bytes = IOUtils.toByteArray(datastream);
-			BufferedImage originalImage = ImageIO.read(new File(
-					"Temp.jpg"));
-			
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(originalImage, "jpg", baos);
-			baos.flush();
-			bytes = baos.toByteArray();
-			baos.close();
-			
-			InputStream in = new ByteArrayInputStream(bytes);
-			BufferedImage bImageFromConvert = ImageIO.read(in);
-			ImageIO.write(bImageFromConvert, "jpg", new File("ny-Temp.jpg"));
-			System.out.println("Writing to server");
-		
-		
-			
-			
-			System.out.println("Getting old sketch");
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
+	
+	//Droodle.storage.setSketchname("sketchName");
+	 //BlobInputStream datastream = Droodle.storage.download();
+	 
+	 //byte[] bytes = IOUtils.toByteArray(datastream);
+	public void LoadSketch() throws URISyntaxException, StorageException, IOException{
+		 OutputStream outStream = null;  
+		 ByteArrayOutputStream byteOutStream = null;  
+		 try {
+			Droodle.storage.setSketchname("Smiley");
+			 BlobInputStream datastream = Droodle.storage.download();
+			 
+			 byte[] bytes = IOUtils.toByteArray(datastream);
+			 
+			   outStream = new FileOutputStream("Loaded-Temp.jpg");  
+			   byteOutStream = new ByteArrayOutputStream();  
+			   // writing bytes in to byte output stream  
+			   byteOutStream.write(bytes); //data  
+			   byteOutStream.writeTo(outStream); 
+			   System.out.println("Loading Sketch");
+			 } catch (IOException e) {  
+			   e.printStackTrace();  
+			 } finally {  
+			   outStream.close();  
+			 } 
 		
 	}
 	
