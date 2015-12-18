@@ -36,6 +36,7 @@ public class GetOldProjectPanel extends JPanel {
 	 
 	 JButton backToMenuButn = new JButton("Til Meny");
 	 JButton LoadSketchButn = new JButton("Load sketch");
+	 JButton DeleteOneFileButn = new JButton("Slett valgt fil");
 
 	 public GetOldProjectPanel() {
 		
@@ -71,6 +72,10 @@ public class GetOldProjectPanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		oldProjectsPanel.add(LoadSketchButn, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		oldProjectsPanel.add(DeleteOneFileButn, gbc);
 
 		label1 = new JLabel("<html><br>Velg blant dine gamle prosjekter!<br></html>", SwingConstants.CENTER);
 		label1.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -91,6 +96,15 @@ public class GetOldProjectPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				CardController.cl.show(CardController.panelCont, "1");
+			}
+		});
+		
+		DeleteOneFileButn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (model.getSize() > 0){
+			          model.removeElementAt(0);
+			      }
 			}
 		});
 		
