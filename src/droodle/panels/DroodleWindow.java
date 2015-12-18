@@ -73,7 +73,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 	public Dimension getPreferredSize() {
 		return new Dimension(WIDTH, HEIGHT);
 	}
-
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);

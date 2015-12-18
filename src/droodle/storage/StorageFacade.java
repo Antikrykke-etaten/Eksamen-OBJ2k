@@ -1,8 +1,5 @@
 package droodle.storage;
 
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,16 +7,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Vector;
+import java.util.Timer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import org.apache.commons.io.IOUtils;
 
@@ -39,11 +34,8 @@ import storagetool.StorageAccount;
 public class StorageFacade extends JPanel implements Serializable {
 
 	private Timer timer;
-	private Boolean counting = false;
-	private int counter = 5;
-	private int delay = 1000;
+	private int delay = 5000;
 	public String sketchName;
-	public Vector<Point> displayList = new Vector<Point>();
 
 	private static final long serialVersionUID = 1L;
 
@@ -70,61 +62,26 @@ public class StorageFacade extends JPanel implements Serializable {
 
 	// TODO: kjøre savefunksjonen i en annen thread
 	public void time() {
-		if (!counting) {
 
-			counting = true;
-			ActionListener action = new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent event) {
-					if (counter == 0) {
-						timer.stop();
-						counting = false;
-						counter = 5;
-						try {
-							SaveToAzure();
-						} catch (URISyntaxException | StorageException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					} else {
-						System.out.println(counter);
-						counter--;
-					}
-				}
-			};
-
-			timer = new Timer(delay, action);
-			timer.setInitialDelay(0);
-			timer.start();
-		}
-	}
-
-	public void Save(Vector<Point> displayList) throws IOException, URISyntaxException, StorageException {
-		System.out.println("Trying to save");
-
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ObjectOutputStream serialiser = new ObjectOutputStream(baos);
-
-		serialiser.writeObject(displayList);
-		serialiser.close();
-
-		ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-		Droodle.storage.upload(bais);
+		/*
+		 * ActionListener action = new ActionListener() {
+		 * 
+		 * @Override public void actionPerformed(ActionEvent event) { try {
+		 * SaveToAzure(); } catch (URISyntaxException | StorageException e) { //
+		 * TODO Auto-generated catch block e.printStackTrace(); } timer.stop();
+		 * } };
+		 */
+		timer = new Timer(true);
+		timer.scheduleAtFixedRate(new SaveToAzureTask(), delay, delay);
 	}
 
 	public void SaveTempJPG() {
-		System.out.println("Saving TempJPG");
 		try {
 			File outputfile = new File("Temp.jpg");
 			ImageIO.write(DroodlePanel.dw.bImage, "jpg", outputfile);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-	}
-
-	public void WipeDrawing() {
-		System.out.println("Trying to wipe drawing");
-
 	}
 
 	public void SaveToAzure() throws URISyntaxException, StorageException {

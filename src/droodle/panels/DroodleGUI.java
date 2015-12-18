@@ -67,8 +67,6 @@ public class DroodleGUI extends JPanel {
 		JButton YellowButn = new JButton();
 		JButton BlueButn = new JButton();
 
-	
-
 		// Dimensions
 		Dimension PaintWindowDim = new Dimension(120, 350);
 		Dimension Butndim = new Dimension(120, 40);
