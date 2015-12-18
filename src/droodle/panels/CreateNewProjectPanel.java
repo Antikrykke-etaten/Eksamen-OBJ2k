@@ -8,6 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,7 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.microsoft.azure.storage.StorageException;
+
 import droodle.CardController;
+import droodle.Droodle;
 import droodle.SplashScreen;
 
 public class CreateNewProjectPanel extends JPanel {
@@ -86,6 +91,21 @@ public class CreateNewProjectPanel extends JPanel {
 				CardController.frame.setTitle(projectNameField.getText());
 				CardController.cl.show(CardController.panelCont, "4");
 				DroodlePanel.sf.sketchName = projectNameField.getText();
+
+					for (String f:Droodle.storage.getFilenames()) {
+						if(f.equals(DroodlePanel.sf.sketchName)){
+							try {
+								DroodlePanel.sf.LoadSketch();
+							} catch (URISyntaxException | StorageException | IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} 
+							return;
+						}
+							DroodlePanel.sf.newSketch();
+						
+					}
+				
 			}
 		});
 

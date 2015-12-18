@@ -5,15 +5,20 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class DroodleWindow extends JPanel implements Serializable {
@@ -28,9 +33,14 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	private Color currentColor;
 	public BufferedImage bImage = new BufferedImage(DA_WIDTH, DA_HEIGHT, BufferedImage.TYPE_INT_RGB);
+	
 
 	public DroodleWindow() {
+		
 		setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		
+		
 
 		// Basic Settings for bImage
 		Graphics g2d = bImage.getGraphics();
@@ -59,10 +69,14 @@ public class DroodleWindow extends JPanel implements Serializable {
 			public void mouseReleased(MouseEvent e) {
 				points.add(e.getPoint());
 				points.clear();
-				System.out.println("mouseReleased X: " + e.getX() + "mouseReleased Y: " + e.getY());
 				repaint();
 			}
 		});
+	}
+	
+	public void changeBufferedImage() throws IOException{
+		
+		DroodlePanel.dw.bImage = ImageIO.read(new File("Loaded-Temp.jpg"));
 	}
 
 	@Override
@@ -90,6 +104,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 	public void DrawLines(Graphics g) {
 		if (points != null && points.size() > 1) {
+			DroodlePanel.sf.time();
 
 			g.setColor(getCurrentColor());
 			for (int i = 0; i < points.size() - 1; i++) {

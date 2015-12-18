@@ -1,18 +1,12 @@
 package droodle.storage;
 
-import java.awt.Image;
 import java.awt.Point;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,20 +14,17 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 import com.microsoft.azure.storage.StorageException;
 import com.microsoft.azure.storage.blob.BlobInputStream;
 
-import droodle.Configuration;
 import droodle.Droodle;
 import droodle.panels.DroodlePanel;
 import storagetool.Storage;
@@ -64,8 +55,8 @@ public class StorageFacade extends JPanel implements Serializable {
 						counting = false;
 						counter = 5;
 						try {
-							Save(displayList);
-						} catch (IOException | URISyntaxException | StorageException e) {
+							Save2();
+						} catch (URISyntaxException | StorageException e) {
 							e.printStackTrace();
 						}
 					} else {
@@ -95,12 +86,11 @@ public class StorageFacade extends JPanel implements Serializable {
 	}
 
 	
-	public void SaveToAssets() {
-		System.out.println("Saving to assets");
+	public void SaveTempJPG() {
+		System.out.println("Saving TempJPG");
 		try {
 		File outputfile = new File("Temp.jpg");
 		ImageIO.write(DroodlePanel.dw.bImage, "jpg", outputfile);
-		System.out.println("funka?");
 		}catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -113,6 +103,7 @@ public class StorageFacade extends JPanel implements Serializable {
 	
 	public void Save2() throws URISyntaxException, StorageException{
 		try {
+			SaveTempJPG();
 			byte[] imageInByte;
 			BufferedImage originalImage = ImageIO.read(new File(
 					"Temp.jpg"));
@@ -134,7 +125,7 @@ public class StorageFacade extends JPanel implements Serializable {
 
 			//Creates new image
 			//ImageIO.write(bImageFromConvert, "jpg", new File("new-Temp.jpg"));
-			System.out.println("Writing to server");
+			System.out.println("Saving to azure");
 			
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -142,16 +133,17 @@ public class StorageFacade extends JPanel implements Serializable {
 		
 	}
 	
+	public void newSketch() {
+		DroodlePanel.dw.clearDrawings();
+	}
 	
-	//Droodle.storage.setSketchname("sketchName");
-	 //BlobInputStream datastream = Droodle.storage.download();
-	 
-	 //byte[] bytes = IOUtils.toByteArray(datastream);
+	
+	
 	public void LoadSketch() throws URISyntaxException, StorageException, IOException{
 		 OutputStream outStream = null;  
 		 ByteArrayOutputStream byteOutStream = null;  
 		 try {
-			Droodle.storage.setSketchname("Smiley");
+			Droodle.storage.setSketchname(DroodlePanel.sf.sketchName);
 			 BlobInputStream datastream = Droodle.storage.download();
 			 
 			 byte[] bytes = IOUtils.toByteArray(datastream);
@@ -161,17 +153,13 @@ public class StorageFacade extends JPanel implements Serializable {
 			   // writing bytes in to byte output stream  
 			   byteOutStream.write(bytes); //data  
 			   byteOutStream.writeTo(outStream); 
-			   System.out.println("Loading Sketch");
+			   System.out.println("Loading selected Sketch");
 			 } catch (IOException e) {  
 			   e.printStackTrace();  
 			 } finally {  
 			   outStream.close();  
 			 } 
 		
+		 DroodlePanel.dw.bImage = ImageIO.read(new File("Loaded-Temp.jpg"));
 	}
-	
-
-	//storage.upload(bStream);
-	
-
 }
