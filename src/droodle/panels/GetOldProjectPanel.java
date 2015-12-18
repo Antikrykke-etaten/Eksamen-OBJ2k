@@ -34,7 +34,6 @@ public class GetOldProjectPanel extends JPanel {
 
 	JList list;
 	DefaultListModel model;
-	int counter = 0;
 
 	JButton backToMenuButn = new JButton("Til Meny");
 	JButton LoadSketchButn = new JButton("Load sketch");
@@ -45,12 +44,7 @@ public class GetOldProjectPanel extends JPanel {
 		list = new JList(model);
 		JScrollPane pane = new JScrollPane(list);
 
-		// Adds sketches to the list
-		for (String f : Droodle.storage.getFilenames()) {
-			model.addElement(f);
-			counter++;
-			System.out.println("Sketch file: " + f);
-		}
+		setup();
 
 		Dimension Butndim = new Dimension(250, 60);
 		Dimension ButndimSmal = new Dimension(130, 30);
@@ -103,6 +97,7 @@ public class GetOldProjectPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				CardController.cl.show(CardController.panelCont, "1");
+				reset(model);
 			}
 		});
 
@@ -115,25 +110,25 @@ public class GetOldProjectPanel extends JPanel {
 					DroodlePanel.sf.deleteFile(a);
 					model.removeElementAt(index);
 				}
-				
-				if (list.getComponentCount() < 1) {
+
+				if (list.getModel().getSize() < 1) {
 					LoadSketchButn.setEnabled(false);
 					DeleteOneFileButn.setEnabled(false);
 				}
-				
+
 			}
 		});
-		
-		list.addListSelectionListener(new ListSelectionListener () {
+
+		list.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
 				LoadSketchButn.setEnabled(true);
 				DeleteOneFileButn.setEnabled(true);
 			}
-			
+
 		});
-		
+
 		// Load selected sketch buttonAction
 		LoadSketchButn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -152,6 +147,7 @@ public class GetOldProjectPanel extends JPanel {
 						try {
 							DroodlePanel.sf.LoadSketch();
 							CardController.cl.show(CardController.panelCont, "4");
+							reset(model);
 						} catch (URISyntaxException | StorageException | IOException e) {
 							e.printStackTrace();
 						}
@@ -161,5 +157,24 @@ public class GetOldProjectPanel extends JPanel {
 				}
 			}
 		});
+	}
+
+	public void reset(DefaultListModel listModel) {
+		LoadSketchButn.setEnabled(false);
+		DeleteOneFileButn.setEnabled(false);
+
+		for (int i = 0; i < listModel.getSize(); i++) {
+			listModel.remove(i);
+		}
+	}
+
+	public void setup() {
+		for (String f : Droodle.storage.getFilenames()) {
+			model.addElement(f);
+		}
+	}
+
+	public void addNewListElement() {
+
 	}
 }
