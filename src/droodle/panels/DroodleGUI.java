@@ -62,6 +62,7 @@ public class DroodleGUI extends JPanel {
 
 		// colourButtons
 		JButton BlackButn = new JButton();
+		JButton WhiteButn = new JButton();
 		JButton RedButn = new JButton();
 		JButton GreenButn = new JButton();
 		JButton YellowButn = new JButton();
@@ -73,7 +74,7 @@ public class DroodleGUI extends JPanel {
 		Dimension PaintWindowDim = new Dimension(120, 350);
 		Dimension Butndim = new Dimension(120, 40);
 		Dimension ButndimSmal = new Dimension(130, 30);
-		Dimension colourButtonsdim = new Dimension(5, 20);
+		Dimension colourButtonsdim = new Dimension(120, 20);
 
 		logo = new JLabel("", SwingConstants.LEFT);
 		ImageIcon splashIcon = new ImageIcon(Configuration.assetsFolder + "droodle-logo-small.png");
@@ -91,6 +92,14 @@ public class DroodleGUI extends JPanel {
 		BlackButn.setFont(new Font("Arial", Font.BOLD, 13));
 		BlackButn.setBackground(Color.BLACK);
 		BlackButn.setForeground(Color.BLACK);
+		
+		WhiteButn.setSize(colourButtonsdim);
+		WhiteButn.setMinimumSize(colourButtonsdim);
+		WhiteButn.setMaximumSize(colourButtonsdim);
+		WhiteButn.setPreferredSize(colourButtonsdim);
+		WhiteButn.setFont(new Font("Arial", Font.BOLD, 13));
+		WhiteButn.setBackground(Color.WHITE);
+		WhiteButn.setForeground(Color.WHITE);
 
 		RedButn.setSize(colourButtonsdim);
 		RedButn.setMinimumSize(colourButtonsdim);
@@ -164,6 +173,10 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 3;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(deleteButn, gbc);
+		
+		gbc.gridx = 4;
+		gbc.gridy = 0;
+		PaintPanelGUI.add(WhiteButn, gbc);
 
 		gbc.gridx = 0;
 		gbc.gridy = 1;
@@ -214,6 +227,15 @@ public class DroodleGUI extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 
 				DroodlePanel.dw.setCurrentColor(Color.BLACK);
+
+			}
+		});
+		
+		WhiteButn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				DroodlePanel.dw.setCurrentColor(Color.WHITE);
 
 			}
 		});
