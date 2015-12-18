@@ -157,9 +157,7 @@ public class GetOldProjectPanel extends JPanel {
 		LoadSketchButn.setEnabled(false);
 		DeleteOneFileButn.setEnabled(false);
 
-		for (int i = 0; i < listModel.getSize(); i++) {
-			listModel.remove(i);
-		}
+		listModel.removeAllElements();
 		
 		System.out.println(listModel.getSize());
 	}
