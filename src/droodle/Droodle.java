@@ -1,6 +1,5 @@
 package droodle;
 
-import droodle.storage.StorageFacade;
 import storagetool.Storage;
 
 public class Droodle {
