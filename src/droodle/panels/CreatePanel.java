@@ -1,7 +1,6 @@
 package droodle.panels;
 
 import java.awt.Color;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -10,7 +9,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,11 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import com.microsoft.azure.storage.StorageException;
-
 import droodle.Droodle;
 import droodle.PanelController;
-import droodle.SplashScreen;
 
 public class CreatePanel extends JPanel {
 
@@ -93,24 +88,23 @@ public class CreatePanel extends JPanel {
 				PanelController.cl.show(PanelController.panelCont, "4");
 				DroodlePanel.sf.sketchName = projectNameField.getText();
 
-					for (String f:Droodle.storage.getFilenames()) {
-						if(f.equals(DroodlePanel.sf.sketchName)){
-							try {
-								DroodlePanel.sf.LoadPoints();
-								PanelController.lp.setup();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (ClassNotFoundException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} 
-							return;
+				for (String f : Droodle.storage.getFilenames()) {
+					if (f.equals(DroodlePanel.sf.sketchName)) {
+						try {
+							DroodlePanel.sf.LoadPoints();
+							PanelController.lp.setup();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
-							DroodlePanel.sf.newSketch();
-						
+						return;
 					}
-				
+
+					DroodlePanel.sf.newSketch();
+				}
 			}
 		});
 
