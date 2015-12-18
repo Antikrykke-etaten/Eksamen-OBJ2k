@@ -1,7 +1,6 @@
 package droodle.panels;
 
 import java.awt.Color;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -78,8 +77,8 @@ public class MenuPanel extends JPanel {
 		oldProjectsButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				PanelController.lp.setup();
 				PanelController.cl.show(PanelController.panelCont, "3");
-				//CardController.gopp.setup();
 			}
 		});
 	}

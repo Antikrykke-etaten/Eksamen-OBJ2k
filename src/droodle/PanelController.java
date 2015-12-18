@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
 import droodle.panels.CreatePanel;
 import droodle.panels.DroodlePanel;
 import droodle.panels.LoadPanel;
@@ -23,7 +22,6 @@ public class PanelController {
 	public PanelController() {
 
 		new MenuPanel();
-		
 
 		panelCont.setLayout(cl);
 		panelCont.add(MenuPanel.menuPanel, "1");

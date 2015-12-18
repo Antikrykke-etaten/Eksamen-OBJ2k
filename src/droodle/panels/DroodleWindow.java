@@ -1,21 +1,17 @@
 package droodle.panels;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JPanel;
-
 
 public class DroodleWindow extends JPanel implements Serializable {
 
@@ -24,16 +20,13 @@ public class DroodleWindow extends JPanel implements Serializable {
 	private static final Color DA_BGCOLOR = Color.WHITE;
 	private static final long serialVersionUID = 1L;
 
-	
 	public Vector<Point> points = new Vector<Point>();
 
 	private Color currentColor = Color.BLACK;
 	public BufferedImage bImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	public DroodleWindow() {
-		//clearStart();
-		
-		
+		// clearStart();
 
 		// setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -116,18 +109,14 @@ public class DroodleWindow extends JPanel implements Serializable {
 			repaint();
 		}
 	}
-	
 
 	public void setCurrentColor(Color currentColor) {
-		
-			this.currentColor = currentColor;
-		}
 
-	
+		this.currentColor = currentColor;
+	}
 
 	public Color getCurrentColor() {
-		
-			return currentColor;
+
+		return currentColor;
 	}
 }
-

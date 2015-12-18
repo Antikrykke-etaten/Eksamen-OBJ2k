@@ -1,7 +1,6 @@
 package droodle.panels;
 
 import java.awt.Color;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -10,7 +9,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -21,8 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import com.microsoft.azure.storage.StorageException;
 
 import droodle.Droodle;
 import droodle.PanelController;
@@ -44,8 +40,6 @@ public class LoadPanel extends JPanel {
 		model = new DefaultListModel();
 		list = new JList(model);
 		JScrollPane pane = new JScrollPane(list);
-
-		setup();
 
 		Dimension Butndim = new Dimension(250, 60);
 		Dimension ButndimSmal = new Dimension(130, 30);
@@ -72,12 +66,12 @@ public class LoadPanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		oldProjectsPanel.add(LoadSketchButn, gbc);
-		LoadSketchButn.setEnabled(false);
 
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		oldProjectsPanel.add(DeleteOneFileButn, gbc);
-		DeleteOneFileButn.setEnabled(false);
+
+		disableButtons();
 
 		label1 = new JLabel("<html><br>Velg blant dine gamle prosjekter!<br></html>", SwingConstants.CENTER);
 		label1.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -97,8 +91,7 @@ public class LoadPanel extends JPanel {
 		backToMenuButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				reset(model);
-				setup();
+				reset();
 				PanelController.cl.show(PanelController.panelCont, "1");
 			}
 		});
@@ -114,8 +107,7 @@ public class LoadPanel extends JPanel {
 				}
 
 				if (list.getModel().getSize() < 1) {
-					LoadSketchButn.setEnabled(false);
-					DeleteOneFileButn.setEnabled(false);
+					disableButtons();
 				}
 
 			}
@@ -125,8 +117,7 @@ public class LoadPanel extends JPanel {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				LoadSketchButn.setEnabled(true);
-				DeleteOneFileButn.setEnabled(true);
+				enableButtons();
 			}
 
 		});
@@ -137,12 +128,12 @@ public class LoadPanel extends JPanel {
 				System.out.println(list.getSelectedValue());
 				String a = list.getSelectedValue().toString();
 				DroodlePanel.sf.sketchName = a;
-				
+
 				for (String f : Droodle.storage.getFilenames()) {
 					if (f.equals(DroodlePanel.sf.sketchName)) {
 						try {
 							DroodlePanel.sf.LoadPoints();
-							reset(model);
+							reset();
 							PanelController.cl.show(PanelController.panelCont, "4");
 						} catch (IOException e) {
 							PanelController.cl.show(PanelController.panelCont, "3");
@@ -158,22 +149,25 @@ public class LoadPanel extends JPanel {
 		});
 	}
 
-	public void reset(DefaultListModel listModel) {
+	public void reset() {
+		disableButtons();
+
+		model.removeAllElements();
+	}
+
+	public void disableButtons() {
 		LoadSketchButn.setEnabled(false);
 		DeleteOneFileButn.setEnabled(false);
+	}
 
-		listModel.removeAllElements();
-		
-		System.out.println(listModel.getSize());
+	public void enableButtons() {
+		LoadSketchButn.setEnabled(true);
+		DeleteOneFileButn.setEnabled(true);
 	}
 
 	public void setup() {
 		for (String f : Droodle.storage.getFilenames()) {
 			model.addElement(f);
 		}
-	}
-
-	public void addNewListElement() {
-
 	}
 }

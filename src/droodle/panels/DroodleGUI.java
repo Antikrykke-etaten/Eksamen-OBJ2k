@@ -9,20 +9,12 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import com.microsoft.azure.storage.StorageException;
 
 import droodle.Configuration;
 import droodle.PanelController;
@@ -57,8 +49,8 @@ public class DroodleGUI extends JPanel {
 
 		// PanelButtons
 		JButton backToMenuButn = new JButton("Meny", menuIcon);
-		JButton loadProjectButn = new JButton("Hent", openIcon);
-		JButton deleteButn = new JButton("Delete", saveIcon);
+		JButton loadProjectButn = new JButton("Last inn", openIcon);
+		JButton deleteButn = new JButton("Slett", saveIcon);
 
 		// colourButtons
 		JButton BlackButn = new JButton();
@@ -90,7 +82,7 @@ public class DroodleGUI extends JPanel {
 		BlackButn.setFont(new Font("Arial", Font.BOLD, 13));
 		BlackButn.setBackground(Color.BLACK);
 		BlackButn.setForeground(Color.BLACK);
-		
+
 		WhiteButn.setSize(colourButtonsdim);
 		WhiteButn.setMinimumSize(colourButtonsdim);
 		WhiteButn.setMaximumSize(colourButtonsdim);
@@ -171,7 +163,7 @@ public class DroodleGUI extends JPanel {
 		gbc.gridx = 3;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(deleteButn, gbc);
-		
+
 		gbc.gridx = 4;
 		gbc.gridy = 0;
 		PaintPanelGUI.add(WhiteButn, gbc);
@@ -207,8 +199,8 @@ public class DroodleGUI extends JPanel {
 		loadProjectButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				PanelController.cl.show(PanelController.panelCont, "3");
 				PanelController.lp.setup();
+				PanelController.cl.show(PanelController.panelCont, "3");
 			}
 		});
 
@@ -220,7 +212,6 @@ public class DroodleGUI extends JPanel {
 			}
 		});
 
-
 		BlackButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -229,7 +220,7 @@ public class DroodleGUI extends JPanel {
 
 			}
 		});
-		
+
 		WhiteButn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -268,7 +259,7 @@ public class DroodleGUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				DroodlePanel.dw.setCurrentColor(Color.BLUE);
-				
+
 			}
 		});
 	}

@@ -13,8 +13,6 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
 import java.io.Serializable;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -41,7 +39,6 @@ import storagetool.StorageAccount;
 
 public class StorageFacade extends JPanel implements Serializable {
 
-	
 	private Timer timer;
 	private Boolean counting = false;
 	private int counter = 5;
@@ -49,7 +46,7 @@ public class StorageFacade extends JPanel implements Serializable {
 	public String sketchName;
 
 	private static final long serialVersionUID = 1L;
-	
+
 	public void time() {
 		if (!counting) {
 
@@ -74,51 +71,48 @@ public class StorageFacade extends JPanel implements Serializable {
 			timer.start();
 		}
 	}
-	
+
 	public void Save(Vector<Point> points) {
-		 System.out.println("Save");
-		 try {
-			 ByteArrayOutputStream baos = new ByteArrayOutputStream();			
-			 ObjectOutputStream serialiser = new ObjectOutputStream(baos);
-			 
+		System.out.println("Save");
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream serialiser = new ObjectOutputStream(baos);
 
-			 serialiser.writeObject(DroodlePanel.dw.points);
-			 serialiser.close();
+			serialiser.writeObject(DroodlePanel.dw.points);
+			serialiser.close();
 
-			 
-			 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-			 
-			 Droodle.storage.setSketchname(sketchName);
-			 Droodle.storage.upload(bais);
+			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
 
-		      } catch (Exception ex) {
-		        System.out.println("Trouble writing display list vector");
-		      }
-	 }
-	
+			Droodle.storage.setSketchname(sketchName);
+			Droodle.storage.upload(bais);
+
+		} catch (Exception ex) {
+			System.out.println("Trouble writing display list vector");
+		}
+	}
+
 	public void LoadPoints() throws IOException, ClassNotFoundException {
 		try {
 			Droodle.storage.setSketchname(sketchName);
 			BlobInputStream datastream = Droodle.storage.download();
-			
+
 			ObjectInputStream ois = new ObjectInputStream(datastream);
-			Vector<Point> test = (Vector<Point>)ois.readObject();
-			
+			Vector<Point> test = (Vector<Point>) ois.readObject();
+
 			for (Point integer : test) {
 				DroodlePanel.dw.points.add(integer);
-				
+
 				System.out.println("Fant " + integer);
 			}
 			System.out.println("Points hentet");
-			
-			//DroodlePanel.dw.bImage = ImageIO.read(new File("Loaded-Temp.jpg"));
-			
-		}catch (URISyntaxException | StorageException e) {
+
+			// DroodlePanel.dw.bImage = ImageIO.read(new
+			// File("Loaded-Temp.jpg"));
+
+		} catch (URISyntaxException | StorageException e) {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	public void deleteFile(String sketchName) {
 		CloudStorageAccount sa = StorageAccount.getInstance().getStorageAccount();
@@ -141,7 +135,6 @@ public class StorageFacade extends JPanel implements Serializable {
 		}
 	}
 
-
 	public void SaveTempJPG() {
 		System.out.println("Saving TempJPG");
 		try {
@@ -151,7 +144,6 @@ public class StorageFacade extends JPanel implements Serializable {
 			System.out.println(e.getMessage());
 		}
 	}
-
 
 	public void SaveToAzure() throws URISyntaxException, StorageException {
 		try {
@@ -171,7 +163,7 @@ public class StorageFacade extends JPanel implements Serializable {
 			Droodle.storage = new Storage("sketches-6");
 			Droodle.storage.setSketchname(sketchName);
 			Droodle.storage.upload(in);
-			
+
 			System.out.println("Saving to azure");
 
 		} catch (IOException e) {
@@ -199,7 +191,7 @@ public class StorageFacade extends JPanel implements Serializable {
 			outStream = new FileOutputStream("Loaded-Temp.jpg");
 			byteOutStream = new ByteArrayOutputStream();
 			// writing bytes in to byte output stream
-			byteOutStream.write(bytes); 
+			byteOutStream.write(bytes);
 			byteOutStream.writeTo(outStream);
 			System.out.println("Loading selected Sketch");
 		} catch (IOException e) {
