@@ -12,7 +12,7 @@ public class Droodle {
 		String storageVersion = storage.getVersion();
 
 		if ("Storage tool version 1.2" == storageVersion) {
-			new SplashScreen();
+				new SplashScreen();
 		} else {
 			throw new SecurityException("Use a newer version of Storagetool");
 		}

@@ -39,7 +39,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				points.clear();
+				// points.clear();
 				points.add(e.getPoint());
 			}
 		});
@@ -55,7 +55,7 @@ public class DroodleWindow extends JPanel implements Serializable {
 		addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				points.add(e.getPoint());
-				points.clear();
+				// points.clear();
 				repaint();
 			}
 		});
